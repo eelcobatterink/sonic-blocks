@@ -1,5 +1,6 @@
 var osc = require("osc");
 var WebSocketServer = require("ws").Server;
+var clients = []
 
 var spi = new osc.UDPPort({
     localAddress: "127.0.0.1",
@@ -9,22 +10,29 @@ var spi = new osc.UDPPort({
     remotePort: 4557
 });
 
-var connected = false;
-
 spi.on("ready", function() {
 
 });
 
 spi.on("message", function(msg) {
-    console.log("Message, cmd: " + msg.address + ", args: " + msg.args.join(" "));
-});
 
+    switch(msg.address) {
+        case "/runs/all-completed":
+        for(var client of clients) {
+            client.send(JSON.stringify({type: "all-runs-completed"}));
+        }
+        break;
+
+        default:
+        console.log("Message, cmd: " + msg.address + ", args: " + msg.args.join(" "));
+        break;
+    }
+});
 spi.open();
 
 
-
 var wss = new WebSocketServer({ port: 4001 });
-var clients = []
+
 
 wss.on('connection', function connection(ws) {
     clients.push(ws);
@@ -37,40 +45,34 @@ wss.on('connection', function connection(ws) {
         return;
     }
 
-    if(msg.type && msg.type == "run") {
-        console.log("Running code " + msg.code);
-        spi.send({
-            address: "/run-code",
-            args: [0, msg.code]
-        });
+    if(msg.type) {
+        switch(msg.type) {
+            case "run":
+                console.log("Running code " + msg.code);
+                spi.send({
+                    address: "/run-code",
+                    args: [0, msg.code]
+                });
+            break;
 
-        return;
+            case "stop-all":
+                console.log("Stopping all runs");
+                spi.send({
+                    address: "/stop-all-jobs",
+                    args: [0]
+                });
+                break;
+
+            default:
+                console.log("Received unknown message type " + msg.type);
+                console.log(msg);
+            break;
+        }
     }
   });
+
+  ws.on("close", function() {
+      // Remove this websocket from the client array.
+      clients.splice(clients.indexOf(this), 1);
+  });
 });
-
-/*
-var udpPort = new osc.UDPPort({
-    localAddress: "0.0.0.0",
-    localPort: 57121
-});
-
-udpPort.on("ready", function () {
-    var ipAddresses = getIPAddresses();
-
-    console.log("Listening for OSC over UDP.");
-    ipAddresses.forEach(function (address) {
-        console.log(" Host:", address + ", Port:", udpPort.options.localPort);
-    });
-});
-
-udpPort.on("message", function (oscMessage) {
-    example.mapOSCToSynth(oscMessage, example.synth, example.synthValueMap);
-});
-
-udpPort.on("error", function (err) {
-    console.log(err);
-});
-
-udpPort.open();
-*/
