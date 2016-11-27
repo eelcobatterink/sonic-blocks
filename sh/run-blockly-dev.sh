@@ -1,4 +1,4 @@
 #!/bin/bash
 cd blockly
-echo "Startin block factory on localhost:3000/demos/blockfactory/"
+echo "Starting block factory on http://localhost:3000/blockfactory/"
 python -m SimpleHTTPServer 3000
