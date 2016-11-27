@@ -1,0 +1,41 @@
+Ignoring executable-hooks-1.3.2 because its extensions are not built.  Try: gem pristine executable-hooks --version 1.3.2
+Ignoring gem-wrappers-1.2.7 because its extensions are not built.  Try: gem pristine gem-wrappers --version 1.2.7
+Sonic Pi server booting...
+Detecting port numbers...
+Send port: 4558
+Listen port: 4557
+Scsynth port: 4556
+Scsynth send port: 4556
+OSC cues port: 4559
+Using protocol: udp
+booting server...
+
+
+Booting Sonic Pi
+----------------
+
+Boot - Booting on OS X
+Boot - Checkout audio rates on OSX:
+Boot - Input audio rate: 44100.0
+Boot - Output audio rate: 44100.0
+Boot - Sample rates match, we may continue to boot...
+Boot - Starting the SuperCollider server...
+Ignoring executable-hooks-1.3.2 because its extensions are not built.  Try: gem pristine executable-hooks --version 1.3.2
+Ignoring gem-wrappers-1.2.7 because its extensions are not built.  Try: gem pristine gem-wrappers --version 1.2.7
+Boot - SuperCollider booted successfully.
+Boot - Connecting to the SuperCollider server...
+Boot - Sending /status to server: localhost:4556
+Boot - Receiving ack from server on port 5998
+Boot - Server connection established
+This is Sonic Pi v2.11 running on osx with ruby api 2.3.0.
+Sonic Pi Server successfully booted.
+Exiting - shutting down scsynth server...
+Sending /quit command to scsynth
+Stopping OSC server...
+Stopped OSC server...
+killing scynth process 30927
+going to kill 30927
+Successfully killed 30927
+Server is exiting.
+Shutting down GUI...
+Goodbye :-)

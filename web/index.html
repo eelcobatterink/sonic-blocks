@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SonicPi Generator</title>
+  <script src="js/blockly_compressed.js"></script>
+  <script src="js/blocks_compressed.js"></script>
+  <script src="js/sonicpi_compressed.js"></script>
+  <script src="js/msg/js/en.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+  <p>SonicPi Code Generation</p>
+  <p>
+    <button onclick="updateCode()">Generate</button>
+    <button onclick="runCode()">Execute</button>
+  </p>
+
+  <div id="blocklyDiv" style="height: 480px; width: 600px; display:inline-block"></div>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Play Notes">
+      <block type="play_basic"></block>
+      <block type="note"></block>
+      <block type="midi_note"></block>
+    </category>
+  </xml>
+
+  <xml id="startBlocks" style="display: none">
+    <block type="play_basic" inline="false" x="20" y="20">
+    </block>
+  </xml>
+
+  <textarea readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
+
+  <script>
+    var workspace = Blockly.inject('blocklyDiv',
+        {media: '../../media/',
+         toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
+                               workspace);
+
+
+    ws = new WebSocket("ws://127.0.0.1:4001/");
+
+    ws.onopen = function() {
+      console.log("websocket connected");
+
+    }
+
+    function runCode() {
+      var code = Blockly.SonicPi.workspaceToCode(workspace);
+      var payload = JSON.stringify({type: "run", code: code});
+      ws.send(payload);
+      console.log(payload);
+    }
+
+    function updateCode() {
+      var el = document.getElementById("spi-code");
+      // Generate JavaScript code and display it.
+      Blockly.SonicPi.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.SonicPi.workspaceToCode(workspace);
+      console.log(code);
+      console.log(el);
+      el.value = code;
+    }
+
+  </script>
+
+</body>
+</html>

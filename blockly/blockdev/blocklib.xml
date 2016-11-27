@@ -1,0 +1,141 @@
+<xml xmlns="http://www.w3.org/1999/xhtml"><block type="factory_base" id="z9EMARkpN#./Od%H#XT}" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">play_basic</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="bhqHS7UVUHGDRZJ`ve)x">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="N#,VtqaqG``Q_;u=Ytm7">
+            <field name="TEXT">play</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="pAng9yRPXcn6CZ|;=fI^">
+            <field name="INPUTNAME">NAME</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="-Lvbx.{Qgx7u-3Rsv8P|"></shadow>
+              <block type="type_group" id="Q!@EU1DVjTd(Wnm,2^2O">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="V{.yv~8eJ7@p)BDGd`FD">
+                    <field name="TYPE">note</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="O={r/RP8V4[i;M/|rbnB">
+                    <field name="TYPE">midi-note</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="COLOUR">
+      <block type="colour_hue" id="N^x=}#}X|Aqq@t6B+Ad6">
+        <mutation colour="#f7ca18"></mutation>
+        <field name="HUE">90</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="9j)umbe2W7RrzRK`HLEg" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">midi_note</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="R}iB,]Zg3|m*I[^7%y4A">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="A86/V|A9|6lW10M_0XRy">
+            <field name="TEXT">note number</field>
+            <next>
+              <block type="field_number" id="1++HY+!{z`XSokej9K)/">
+                <field name="VALUE">72</field>
+                <field name="FIELDNAME">NOTE_NUMBER</field>
+                <field name="MIN">0</field>
+                <field name="MAX">127</field>
+                <field name="PRECISION">0</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="*#{8QKYR(mi3((R*f6N{"></shadow>
+      <block type="type_other" id="H)nbH80-_}REl]]3p6`,">
+        <field name="TYPE">midi-note</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="k!W,+q5HBZHM.nO:FdO7">
+        <mutation colour="#2ecc71"></mutation>
+        <field name="HUE">135</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="mHMEIMw~*f-$JetD2|oM" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">note</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="A`+_Tw|C|[G[v.2_5[n/">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="o[O7n#ihOJ{aT=*waqn?">
+            <mutation options="12"></mutation>
+            <field name="FIELDNAME">NOTE</field>
+            <field name="USER0">C</field>
+            <field name="CPU0">:C</field>
+            <field name="USER1">C#/Db</field>
+            <field name="CPU1">:Cs</field>
+            <field name="USER2">D</field>
+            <field name="CPU2">:D</field>
+            <field name="USER3">D#/Eb</field>
+            <field name="CPU3">:Ds</field>
+            <field name="USER4">E</field>
+            <field name="CPU4">:E</field>
+            <field name="USER5">F</field>
+            <field name="CPU5">:F</field>
+            <field name="USER6">F#</field>
+            <field name="CPU6">:Fs</field>
+            <field name="USER7">G</field>
+            <field name="CPU7">:G</field>
+            <field name="USER8">G#</field>
+            <field name="CPU8">:Gs</field>
+            <field name="USER9">A</field>
+            <field name="CPU9">:A</field>
+            <field name="USER10">A#</field>
+            <field name="CPU10">:As</field>
+            <field name="USER11">B</field>
+            <field name="CPU11">:B</field>
+            <next>
+              <block type="field_number" id="kWAB+s+LVL{H7p/G$wV7">
+                <field name="VALUE">5</field>
+                <field name="FIELDNAME">OCTAVE</field>
+                <field name="MIN">-2</field>
+                <field name="MAX">8</field>
+                <field name="PRECISION">1</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="gZRAKJU@]6/Tv?//nOfq"></shadow>
+      <block type="type_other" id="De-hw,bYxSPgQ63Kv7M@">
+        <field name="TYPE">note</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="T6F9v$^lMBPs@HOK^AZO">
+        <mutation colour="#2ecc71"></mutation>
+        <field name="HUE">135</field>
+      </block>
+    </value>
+  </block></xml>
