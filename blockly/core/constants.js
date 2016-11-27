@@ -72,7 +72,7 @@ Blockly.HSV_VALUE = 0.8;
 
 Blockly.COLORS = [
   "#d91e18", 
-  "#f62459", 
+  "#db0a5b", 
   "#ef4836", 
   "#ee7d16",
   "#c88330",
@@ -86,7 +86,8 @@ Blockly.COLORS = [
   "#4a6cd4",
   "#8a55d7",
   "#bb42c3",
-  "#632d99"
+  "#632d99",
+  "#34495e"
 ]
 
 /**
