@@ -27,7 +27,7 @@ Blockly.Blocks['sonic_pi_play'] = {
 
 Blockly.Python['sonic_pi_play'] = function (block) {
     var value_play = Blockly.Python.valueToCode(block, 'Play', Blockly.Python.ORDER_ATOMIC);
-    return 'play ' + value_play;
+    return 'play ' + value_play + '\n';
 };
 
 
@@ -57,6 +57,6 @@ Blockly.Blocks['sonic_pi_sleep'] = {
 };
 
 Blockly.Python['sonic_pi_sleep'] = function (block) {
-    var value_play = Blockly.Python.valueToCode(block, 'Sleep', Blockly.Python.ORDER_ATOMIC);
-    return 'play ' + value_play + '\n';
+    var value_sleep = Blockly.Python.valueToCode(block, 'Sleep', Blockly.Python.ORDER_ATOMIC);
+    return 'sleep ' + value_sleep + '\n';
 };
