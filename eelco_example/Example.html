@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="blockly_compressed.js"></script>
+<script src="blocks_compressed.js"></script>
+<script src="python_compressed.js"></script>
+<script src="sonic.js"></script>
+
+
+<xml id="toolbox" style="display: none">
+  <block type="math_number"></block>
+  <block type="text"></block>
+  <block type="sonic_pi_play"></block>
+    <block type="sonic_pi_sleep"></block>
+</xml>
+
+
+<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+
+<button type="button" onclick="myUpdateFunction()">
+Click me</button>
+<br>
+
+<textarea id="output" style="height: 320px; width: 600px;" ></textarea>
+
+<script>
+  var workspace = Blockly.inject('blocklyDiv',
+      {toolbox: document.getElementById('toolbox')});
+
+  function myUpdateFunction() {
+    var code = Blockly.Python.workspaceToCode(workspace);
+    document.getElementById('output').value = code;
+  }
+  
+</script>
+
+
+
+</body>
+</html> 
