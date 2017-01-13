@@ -138,3 +138,43 @@ Blockly.Python['sonic_pi_thread'] = function (block) {
     var code = 'in_thread do\n' + statements_body + 'end\n'
     return code;
 };
+
+
+Blockly.Blocks['sonic_pi_define'] = {
+    /**
+     * Block for repeat n times (external number).
+     * @this Blockly.Block
+     */
+    init: function () {
+        this.jsonInit({
+            "type": "sonic_pi_define",
+            "message0": "define %1 %2 %3",
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "define",
+                },
+                {
+                    "type": "input_dummy"
+                },
+                {
+                    "type": "input_statement",
+                    "name": "BODY"
+                }
+            ],
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": 230,
+            "tooltip": "Define the contents ",
+            "helpUrl": ""
+        });
+    }
+};
+
+Blockly.Python['sonic_pi_define'] = function (block) {
+    var value_define = Blockly.Python.valueToCode(block, 'define', Blockly.Python.ORDER_ATOMIC);
+    var statements_body = Blockly.Python.statementToCode(block, 'BODY');
+    // TODO: Assemble Python into code variable.
+    var code = 'define :' + value_define + ' do\n' + statements_body + 'end\n'
+    return code;
+};
