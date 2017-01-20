@@ -141,3 +141,29 @@ Blockly.SonicPi['procedures_defnoreturn'] = function(block) {
     Blockly.SonicPi.definitions_['%' + funcName] = code;
     return null;
 };
+
+Blockly.SonicPi['math_number'] = function(block) {
+    // Numeric value.
+    var code = parseFloat(block.getFieldValue('NUM'));
+    return [code, Blockly.SonicPi.ORDER_ATOMIC];
+};
+
+Blockly.SonicPi['math_arithmetic'] = function(block) {
+    // Basic arithmetic operators, and power.
+    var OPERATORS = {
+        'ADD': [' + ', Blockly.SonicPi.ORDER_ADDITION],
+        'MINUS': [' - ', Blockly.SonicPi.ORDER_SUBTRACTION],
+        'MULTIPLY': [' * ', Blockly.SonicPi.ORDER_MULTIPLICATION],
+        'DIVIDE': [' / ', Blockly.SonicPi.ORDER_DIVISION],
+        'POWER': [' ** ', Blockly.SonicPi.ORDER_COMMA]
+    };
+    var tuple = OPERATORS[block.getFieldValue('OP')];
+    var operator = tuple[0];
+    var order = tuple[1];
+    var argument0 = Blockly.SonicPi.valueToCode(block, 'A', order) || '0';
+    var argument1 = Blockly.SonicPi.valueToCode(block, 'B', order) || '0';
+    var code;
+
+    code = argument0 + operator + argument1;
+    return code;
+};
