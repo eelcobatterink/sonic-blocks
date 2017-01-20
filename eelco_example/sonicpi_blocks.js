@@ -141,3 +141,29 @@ Blockly.Blocks['duration'] = {
     this.setColour(150);
   }
 };
+
+Blockly.Blocks['in_thread'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("in_thread");
+        this.appendStatementInput("DO")
+            .setCheck(null)
+            .appendField("DO");
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+    }
+};
+
+Blockly.Blocks['sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("sample")
+            .appendField(new Blockly.FieldDropdown([["bd_klub", "bd_klub"], ["drum_snare_hard", "drum_snare_hard"], ["drum_cymbal_closed", "drum_cymbal_closed"]]), "SAMPLE");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+    }
+};
