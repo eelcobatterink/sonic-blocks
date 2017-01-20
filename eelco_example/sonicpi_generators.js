@@ -80,3 +80,64 @@ Blockly.SonicPi['sample'] = function (block) {
     var code = 'sample :'+dropdown_sample+'\n';
     return code;
 };
+
+
+Blockly.SonicPi['controls_repeat_ext'] = function(block) {
+    // Repeat n times.
+    if (block.getField('TIMES')) {
+        // Internal number.
+        var repeats = String(Number(block.getFieldValue('TIMES')));
+    } else {
+        // External number.
+        var repeats = Blockly.SonicPi.valueToCode(block, 'TIMES',
+                Blockly.SonicPi.ORDER_ASSIGNMENT) || '0';
+    }
+    var branch = Blockly.SonicPi.statementToCode(block, 'DO');
+    branch = Blockly.SonicPi.addLoopTrap(branch, block.id);
+    var code = repeats + '.times do\n' + branch + 'end\n';
+    // var loopVar = Blockly.SonicPi.variableDB_.getDistinctName(
+    //     'count', Blockly.Variables.NAME_TYPE);
+    // var endVar = repeats;
+    // if (!repeats.match(/^\w+$/) && !Blockly.isNumber(repeats)) {
+    //     var endVar = Blockly.SonicPi.variableDB_.getDistinctName(
+    //         'repeat_end', Blockly.Variables.NAME_TYPE);
+    //     code += 'var ' + endVar + ' = ' + repeats + ';\n';
+    // }
+    // code += 'for (var ' + loopVar + ' = 0; ' +
+    //     loopVar + ' < ' + endVar + '; ' +
+    //     loopVar + '++) {\n' +
+    //     branch + '}\n';
+    return code;
+};
+
+
+Blockly.SonicPi['procedures_defnoreturn'] = function(block) {
+    // Define a procedure with a return value.
+    var funcName = Blockly.SonicPi.variableDB_.getName(
+        block.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
+    var branch = Blockly.SonicPi.statementToCode(block, 'STACK');
+    if (Blockly.SonicPi.STATEMENT_PREFIX) {
+        branch = Blockly.SonicPi.prefixLines(
+                Blockly.SonicPi.STATEMENT_PREFIX.replace(/%1/g,
+                    '\'' + block.id + '\''), Blockly.SonicPi.INDENT) + branch;
+    }
+    if (Blockly.SonicPi.INFINITE_LOOP_TRAP) {
+        branch = Blockly.SonicPi.INFINITE_LOOP_TRAP.replace(/%1/g,
+                '\'' + block.id + '\'') + branch;
+    }
+    var args = [];
+    for (var i = 0; i < block.arguments_.length; i++) {
+        args[i] = Blockly.SonicPi.variableDB_.getName(block.arguments_[i],
+            Blockly.Variables.NAME_TYPE);
+    }
+    var argsCode = '';
+    if ( args.length > 0 ) {
+        argsCode = '|' + args.join(', ') + '|'
+    }
+    var code = 'define :' + funcName + ' do' + argsCode + '\n' +
+        branch + 'end\n';
+    code = Blockly.SonicPi.scrub_(block, code);
+    // Add % so as not to collide with helper functions in definitions list.
+    Blockly.SonicPi.definitions_['%' + funcName] = code;
+    return null;
+};
