@@ -4,13 +4,11 @@
 
 <script src="blockly_compressed.js"></script>
 <script src="blocks_compressed.js"></script>
-<script src="python_compressed.js"></script>
+<script src="sonicpi.js"></script>
 <script src="sonic.js"></script>
 
 
 <xml id="toolbox" style="display: none">
-  <block type="math_number"></block>
-  <block type="text"></block>
   <block type="sonic_pi_play"></block>
   <block type="sonic_pi_sleep"></block>
   <block type="sonic_pi_times"></block>
@@ -32,7 +30,7 @@ Click me</button>
       {toolbox: document.getElementById('toolbox')});
 
   function myUpdateFunction() {
-    var code = Blockly.Python.workspaceToCode(workspace);
+    var code = Blockly.SonicPi.workspaceToCode(workspace);
     document.getElementById('output').value = code;
   }
   

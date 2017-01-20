@@ -25,8 +25,8 @@ Blockly.Blocks['sonic_pi_play'] = {
     }
 };
 
-Blockly.Python['sonic_pi_play'] = function (block) {
-    var value_play = Blockly.Python.valueToCode(block, 'Play', Blockly.Python.ORDER_ATOMIC);
+Blockly.SonicPi['sonic_pi_play'] = function (block) {
+    var value_play = Blockly.SonicPi.valueToCode(block, 'Play', Blockly.SonicPi.ORDER_ATOMIC);
     return 'play ' + value_play + '\n';
 };
 
@@ -56,8 +56,8 @@ Blockly.Blocks['sonic_pi_sleep'] = {
     }
 };
 
-Blockly.Python['sonic_pi_sleep'] = function (block) {
-    var value_sleep = Blockly.Python.valueToCode(block, 'Sleep', Blockly.Python.ORDER_ATOMIC);
+Blockly.SonicPi['sonic_pi_sleep'] = function (block) {
+    var value_sleep = Blockly.SonicPi.valueToCode(block, 'Sleep', Blockly.SonicPi.ORDER_ATOMIC);
     return 'sleep ' + value_sleep + '\n';
 };
 
@@ -95,9 +95,9 @@ Blockly.Blocks['sonic_pi_times'] = {
     }
 };
 
-Blockly.Python['sonic_pi_times'] = function (block) {
-    var value_times = Blockly.Python.valueToCode(block, 'TIMES', Blockly.Python.ORDER_ATOMIC);
-    var statements_body = Blockly.Python.statementToCode(block, 'BODY');
+Blockly.SonicPi['sonic_pi_times'] = function (block) {
+    var value_times = Blockly.SonicPi.valueToCode(block, 'TIMES', Blockly.SonicPi.ORDER_ATOMIC);
+    var statements_body = Blockly.SonicPi.statementToCode(block, 'BODY');
     // TODO: Assemble Python into code variable.
     var code = value_times + '.times do\n' + statements_body + 'end\n'
     return code;
@@ -132,8 +132,8 @@ Blockly.Blocks['sonic_pi_thread'] = {
     }
 };
 
-Blockly.Python['sonic_pi_thread'] = function (block) {
-    var statements_body = Blockly.Python.statementToCode(block, 'BODY');
+Blockly.SonicPi['sonic_pi_thread'] = function (block) {
+    var statements_body = Blockly.SonicPi.statementToCode(block, 'BODY');
     // TODO: Assemble Python into code variable.
     var code = 'in_thread do\n' + statements_body + 'end\n'
     return code;
