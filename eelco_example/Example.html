@@ -5,16 +5,27 @@
 <script src="blockly_compressed.js"></script>
 <script src="blocks_compressed.js"></script>
 <script src="sonicpi.js"></script>
-<script src="sonic.js"></script>
+<script src="play.js"></script>
 
-
-<xml id="toolbox" style="display: none">
-  <block type="sonic_pi_play"></block>
-  <block type="sonic_pi_sleep"></block>
-  <block type="sonic_pi_times"></block>
-  <block type="sonic_pi_thread"></block>
-  <block type="sonic_pi_define"></block>
-</xml>
+    <xml id="toolbox" style="display: none">
+        <category name="Sound">
+            <block type="play_basic"></block>
+            <block type="play_advanced"></block>
+            <block type="note"></block>
+            <block type="midi_note"></block>
+            <block type="duration"></block>
+        </category>
+        <category name="Flow">
+            <block type="live_loop"></block>
+            <block type="sleep"></block>
+            <block type="duration"></block>
+        </category>
+        <category name="Feel">
+            <block type="bpm"></block>
+            <block type="synth"></block>
+            <block type="fx"></block>
+        </category>
+    </xml>
 
 
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
