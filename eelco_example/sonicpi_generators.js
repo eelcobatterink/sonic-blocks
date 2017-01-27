@@ -94,7 +94,7 @@ Blockly.SonicPi['controls_repeat_ext'] = function(block) {
     }
     var branch = Blockly.SonicPi.statementToCode(block, 'DO');
     branch = Blockly.SonicPi.addLoopTrap(branch, block.id);
-    var code = repeats + '.times do\n' + branch + 'end\n';
+    var code = '('+repeats+')' + '.times do\n' + branch + 'end\n';
     // var loopVar = Blockly.SonicPi.variableDB_.getDistinctName(
     //     'count', Blockly.Variables.NAME_TYPE);
     // var endVar = repeats;
@@ -165,5 +165,5 @@ Blockly.SonicPi['math_arithmetic'] = function(block) {
     var code;
 
     code = argument0 + operator + argument1;
-    return code;
+    return [code,order];
 };
