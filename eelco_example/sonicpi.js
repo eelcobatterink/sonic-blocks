@@ -227,11 +227,11 @@ Blockly.SonicPi.scrub_ = function(block, code) {
     if (comment) {
       if (block.getProcedureDef) {
         // Use a comment block for function comments.
-        commentCode += '/**\n' +
-                       Blockly.SonicPi.prefixLines(comment + '\n', ' * ') +
-                       ' */\n';
+        commentCode += '#\n' +
+                       Blockly.SonicPi.prefixLines(comment + '\n', '# ') +
+                       '#\n';
       } else {
-        commentCode += Blockly.SonicPi.prefixLines(comment + '\n', '// ');
+        commentCode += Blockly.SonicPi.prefixLines(comment + '\n', '# ');
       }
     }
     // Collect comments for all value arguments.

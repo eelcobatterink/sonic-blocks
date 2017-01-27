@@ -110,38 +110,7 @@ Blockly.SonicPi['controls_repeat_ext'] = function(block) {
     return code;
 };
 
-
-Blockly.SonicPi['procedures_defnoreturn'] = function(block) {
-    // Define a procedure with a return value.
-    var funcName = Blockly.SonicPi.variableDB_.getName(
-        block.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
-    var branch = Blockly.SonicPi.statementToCode(block, 'STACK');
-    if (Blockly.SonicPi.STATEMENT_PREFIX) {
-        branch = Blockly.SonicPi.prefixLines(
-                Blockly.SonicPi.STATEMENT_PREFIX.replace(/%1/g,
-                    '\'' + block.id + '\''), Blockly.SonicPi.INDENT) + branch;
-    }
-    if (Blockly.SonicPi.INFINITE_LOOP_TRAP) {
-        branch = Blockly.SonicPi.INFINITE_LOOP_TRAP.replace(/%1/g,
-                '\'' + block.id + '\'') + branch;
-    }
-    var args = [];
-    for (var i = 0; i < block.arguments_.length; i++) {
-        args[i] = Blockly.SonicPi.variableDB_.getName(block.arguments_[i],
-            Blockly.Variables.NAME_TYPE);
-    }
-    var argsCode = '';
-    if ( args.length > 0 ) {
-        argsCode = '|' + args.join(', ') + '|'
-    }
-    var code = 'define :' + funcName + ' do' + argsCode + '\n' +
-        branch + 'end\n';
-    code = Blockly.SonicPi.scrub_(block, code);
-    // Add % so as not to collide with helper functions in definitions list.
-    Blockly.SonicPi.definitions_['%' + funcName] = code;
-    return null;
-};
-
+//math
 Blockly.SonicPi['math_number'] = function(block) {
     // Numeric value.
     var code = parseFloat(block.getFieldValue('NUM'));
@@ -168,6 +137,8 @@ Blockly.SonicPi['math_arithmetic'] = function(block) {
     return [code,order];
 };
 
+
+//variables
 Blockly.SonicPi['variables_get'] = function(block) {
   // Variable getter.
   var code = Blockly.SonicPi.variableDB_.getName(block.getFieldValue('VAR'),
@@ -175,8 +146,6 @@ Blockly.SonicPi['variables_get'] = function(block) {
   return [code, Blockly.SonicPi.ORDER_ATOMIC];
 };
 
-
-//variables
 Blockly.SonicPi['variables_set'] = function(block) {
   // Variable setter.
   var argument0 = Blockly.SonicPi.valueToCode(block, 'VALUE',
@@ -186,5 +155,97 @@ Blockly.SonicPi['variables_set'] = function(block) {
   return varName + ' = ' + argument0 + '\n';
 };
 
+//procedures
+Blockly.SonicPi['procedures_defreturn'] = function(block) {
+  // Define a procedure with a return value.
+  // First, add a 'global' statement for every variable that is not shadowed by
+  // a local parameter.
+  var globals = [];
+  for (var i = 0, varName; varName = block.workspace.variableList[i]; i++) {
+    if (block.arguments_.indexOf(varName) == -1) {
+      globals.push(Blockly.SonicPi.variableDB_.getName(varName,
+          Blockly.Variables.NAME_TYPE));
+    }
+  }
+  globals = globals.length ? '  global ' + globals.join(', ') + '\n' : '';
+  var funcName = Blockly.SonicPi.variableDB_.getName(block.getFieldValue('NAME'),
+      Blockly.Procedures.NAME_TYPE);
+  var branch = Blockly.SonicPi.statementToCode(block, 'STACK');
+  if (Blockly.SonicPi.STATEMENT_PREFIX) {
+    branch = Blockly.SonicPi.prefixLines(
+        Blockly.SonicPi.STATEMENT_PREFIX.replace(/%1/g,
+        '\'' + block.id + '\''), Blockly.SonicPi.INDENT) + branch;
+  }
+  if (Blockly.SonicPi.INFINITE_LOOP_TRAP) {
+    branch = Blockly.SonicPi.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '"' + block.id + '"') + branch;
+  }
+  var returnValue = Blockly.SonicPi.valueToCode(block, 'RETURN',
+      Blockly.SonicPi.ORDER_NONE) || '';
+  if (returnValue) {
+    returnValue = '  return ' + returnValue + '\n';
+  } else if (!branch) {
+    branch = Blockly.SonicPi.PASS;
+  }
+  var args = [];
+  for (var i = 0; i < block.arguments_.length; i++) {
+    args[i] = Blockly.SonicPi.variableDB_.getName(block.arguments_[i],
+        Blockly.Variables.NAME_TYPE);
+  }
+  var argsCode = '';
+  if ( args.length > 0 ) {
+       argsCode = '|' + args.join(', ') + '|'
+  }
+  var code = 'define :' + funcName + ' do' + argsCode + '\n' +
+  	      branch + 'end\n';
+  code = Blockly.SonicPi.scrub_(block, code);
+  // Add % so as not to collide with helper functions in definitions list.
+  Blockly.SonicPi.definitions_['%' + funcName] = code;
+  return null;
+};
 
+// Defining a procedure without a return value uses the same generator as
+// a procedure with a return value.
+Blockly.SonicPi['procedures_defnoreturn'] =
+    Blockly.SonicPi['procedures_defreturn'];
 
+Blockly.SonicPi['procedures_callreturn'] = function(block) {
+  // Call a procedure with a return value.
+  var funcName = Blockly.SonicPi.variableDB_.getName(block.getFieldValue('NAME'),
+      Blockly.Procedures.NAME_TYPE);
+  var args = [];
+  for (var i = 0; i < block.arguments_.length; i++) {
+    args[i] = Blockly.SonicPi.valueToCode(block, 'ARG' + i,
+        Blockly.SonicPi.ORDER_NONE) || 'None';
+  }
+  var code = funcName + '(' + args.join(', ') + ')';
+  return [code, Blockly.SonicPi.ORDER_FUNCTION_CALL];
+};
+
+Blockly.SonicPi['procedures_callnoreturn'] = function(block) {
+  // Call a procedure with no return value.
+  var funcName = Blockly.SonicPi.variableDB_.getName(block.getFieldValue('NAME'),
+      Blockly.Procedures.NAME_TYPE);
+  var args = [];
+  for (var i = 0; i < block.arguments_.length; i++) {
+    args[i] = Blockly.SonicPi.valueToCode(block, 'ARG' + i,
+        Blockly.SonicPi.ORDER_NONE) || 'None';
+  }
+  var code = funcName + '(' + args.join(', ') + ')\n';
+  return code;
+};
+
+Blockly.SonicPi['procedures_ifreturn'] = function(block) {
+  // Conditionally return value from a procedure.
+  var condition = Blockly.SonicPi.valueToCode(block, 'CONDITION',
+      Blockly.SonicPi.ORDER_NONE) || 'False';
+  var code = 'if ' + condition + ':\n';
+  if (block.hasReturnValue_) {
+    var value = Blockly.SonicPi.valueToCode(block, 'VALUE',
+        Blockly.SonicPi.ORDER_NONE) || 'None';
+    code += '  return ' + value + '\n';
+  } else {
+    code += '  return\n';
+  }
+  return code;
+};
