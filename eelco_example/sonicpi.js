@@ -160,7 +160,7 @@ Blockly.SonicPi.init = function(workspace) {
           Blockly.Variables.NAME_TYPE);
     }
     Blockly.SonicPi.definitions_['variables'] =
-        'var ' + defvars.join(', ') + ';';
+        'var ' + defvars.join(', ') + '';
   }
 };
 
@@ -189,7 +189,7 @@ Blockly.SonicPi.finish = function(code) {
  * @return {string} Legal line of code.
  */
 Blockly.SonicPi.scrubNakedValue = function(line) {
-  return line + ';\n';
+  return line + '\n';
 };
 
 /**
