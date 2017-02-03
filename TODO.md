@@ -4,6 +4,6 @@
 	- chord block - [BIKO requires mutator blocks for list of inputs]
 - xml output on editor - BIKO
 - scale block - LULU
-- populate samples
+- populate samples - DNA
 * fix function definition for undefined function
 * Commit sonic pi code - DANIEL
