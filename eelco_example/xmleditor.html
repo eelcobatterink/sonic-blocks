@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="blockly_compressed.js"></script>
+<script src="messages.js"></script>
+<script src="en.js"></script>
+<script src="blocks_compressed.js"></script>
+<script src="sonicpi.js"></script>
+<script src="sonicpi_blocks.js"></script>
+<script src="sonicpi_generators.js"></script>
+
+
+    <xml id="toolbox" style="display: none">
+        <category name="Math">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+        </category>
+        <category name="Sound">
+            <block type="sample"></block>
+            <block type="play_basic"></block>
+            <block type="play_advanced"></block>
+            <block type="note"></block>
+            <block type="midi_note"></block>
+            <block type="duration"></block>
+            <block type="sleep"></block>
+        </category>
+        <category name="Flow">
+            <block type="live_loop"></block>
+            <block type="duration"></block>
+            <block type="in_thread"></block>
+            <block type="controls_repeat_ext"></block>
+        </category>
+        <category name="Feel">
+            <block type="bpm"></block>
+            <block type="synth"></block>
+            <block type="fx"></block>
+        </category>
+        <category name="Variables" colour="330" custom="VARIABLE"></category>
+        <category name="Functions" colour="290" custom="PROCEDURE"></category>
+    </xml>
+
+
+<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+
+<button type="button" onclick="myUpdateFunction()">
+Click me</button>
+<br>
+
+<textarea id="output" style="height: 320px; width: 600px;" ></textarea>
+
+<script>
+  var workspace = Blockly.inject('blocklyDiv',
+      {toolbox: document.getElementById('toolbox')});
+
+  function myUpdateFunction() {
+    var code = Blockly.SonicPi.workspaceToCode(workspace);
+    document.getElementById('output').value = code;
+  }
+  
+</script>
+
+
+
+</body>
+</html> 

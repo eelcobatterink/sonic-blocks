@@ -469,4 +469,41 @@
         <field name="HUE">150</field>
       </block>
     </value>
+  </block>
+  <block type="factory_base" id="?p%J=l/MZJw*wAa=kpa@" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">sonic_pi_thread</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="XnMgpN0UzMp]f?nWXyhN">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="-7JzNgZCD_dhm^prHj}o">
+            <field name="TEXT">in_thread</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="_JKDLhVVc-{m)@,wD}_a">
+            <field name="INPUTNAME">BODY</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="Y6;[Cm`sH(M{N*.+FB~_"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="5Yd;4MGRxzV}1,3=v,?t"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id=".WWM31;B=3wJU+;2V(8+"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="ROX84awX}`3855s[stA`">
+        <mutation colour="#632d99"></mutation>
+        <field name="HUE">236</field>
+      </block>
+    </value>
   </block></xml>
