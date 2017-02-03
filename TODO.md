@@ -1,4 +1,9 @@
 * FIX BLOCKLY BLOCKFACTORY MISSING STORAGE.JS
-* Remove ';' generated in math related code
-* Fix function definition
-* For loop does not work with arithmetic
+- sonicpi.js cleanup
+- Optional params to play and sample blocks (and others) beer task - mutators
+- xml output on editor
+- chord block - BIKO
+- scale block - LULU
+- populate samples
+* fix function definition for undefined function
+* Commit sonic pi code - DANIEL
