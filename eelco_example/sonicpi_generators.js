@@ -249,3 +249,28 @@ Blockly.SonicPi['procedures_ifreturn'] = function(block) {
   }
   return code;
 };
+
+
+Blockly.SonicPi['variables_get'] = function(block) {
+    // Variable getter.
+    var code = Blockly.SonicPi.variableDB_.getName(block.getFieldValue('VAR'),
+        Blockly.Variables.NAME_TYPE);
+    return [code, Blockly.SonicPi.ORDER_ATOMIC];
+};
+
+Blockly.SonicPi['variables_set'] = function(block) {
+    // Variable setter.
+    var argument0 = Blockly.SonicPi.valueToCode(block, 'VALUE',
+            Blockly.SonicPi.ORDER_ASSIGNMENT) || '0';
+    var varName = Blockly.SonicPi.variableDB_.getName(
+        block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+    return varName + ' = ' + argument0 + ';\n';
+};
+
+Blockly.JavaScript['scale'] = function(block) {
+    var tonic = block.getFieldValue('TONIC');
+    var name = block.getFieldValue('NAME');
+    var num_octaves = block.getFieldValue('NUM_OCTAVES');
+    var code = 'scale :' + tonic + ', :' + name + ', num_octaves: ' + num_octaves + '\n';
+    return code;
+};

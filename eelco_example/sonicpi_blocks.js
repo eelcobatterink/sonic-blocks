@@ -167,3 +167,23 @@ Blockly.Blocks['sample'] = {
         this.setHelpUrl('');
     }
 };
+
+Blockly.Blocks['scale'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("scale_tonic")
+            .appendField(new Blockly.FieldTextInput("C"), "TONIC");
+        this.appendDummyInput()
+            .appendField("name")
+            .appendField(new Blockly.FieldDropdown([["major","MAJOR"], ["diatonic","DIATONIC"], ["ionian","IONIAN"], ["dorian","DORIAN"], ["phrygian","PHRYGRIAN"], ["lydian","LYDIAN"], ["minor","MINOR"], ["blues_major","BLUES_MAJOR"], ["whole","WHOLE"]]), "NAME");
+        this.appendDummyInput()
+            .appendField("num_octaves:")
+            .appendField(new Blockly.FieldNumber(1, 1), "NUM_OCTAVES");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('Creates a ring of MIDI note numbers when given a tonic note and a scale name. Also takes an optional num_octaves: parameter (octave 1 is the default). If only passed the scale name, the tonic defaults to 0.');
+        this.setHelpUrl('');
+    }
+};
