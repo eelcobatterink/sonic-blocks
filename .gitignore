@@ -1,7 +1,5 @@
-sonic-pi/*
 */.DS_Store
 .DS_Store
 logs/*
-bridge/node_modules/*
 node_modules/*
-electron-build/*
+electron_build/*
