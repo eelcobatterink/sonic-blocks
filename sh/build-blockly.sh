@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "ERR: sh scripts are deprecated. do not use"
+exit 0
+
 cd blockly
 python build.py
 

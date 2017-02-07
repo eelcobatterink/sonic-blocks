@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "ERR: sh scripts are deprecated. Do not use."
+exit 0
+
+# Figure out what the carrier return is.
 cr=`echo $'\n.'`
 cr=${cr%.}
 
