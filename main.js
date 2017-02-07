@@ -14,6 +14,7 @@ const child_process = require("child_process");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = null;
+let rubyServer = null;
 
 function createWindow () {
 	// Create the browser window.
@@ -24,18 +25,18 @@ function createWindow () {
 
 	// Start SPI Server
 	let native = process.platform == "win32" ? "win" : "osx";
-	let proc = child_process.spawn("../native/" + native + "/ruby/bin/ruby", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron_build/sonicpi/" + native + "/app/server/bin/"});
-	proc.on("error", (err) => {
+	rubyServer = child_process.spawn("../native/" + native + "/ruby/bin/ruby", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron_build/sonicpi/" + native + "/app/server/bin/"});
+	rubyServer.on("error", (err) => {
 		console.log(err);
 		process.exit(-1);
 	});
 
-	proc.on("exit", (err) => {
+	rubyServer.on("exit", (err) => {
 		console.log(err);
 		process.exit(-1);	// We really want to show this is an issue.
 	});
 
-	proc.stdout.pipe(process.stdout);
+	rubyServer.stdout.pipe(process.stdout);
 
 	// and load the index.html of the app.
 	mainWindow.loadURL(url.format({
@@ -66,7 +67,8 @@ app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-	bridge.close();
+	rubyServer.kill();
+	bridge.stop();
 	// On OS X it is common for applications and their menu bar
 	// to stay active until the user quits explicitly with Cmd + Q
 	if (process.platform !== 'darwin') {
