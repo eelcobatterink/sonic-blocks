@@ -1,5 +1,0 @@
-#!/usr/env python
-
-colors = [
-    
-]
