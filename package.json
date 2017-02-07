@@ -1,6 +1,6 @@
 {
   "name": "sonicpi-blockly",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "SonicPi with a Blockly interface",
   "main": "main.js",
   "scripts": {
