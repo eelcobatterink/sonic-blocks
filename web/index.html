@@ -1,45 +1,51 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>SonicPi Blockly</title>
-  <script src="js/blockly_compressed.js"></script>
-  <script src="js/blocks_compressed.js"></script>
-  <script src="js/sonic.js"></script>
-  <script src="js/play.js"></script>
-  <script src="js/msg/js/en.js"></script>
-  <style>
-    body {
-      background-color: #fff;
-      font-family: Helvetica, Arial, sans-serif;
-    }
-    h1 {
-      font-weight: normal;
-      font-size: 140%;
-    }
+	<meta charset="utf-8">
+	<title>SonicPi Blockly</title>
+	<script src="js/blockly_compressed.js"></script>
+	<script src="js/blockly_patches.js"></script>
+	<script src="js/messages.js"></script>
+	<script src="js/en.js"></script>
+	<script src="js/blocks_compressed.js"></script>
+	<script src="js/sonicpi.js"></script>
+	<script src="js/sonicpi_blocks.js"></script>
+	<script src="js/sonicpi_generators.js"></script>
+	<style>
+		/* TODO: CHANGE ME */
+		.blocklySelected > .blocklyPath { stroke: #111 !important; stroke-width: 1pt !important; }
 
-    button {
-      -webkit-appearance: none;
-      outline: none;
+		body {
+			background-color: #fff;
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		h1 {
+			font-weight: normal;
+			font-size: 140%;
+		}
 
-      background: #1abc9c;
-      color: #fff;
+		button {
+			-webkit-appearance: none;
+			outline: none;
 
-      padding: 10px;
-      border-radius: 3px;
-      border: none;
-      margin: 3px;
-      cursor: pointer;
-    }
+			background: #1abc9c;
+			color: #fff;
 
-    #conn-status {
-      color: #fff; 
-      background: #e74c3c; 
-      display: inline-block; 
-      padding: 10px; 
-      border-radius: 3px;
-    }
-  </style>
+			padding: 10px;
+			border-radius: 3px;
+			border: none;
+			margin: 3px;
+			cursor: pointer;
+		}
+
+		#conn-status {
+			color: #fff; 
+			background: #e74c3c; 
+			display: inline-block; 
+			padding: 10px; 
+			border-radius: 3px;
+		}
+	</style>
 </head>
 <body>
   <h1>SonicPi Blockly</h1>
@@ -81,7 +87,7 @@
 
   <script>
     var workspace = Blockly.inject('blocklyDiv',
-        {media: '../../media/',
+        {media: 'media/',
          toolbox: document.getElementById('toolbox')});
     Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
                                workspace);
