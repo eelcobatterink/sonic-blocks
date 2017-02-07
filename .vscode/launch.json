@@ -5,11 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-        "name": "Debug Electron Main",
+        "name": "Debug Electron OSX",
         "type": "node",
         "request": "launch",
         "cwd": "${workspaceRoot}",
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+        "program": "${workspaceRoot}/main.js"
+        },
+
+        {
+        "name": "Debug Electron Win32",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
         "program": "${workspaceRoot}/main.js"
         }
     ]
