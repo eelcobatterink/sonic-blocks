@@ -10,3 +10,5 @@
 * (paul) Cleanup electron code. it's a giant mess at the moment. Especially platform/build-dependent code sections.
 * (paul) Find a way to store tribe archive.
 * (paul) Build a script to make tribe archive? is there any point to this?
+* (paul) fix color hotpatch for mutators.
+* (BS People) fix your block color hues
