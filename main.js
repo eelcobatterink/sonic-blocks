@@ -45,7 +45,10 @@ function createWindow () {
 	}))
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools()
+	mainWindow.webContents.openDevTools();
+
+	// null our menu, we don't need no menu!
+	mainWindow.setMenu(null);
 
 	// Emitted when the window is closed.
 	mainWindow.on('closed', function () {
