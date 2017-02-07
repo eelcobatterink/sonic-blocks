@@ -4,8 +4,11 @@ var osc = require("osc");
 var WebSocketServer = require("ws").Server;
 var clients = []
 
-let expFun = () => {
-    var spi = new osc.UDPPort({
+var spi = null;
+var wss = null;
+
+let run = () => {
+    spi = new osc.UDPPort({
         localAddress: "127.0.0.1",
         localPort: 4558,
 
@@ -14,7 +17,7 @@ let expFun = () => {
     });
 
     spi.on("ready", function() {
-
+        console.log("SPI Ready.");
     });
 
     spi.on("message", function(msg) {
@@ -34,13 +37,13 @@ let expFun = () => {
     spi.open();
 
 
-    var wss = new WebSocketServer({ port: 4001 });
-
+    wss = new WebSocketServer({ port: 4001 });
 
     wss.on('connection', function connection(ws) {
         clients.push(ws);
 
         ws.on('message', function incoming(message) {
+        let msg = null;
         try {
         msg = JSON.parse(message);
         } catch(err) {
@@ -81,4 +84,11 @@ let expFun = () => {
     });
 }
 
-module.exports = {run: expFun};
+let stop = () => {
+    wss.close();
+
+    wss = null;
+    spi = null;
+}
+
+module.exports = {run: run, stop: stop};

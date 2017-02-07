@@ -8,6 +8,7 @@ const path = require('path')
 const url = require('url')
 
 const bridge = require("./bridge.js");
+const child_process = require("child_process");
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -18,11 +19,29 @@ function createWindow () {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({width: 1280, height: 720});
 
+
 	bridge.run();
+
+	/*
+	"C:\Users\bleed310\Desktop\ffg-spi\electron-build\sonicpi\win\app\server\native\win\ruby\bin\ruby.exe"
+# Start spi server
+cd ../sonic-pi/app/server/bin
+../native/osx/ruby/bin/ruby sonic-pi-server.rb > ../../../../logs/sonicpi.log 2>&1 &
+*/
+	let proc = child_process.spawn("../native/win/ruby/bin/ruby.exe", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron-build/sonicpi/win/app/server/bin/"});
+	proc.on("error", (err) => {
+		console.log(err);
+	});
+
+	proc.on("exit", (err) => {
+		console.log(err);
+	});
+
+	proc.stdout.pipe(process.stdout);
 
 	// and load the index.html of the app.
 	mainWindow.loadURL(url.format({
-		pathname: path.join(__dirname, "web", 'index.html'),
+		pathname: path.join(__dirname, "ui", "index.html"),
 		protocol: 'file:',
 		slashes: true
 	}))
@@ -46,6 +65,7 @@ app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
+	bridge.close();
 	// On OS X it is common for applications and their menu bar
 	// to stay active until the user quits explicitly with Cmd + Q
 	if (process.platform !== 'darwin') {
