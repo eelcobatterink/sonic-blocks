@@ -24,7 +24,7 @@ function createWindow () {
 
 	// Start SPI Server
 	let native = process.platform == "win32" ? "win" : "osx";
-	let proc = child_process.spawn("../native/" + native + "/ruby/bin/ruby.exe", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron_build/sonicpi/" + native + "/app/server/bin/"});
+	let proc = child_process.spawn("../native/" + native + "/ruby/bin/ruby", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron_build/sonicpi/" + native + "/app/server/bin/"});
 	proc.on("error", (err) => {
 		console.log(err);
 		process.exit(-1);
