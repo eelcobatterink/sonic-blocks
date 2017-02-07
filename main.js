@@ -19,22 +19,20 @@ function createWindow () {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({width: 1280, height: 720});
 
-
+	// Start "bridge"
 	bridge.run();
 
-	/*
-	"C:\Users\bleed310\Desktop\ffg-spi\electron-build\sonicpi\win\app\server\native\win\ruby\bin\ruby.exe"
-# Start spi server
-cd ../sonic-pi/app/server/bin
-../native/osx/ruby/bin/ruby sonic-pi-server.rb > ../../../../logs/sonicpi.log 2>&1 &
-*/
-	let proc = child_process.spawn("../native/win/ruby/bin/ruby.exe", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron-build/sonicpi/win/app/server/bin/"});
+	// Start SPI Server
+	let native = process.platform == "win32" ? "win" : "osx";
+	let proc = child_process.spawn("../native/" + native + "/ruby/bin/ruby.exe", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "electron-build/sonicpi/" + native + "/app/server/bin/"});
 	proc.on("error", (err) => {
 		console.log(err);
+		process.exit(-1);
 	});
 
 	proc.on("exit", (err) => {
 		console.log(err);
+		process.exit(-1);	// We really want to show this is an issue.
 	});
 
 	proc.stdout.pipe(process.stdout);

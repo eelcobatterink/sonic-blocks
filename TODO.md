@@ -7,3 +7,4 @@
 - populate samples - DNA
 * fix function definition for undefined function
 * Commit sonic pi code - DANIEL
+* Cleanup electron code. it's a giant mess at the moment. Especially platform/build-dependent code sections.
