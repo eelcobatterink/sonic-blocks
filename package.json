@@ -18,5 +18,8 @@
     "electron": "^1.4.15",
     "osc": "^2.2.0",
     "ws": "^2.0.2"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.5.1"
   }
 }

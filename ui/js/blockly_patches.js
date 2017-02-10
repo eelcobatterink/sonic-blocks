@@ -55,8 +55,8 @@ Blockly.BlockSvg.prototype.updateColour = function() {
   var hexColour = this.getColour();
   var rgb = goog.color.hexToRgb(hexColour);
   if (this.isShadow()) {
-//    rgb = goog.color.lighten(rgb, 0.6);
-//    hexColour = goog.color.rgbArrayToHex(rgb);
+//    rgb = goog.color.lighten(rgb, 0.6);         // Border
+//    hexColour = goog.color.rgbArrayToHex(rgb);   // Border
     this.svgPathLight_.style.display = 'none';
     this.svgPathDark_.setAttribute('fill', hexColour);
   } else {
