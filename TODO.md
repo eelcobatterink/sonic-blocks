@@ -2,13 +2,14 @@
 - (???) sonicpi.js cleanup
 - (???) Optional params to play and sample blocks (and others) beer task - mutators
 	- (biko?) chord block - [BIKO requires mutator blocks for list of inputs]
-- (biko) xml output on editor
+- (biko) xml output on editor DONE
+	- Need to know where it should go (DEV BUILD?)
 - (lulu) scale block
 - (dna) populate samples
 * (???) fix function definition for undefined function
-* (daniel) Commit sonic pi code
 * (paul) Cleanup electron code. it's a giant mess at the moment. Especially platform/build-dependent code sections.
 * (paul) Find a way to store tribe archive.
 * (paul) Build a script to make tribe archive? is there any point to this?
 * (paul) fix color hotpatch for mutators.
-* (BS People) fix your block color hues
+* (BS People) fix your block color hues #Which blocks? 
+	Variable blocks remain black.

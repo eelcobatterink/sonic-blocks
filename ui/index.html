@@ -54,10 +54,12 @@
     <button onclick="runCode()">▶ Run</button>
     <button onclick="stopAll()">■ Stop</button>
     <button onclick="updateCode()">[DEBUG] Show Code</button>
+	<button onclick="displayXml()">[DEBUG] Show XML</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px; display:inline-block"></div>
-
+	
+	
     <xml id="toolbox" style="display: none">
         <category name="Math">
             <block type="math_number"></block>
@@ -87,13 +89,14 @@
         <category name="Variables" colour="100" custom="VARIABLE"></category>
         <category name="Functions" colour="200" custom="PROCEDURE"></category>
     </xml>
-
+	
   <xml id="startBlocks" style="display: none">
     <block type="play_basic" x="20" y="20">
     </block>
   </xml>
 
   <textarea readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
+  <textarea readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
 
   <script>
     var workspace = Blockly.inject('blocklyDiv',
@@ -151,6 +154,18 @@
       console.log(el);
       el.value = code;
     }
+	
+	function displayXml() {
+	var e1 = document.getElementById("xml-code");
+	var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+	var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+	
+	console.log(xmlText)
+	console.log(xmlDom)
+	console.log(e1)
+	
+	e1.value = xmlText
+	}
 
 
   </script>
