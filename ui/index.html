@@ -150,22 +150,15 @@
       // Generate JavaScript code and display it.
       Blockly.SonicPi.INFINITE_LOOP_TRAP = null;
       var code = Blockly.SonicPi.workspaceToCode(workspace);
-      console.log(code);
-      console.log(el);
       el.value = code;
     }
 	
-	function displayXml() {
-	var e1 = document.getElementById("xml-code");
-	var xmlDom = Blockly.Xml.workspaceToDom(workspace);
-	var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-	
-	console.log(xmlText)
-	console.log(xmlDom)
-	console.log(e1)
-	
-	e1.value = xmlText
-	}
+    function displayXml() {
+      var e1 = document.getElementById("xml-code");
+      var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+      e1.value = xmlText;
+    }
 
 
   </script>

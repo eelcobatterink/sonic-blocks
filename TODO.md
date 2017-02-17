@@ -13,3 +13,6 @@
 * (paul) fix color hotpatch for mutators.
 * (BS People) fix your block color hues #Which blocks? 
 	Variable blocks remain black.
+
+TRIBE.ZIP, UNZIP INSIDE ELECTRON_BUILD
+https://gist.github.com/anonymous/af1555422fed9c4277312d4b7dd9c39b
