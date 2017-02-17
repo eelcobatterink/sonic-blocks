@@ -44,14 +44,14 @@ Blockly.SonicPi['bpm'] = function(block) {
 
 Blockly.SonicPi['synth'] = function(block) {
   var synth_name = block.getFieldValue('NAME');
-  var code = "use_synth " + synth_name + "\n";
+  var code = "use_synth :" + synth_name + "\n";
   return code;
 };
 
 Blockly.SonicPi['fx'] = function(block) {
   var fx_name = block.getFieldValue('FX_NAME');
   var statements = Blockly.SonicPi.statementToCode(block, 'NAME');
-  var code = "with_fx " + fx_name + " do\n" + statements + "end\n";
+  var code = "with_fx :" + fx_name + " do\n" + statements + "end\n";
   return code;
 };
 
