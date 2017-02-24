@@ -9,6 +9,7 @@
 * (paul) Find a way to store tribe archive.
 * (paul) Build a script to make tribe archive? is there any point to this?
 * (paul) fix color hotpatch for mutators.
+* (???) add more examples
 
 
 TRIBE.ZIP, UNZIP INSIDE ELECTRON_BUILD
