@@ -64,9 +64,11 @@ Blockly.SonicPi['play_advanced'] = function(block) {
 
 Blockly.SonicPi['duration'] = function(block) {
   var note_base = parseFloat(block.getFieldValue('NOTE_BASE'));
+  var duration = parseFloat(block.getFieldValue('DURATION'));
   var is_dotted = block.getFieldValue('IS_DOTTED') == 'TRUE';
-  var code = (note_base * is_dotted ? 1.5 : 1.0);
-  return [code, Blockly.SonicPi.ORDER_ATOMIC];
+  var code = duration * note_base;
+  //code = code * ( is_dotted ? 1.5 : 1.0 )
+  return code;
 };
 
 Blockly.SonicPi['in_thread'] = function (block) {

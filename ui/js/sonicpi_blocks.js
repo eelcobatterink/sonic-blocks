@@ -156,7 +156,7 @@ Blockly.Blocks['play_advanced'] = {
 Blockly.Blocks['duration'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("one")
+        .appendField(new Blockly.FieldNumber(1), "DURATION")
         .appendField(new Blockly.FieldDropdown([
 												["whole", "1"], 
 												["half", "0.5"], 
