@@ -18,6 +18,19 @@ Blockly.Blocks['play_basic'] = {
   }
 };
 
+Blockly.Blocks['puts'] = {
+    init: function() {
+        this.appendValueInput("OUTPUT")
+            .appendField("puts");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(80);
+        this.setTooltip('');
+
+    }
+};
+
 Blockly.Blocks['midi_note'] = {
   init: function() {
     this.appendDummyInput()
@@ -218,23 +231,22 @@ Blockly.Blocks['scale'] = {
         this.appendDummyInput()
             .appendField("name")
             .appendField(new Blockly.FieldDropdown([
-													["major","MAJOR"], 
-													["diatonic","DIATONIC"], 
-													["ionian","IONIAN"], 
-													["dorian","DORIAN"], 
-													["phrygian","PHRYGRIAN"], 
-													["lydian","LYDIAN"], 
-													["minor","MINOR"], 
-													["blues_major","BLUES_MAJOR"], 
-													["whole","WHOLE"]
+													["major","major"],
+													["diatonic","diatonic"],
+													["ionian","ionian"],
+													["dorian","dorian"],
+													["phrygian","phrygian"],
+													["lydian","lydian"],
+													["minor","minor"],
+													["blues_major","blues_major"],
+													["whole","whole"]
 													]), "NAME");
         this.appendDummyInput()
             .appendField("num_octaves:")
             .appendField(new Blockly.FieldNumber(1, 1), "NUM_OCTAVES");
         this.setInputsInline(true);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(100);
+        this.setOutput(true, "scale");
+        this.setColour(140);
         this.setTooltip('Creates a ring of MIDI note numbers when given a tonic note and a scale name. Also takes an optional num_octaves: parameter (octave 1 is the default). If only passed the scale name, the tonic defaults to 0.');
         this.setHelpUrl('');
     }

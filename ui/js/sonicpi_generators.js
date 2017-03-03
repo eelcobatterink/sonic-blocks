@@ -10,6 +10,12 @@ Blockly.SonicPi['play_basic'] = function(block) {
   return code;
 };
 
+Blockly.SonicPi['puts'] = function(block) {
+    var output = Blockly.SonicPi.statementToCode(block, 'OUTPUT');
+    var code = "puts " + output + "\n";
+    return code;
+};
+
 Blockly.SonicPi['midi_note'] = function(block) {
   var note_number = block.getFieldValue('NOTE_NUMBER');
   var code = note_number;
@@ -272,6 +278,6 @@ Blockly.SonicPi['scale'] = function(block) {
     var tonic = block.getFieldValue('TONIC');
     var name = block.getFieldValue('NAME');
     var num_octaves = block.getFieldValue('NUM_OCTAVES');
-    var code = 'scale :' + tonic + ', :' + name + ', num_octaves: ' + num_octaves + '\n';
+    var code = '(scale :' + tonic + ', :' + name + ', num_octaves: ' + num_octaves + ')\n';
     return code;
 };
