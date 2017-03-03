@@ -88,6 +88,19 @@ Blockly.SonicPi['sample'] = function (block) {
     return code;
 };
 
+Blockly.SonicPi['sample_custom'] = function(block) {
+  var text_sample_name = block.getFieldValue('SAMPLE_NAME');
+  var statements_fx = Blockly.SonicPi.statementToCode(block, 'fx');
+  var code = 'sample :'+ text_sample_name + statements_fx + '\n';
+  return code;
+};
+
+Blockly.SonicPi['fx_option'] = function(block) {
+  var text_fx = block.getFieldValue('fx_name');
+  var text_value = block.getFieldValue('value');
+  var code = ', '+ text_fx + ' : ' + text_value ;
+  return code;
+};
 
 Blockly.SonicPi['controls_repeat_ext'] = function(block) {
     // Repeat n times.

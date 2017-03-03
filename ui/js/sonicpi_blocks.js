@@ -223,6 +223,42 @@ Blockly.Blocks['sample'] = {
     }
 };
 
+Blockly.Blocks['sample_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("sample");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldTextInput(""), "SAMPLE_NAME");
+    this.appendStatementInput("fx")
+        .setCheck("fx_option")
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['fx_option'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("fx");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("amp"), "fx_name");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("1"), "value");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
 Blockly.Blocks['scale'] = {
     init: function() {
         this.appendDummyInput()
