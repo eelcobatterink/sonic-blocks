@@ -16,8 +16,6 @@ const child_process = require("child_process");
 let mainWindow = null;
 let rubyServer = null;
 const native = process.platform == "win32" ? "win" : "osx";
-let rubyServerErrorHandler = null;
-let rubyServerExitHandler = null;
 
 function createWindow () {
 	// Create the browser window.
@@ -28,17 +26,14 @@ function createWindow () {
 
 	// Start SPI Server
 	rubyServer = child_process.spawn("../native/" + native + "/ruby/bin/ruby", ["-E", "utf-8", "sonic-pi-server.rb"], {cwd: "bin/sonicpi/" + native + "/app/server/bin/"});
-	rubyServerErrorHandler = err => {
+	rubyServer.on("error", err => {
 		console.log("Ruby server errored", err);
 		process.exit(1);
-	}
-	rubyServerExitHandler = err => {
+	});
+	rubyServer.on("exit", err => {
 		console.log("Ruby server died.", err);
 		process.exit(2);	// We really want to show this is an issue.
-	}
-
-	rubyServer.on("error", rubyServerErrorHandler);
-	rubyServer.on("exit", rubyServerExitHandler);
+	});
 
 	rubyServer.stdout.pipe(process.stdout);
 
