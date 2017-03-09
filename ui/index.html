@@ -68,8 +68,8 @@
   <p>
     <button onclick="runCode()">▶ Run</button>
     <button onclick="stopAll()">■ Stop</button>
-    <button onclick="updateCode()">[DEBUG] Show Code</button>
-    <button onclick="displayXml()">[DEBUG] Show XML</button>
+    <button class="dev" onclick="updateCode()">[DEBUG] Show Code</button>
+    <button class="dev" onclick="displayXml()">[DEBUG] Show XML</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px; display:inline-block"></div>
@@ -223,16 +223,29 @@
     </block>
   </xml>
 
-  <textarea readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
-  <textarea readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
+  <textarea class="dev" readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
+  <textarea class="dev" readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
 
   <script>
     var workspace = Blockly.inject('blocklyDiv',
         {media: 'media/',
          toolbox: document.getElementById('toolbox')});
-    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
-                               workspace);
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
 
+
+		window.isDev = false;
+		if(require("electron").remote.process.argv.indexOf("--dev") != -1) {
+			window.isDev = true;
+		}
+
+		// Do some cleanup based on whether we're dev or not
+		if(!isDev) {
+			// Hide DEBUG buttons
+			const devElements = document.getElementsByClassName("dev");
+			for(let i = devElements.length; i--;) {
+				devElements[i].style.display = "none";
+			}
+		}
 
     ws = null;
 

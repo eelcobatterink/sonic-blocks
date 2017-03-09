@@ -17,6 +17,7 @@
   "dependencies": {
     "electron": "^1.4.15",
     "osc": "^2.2.0",
+    "tree-kill": "^1.1.0",
     "ws": "^2.0.2"
   },
   "devDependencies": {

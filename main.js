@@ -50,7 +50,7 @@ function createWindow () {
 	}))
 
 	if(process.argv.indexOf("--dev") != -1) {
-		// Open the DevTools.
+		// Open the DevTools if we're in dev mode.
 		mainWindow.webContents.openDevTools();
 	}
 
