@@ -1,8 +1,8 @@
 "use strict";
 
-var osc = require("osc");
-var WebSocketServer = require("ws").Server;
-var clients = []
+const osc = require("osc");
+const WebSocketServer = require("ws").Server;
+const clients = []
 
 var spi = null;
 var wss = null;
@@ -85,6 +85,12 @@ let run = () => {
 }
 
 let stop = () => {
+    // Send a kill message to SPI Server
+    spi.send({
+        address: "/exit",
+        args: [0]
+    });
+    
     wss.close();
 
     wss = null;
