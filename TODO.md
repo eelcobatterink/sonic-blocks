@@ -10,6 +10,7 @@
 * (paul) Build a script to make tribe archive? is there any point to this?
 * (paul) fix color hotpatch for mutators.
 * (???) add more examples
+* (paul) !!! Optimise packaging process so it doesn't include OSX natives on Win and vice versa
 
 
 TRIBE.ZIP, UNZIP INSIDE ELECTRON_BUILD

@@ -50,7 +50,7 @@ Blockly.SonicPi['bpm'] = function(block) {
 
 Blockly.SonicPi['synth'] = function(block) {
   var synth_name = block.getFieldValue('NAME');
-  var code = "use_synth " + synth_name + "\n";
+  var code = "use_synth :" + synth_name + "\n";
   return code;
 };
 

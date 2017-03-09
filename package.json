@@ -15,12 +15,17 @@
   "license": "MIT",
   "homepage": "https://bitbucket.org/t4sg/emea-ffg-2016-sonic-pi#readme",
   "dependencies": {
-    "electron": "^1.4.15",
     "osc": "^2.2.0",
-    "tree-kill": "^1.1.0",
     "ws": "^2.0.2"
   },
   "devDependencies": {
-    "electron-packager": "^8.5.1"
+    "electron-packager": "^8.5.1",
+    "electron": "^1.4.15"
+  },
+  "build": {
+    "asar": false,
+    "win": {
+      "target": "portable"
+    }
   }
 }
