@@ -62,7 +62,8 @@ Blockly.SonicPi['fx'] = function(block) {
 };
 
 Blockly.SonicPi['play_advanced'] = function(block) {
-  var note = Blockly.SonicPi.valueToCode(block, 'NOTE', Blockly.SonicPi.ORDER_ATOMIC);
+  //var note = Blockly.SonicPi.valueToCode(block, 'NOTE', Blockly.SonicPi.ORDER_ATOMIC);
+  var note = block.getFieldValue('NOTE');
   var duration = Blockly.SonicPi.valueToCode(block, 'DURATION', Blockly.SonicPi.ORDER_ATOMIC);
   var code = "play_pattern_timed [" + note + "], " + duration + "\n";
   return code;

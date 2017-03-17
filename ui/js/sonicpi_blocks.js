@@ -154,7 +154,7 @@ Blockly.Blocks['play_advanced'] = {
     this.appendDummyInput()
         .appendField("play");
     this.appendValueInput("NOTE")
-        .setCheck(["note", "midi-note"]);
+        .setCheck(["note", "midi-note", "scale"]);
     this.appendValueInput("DURATION")
         .setCheck("duration")
         .appendField("for");
@@ -186,10 +186,10 @@ Blockly.Blocks['duration'] = {
 Blockly.Blocks['in_thread'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("in_thread");
+            .appendField("thread");
         this.appendStatementInput("DO")
             .setCheck(null)
-            .appendField("DO");
+            .appendField("do");
         this.setColour(230);
         this.setTooltip('');
         this.setHelpUrl('');
