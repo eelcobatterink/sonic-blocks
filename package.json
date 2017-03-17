@@ -4,7 +4,7 @@
   "description": "SonicPi with a Blockly interface",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "electron ."
   },
   "repository": {
@@ -19,8 +19,9 @@
     "ws": "^2.0.2"
   },
   "devDependencies": {
+    "electron": "^1.4.15",
     "electron-packager": "^8.5.1",
-    "electron": "^1.4.15"
+    "mocha": "^3.2.0"
   },
   "build": {
     "asar": false,
