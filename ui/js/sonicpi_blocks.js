@@ -4,6 +4,31 @@ goog.provide('Blockly.Blocks.play');
 goog.require('Blockly.Blocks');
 
 
+Blockly.Blocks['math_number'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("0"), "NUM");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(260);
+	this.setTooltip('');
+  }
+};
+
+Blockly.Blocks['math_arithmetic'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("math_number");
+    this.appendValueInput("B")
+        .setCheck("math_number")
+        .appendField(new Blockly.FieldDropdown([["+", "ADD"], ["-", "MINUS"], ["×", "MULTIPLY"], ["÷", "DIVIDE"], ["^", "POWER"]]), "OP");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(260);
+	this.setTooltip('');
+  }
+};
+
 Blockly.Blocks['play_basic'] = {
   init: function() {
     this.appendDummyInput()
@@ -85,7 +110,7 @@ Blockly.Blocks['live_loop'] = {
 Blockly.Blocks['sleep'] = {
   init: function() {
     this.appendValueInput("SLEEP_PERIOD")
-        .setCheck("duration")
+        .setCheck(["duration", "math_number"])
         .appendField("sleep");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
