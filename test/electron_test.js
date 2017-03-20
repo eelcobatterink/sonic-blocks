@@ -2,7 +2,7 @@ const Application = require('spectron').Application;
 const assert = require('assert');
 
 describe('Application launch', function() {
-  this.timeout(10000);
+  this.timeout(20000);
 
   beforeEach(function() {
     this.app = new Application({
@@ -20,8 +20,8 @@ describe('Application launch', function() {
   });
 
   it('shows an initial window without dev tools and connected to bridge', function() {
-    return this.app.client.waitUntilWindowLoaded(10000)
-      .waitUntilTextExists('#conn-status', 'Connected', 10000)
+    return this.app.client.waitUntilWindowLoaded(20000)
+      .waitUntilTextExists('#conn-status', 'Connected', 20000)
       .getWindowCount().then(function (count) {
         assert.equal(count, 1);
       })
