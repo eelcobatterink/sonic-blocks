@@ -48,7 +48,18 @@ this.setPreviousStatement(true, null);
 Blockly.Blocks['controls_play_play'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField('play');
+      .appendField('play')
+//      .appendField(new Blockly.FieldCheckbox("FALSE"), "IS_AMP")
+//      .appendField('amp')
+//      .appendField(new Blockly.FieldCheckbox("FALSE"), "IS_PAN")
+//      .appendField('pan')
+//      .appendField(new Blockly.FieldCheckbox("FALSE"), "IS_ATTACK")
+//      .appendField('attack')
+//      .appendField(new Blockly.FieldCheckbox("FALSE"), "IS_DECAY")
+//      .appendField('decay')
+//      .appendField(new Blockly.FieldCheckbox("FALSE"), "IS_RELEASE")
+//      .appendField('release')
+      ;
   this.appendStatementInput("STATEMENT")
         .setCheck(null);
   }
@@ -97,16 +108,160 @@ Blockly.Blocks['play_basic'] = {
 					                                'controls_play_decay',
 	   				                              'controls_play_release'] ) );
   },
-
+  c_amp_:false,
+  c_pan_:false,
+  c_attack_:false,
+  c_decay_:false,
+  c_release_:false,
+  mutationToDom: function() {
+    if (!(this.c_amp_ || this.c_pan_ || this.c_attack_ || this.c_decay_ || this.c_release_)){
+      return null;
+    } else {
+      var container = document.createElement('mutation');
+      if (c_amp_) {
+        container.setAttribute('amp', this.c_amp_);
+      }
+      if (c_pan_) {
+        container.setAttribute('pan', this.c_pan_);
+      }
+      if (c_attack_) {
+        container.setAttribute('attack', this.c_attack_);
+      }
+      if (c_decay_) {
+        container.setAttribute('decay', this.c_decay_);
+      }
+      if (c_release_) {
+        container.setAttribute('release', this.c_release_);
+      }
+      return container;
+     }
+  },
+  
+  domToMutation: function (xmlElement){
+    this.c_amp_ = (xmlElement.getAttribute('amp') == 'true') || false;
+    this.c_pan_ = (xmlElement.getAttribute('pan') == 'true') || false;
+    this.c_attack_ = (xmlElement.getAttribute('attack')=='true') || false;
+    this.c_decay_ = (xmlElement.getAttribute('decay') == 'true') || false;
+    this.c_release_ = (xmlElement.getAttribute('release') == 'true') || false;
+    this.updateShape_()
+  },
+  
+  updateShape_: function() {
+    
+    //RESET
+    if( this.getInput('AMP') ){
+      this.removeInput( 'AMP' );
+    }
+    if( this.getInput('PAN') ){
+      this.removeInput( 'PAN' );
+    }
+    if( this.getInput('ATTACK') ){
+      this.removeInput( 'ATTACK' );
+    }
+    if( this.getInput('DECAY') ){
+      this.removeInput( 'DECAY' );
+    }
+    if( this.getInput('RELEASE') ){
+      this.removeInput( 'RELEASE' );
+    }
+    
+    //REPOPULATE
+    if(this.c_amp_){
+      this.appendValueInput( 'AMP' )
+          .setCheck('math_number')
+          .appendField( 'amp' );
+    }
+    if(this.c_pan_){
+      this.appendValueInput( 'PAN' )
+          .setCheck('math_number') //[-1,1]
+          .appendField( 'pan');
+    }
+    if(this.c_attack_){
+      this.appendValueInput( 'ATTACK' )
+          .setCheck('math_number')
+          .appendField( 'attack' );
+    }
+    if(this.c_decay_){
+      this.appendValueInput( 'DECAY' )
+          .setCheck('math_number')
+          .appendField( 'decay' );
+    }
+    if(this.c_release_){
+      this.appendValueInput( 'RELEASE' )
+          .setCheck('math_number')
+          .appendField( 'release');
+      }
+  },
+  
   decompose: function(workspace) {
     var topBlock = Blockly.Block.obtain(workspace, 'controls_play_play');
     topBlock.initSvg();
-
+    var connection = topBlock.nextConnection;
+    if(this.c_amp_){
+      var block = workspace.newBlock('controls_play_amp');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
+    if(this.c_amp_){
+      var block = workspace.newBlock('controls_play_pan');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
+    if(this.c_amp_){
+      var block = workspace.newBlock('controls_play_attack');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
+    if(this.c_amp_){
+      var block = workspace.newBlock('controls_play_decay');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
+    if(this.c_amp_){
+      var block = workspace.newBlock('controls_play_release');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
     return topBlock;
   },
 
   compose: function(topBlock) {
-
+    this.c_amp_ = false;
+    this.c_pan_ = false;
+    this.c_attack_ = false;
+    this.c_decay_ = false;
+    this.c_release_ = false;
+    
+    var block = topBlock.nextConnection && topBlock.nextConnection.targetBlock();
+    
+    while( block ) {
+      switch ( block.type ) {
+        case 'controls_play_amp':
+          this.c_amp_ = true;
+          break;
+        case 'controls_play_pan':
+          this.c_pan_ = true;
+          break;
+        case 'controls_play_attack':
+          this.c_attack_ = true;
+          break;
+        case 'controls_play_decay':
+          this.c_decay_ = true;
+          break;
+        case 'controls_play_release':
+          this.c_release_ = true;
+          break;
+        default:
+          throw 'Unknown block type.';
+      }
+      block = block.nextConnection && block.nextConnection.targetBlock();
+    }
+    this.updateShape_();
 
   }
 };
