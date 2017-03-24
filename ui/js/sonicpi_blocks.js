@@ -4,6 +4,57 @@ goog.provide('Blockly.Blocks.play');
 goog.require('Blockly.Blocks');
 
 
+Blockly.Blocks['controls_play_pan'] = {
+  init: function() {
+	this.appendDummyInput()
+            .appendField('pan');
+this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+        }
+}
+
+Blockly.Blocks['controls_play_amp'] = {
+  init: function() {
+	this.appendDummyInput()
+            .appendField('amp');
+this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+        }
+}
+Blockly.Blocks['controls_play_attack'] = {
+  init: function() {
+	this.appendDummyInput()
+            .appendField('attack');
+this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+        }
+}
+Blockly.Blocks['controls_play_decay'] = {
+  init: function() {
+	this.appendDummyInput()
+            .appendField('decay');
+this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+        }
+}
+Blockly.Blocks['controls_play_release'] = {
+  init: function() {
+	this.appendDummyInput()
+            .appendField('release');
+this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+        }
+}
+
+Blockly.Blocks['controls_play_play'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField('play');
+  this.appendStatementInput("STATEMENT")
+        .setCheck(null);
+  }
+}
+
 Blockly.Blocks['play_basic'] = {
   init: function() {
     this.appendDummyInput()
@@ -15,6 +66,23 @@ Blockly.Blocks['play_basic'] = {
     this.setNextStatement(true, null);
     this.setColour(90);
     this.setTooltip('');
+    this.setMutator( new Blockly.Mutator(['controls_play_amp',
+				                              	  'controls_play_pan',
+				                              	  'controls_play_attack',
+					                                'controls_play_decay',
+	   				                              'controls_play_release'] ) );
+  },
+
+  decompose: function(workspace) {
+    var topBlock = Blockly.Block.obtain(workspace, 'controls_play_play');
+    topBlock.initSvg();
+
+    return topBlock;
+  },
+
+  compose: function(topBlock) {
+
+
   }
 };
 
