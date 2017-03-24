@@ -16,7 +16,7 @@
   "license": "MIT",
   "homepage": "https://bitbucket.org/t4sg/emea-ffg-2016-sonic-pi#readme",
   "dependencies": {
-    "osc": "^2.2.0",
+    "osc-js": "^1.0.2",
     "ws": "^2.0.2"
   },
   "devDependencies": {
