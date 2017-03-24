@@ -56,7 +56,7 @@ gulp.task('sonicpi-generators', function() {
       .pipe(gulp.dest(destDir))
 });
 
-gulp.task('build', [
+gulp.task('pretest', [
   'blockly',
   'blocks',
   'sonicpi',

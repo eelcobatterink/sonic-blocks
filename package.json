@@ -4,10 +4,10 @@
   "description": "SonicPi with a Blockly interface",
   "main": "main.js",
   "scripts": {
-    "pretest": "gulp build",
+    "pretest": "gulp pretest",
     "test": "mocha test/*.spec.js",
     "test:electron": "mocha test/electron.spec.js",
-    "test:sonicpi": "gulp build && mocha test/sonicpi.spec.js",
+    "test:sonicpi": "gulp pretest && mocha test/sonicpi.spec.js",
     "start": "electron ."
   },
   "repository": {
