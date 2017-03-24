@@ -57,7 +57,7 @@ Blockly.SonicPi['synth'] = function(block) {
 Blockly.SonicPi['fx'] = function(block) {
   var fx_name = block.getFieldValue('FX_NAME');
   var statements = Blockly.SonicPi.statementToCode(block, 'NAME');
-  var code = "with_fx " + fx_name + " do\n" + statements + "end\n";
+  var code = "with_fx :" + fx_name + " do\n" + statements + "end\n";
   return code;
 };
 
