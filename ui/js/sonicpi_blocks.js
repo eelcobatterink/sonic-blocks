@@ -118,25 +118,25 @@ Blockly.Blocks['play_basic'] = {
       return null;
     } else {
       var container = document.createElement('mutation');
-      if (c_amp_) {
+      if (this.c_amp_) {
         container.setAttribute('amp', this.c_amp_);
       }
-      if (c_pan_) {
+      if (this.c_pan_) {
         container.setAttribute('pan', this.c_pan_);
       }
-      if (c_attack_) {
+      if (this.c_attack_) {
         container.setAttribute('attack', this.c_attack_);
       }
-      if (c_decay_) {
+      if (this.c_decay_) {
         container.setAttribute('decay', this.c_decay_);
       }
-      if (c_release_) {
+      if (this.c_release_) {
         container.setAttribute('release', this.c_release_);
       }
       return container;
      }
   },
-  
+
   domToMutation: function (xmlElement){
     this.c_amp_ = (xmlElement.getAttribute('amp') == 'true') || false;
     this.c_pan_ = (xmlElement.getAttribute('pan') == 'true') || false;
@@ -145,9 +145,9 @@ Blockly.Blocks['play_basic'] = {
     this.c_release_ = (xmlElement.getAttribute('release') == 'true') || false;
     this.updateShape_()
   },
-  
+
   updateShape_: function() {
-    
+
     //RESET
     if( this.getInput('AMP') ){
       this.removeInput( 'AMP' );
@@ -164,7 +164,7 @@ Blockly.Blocks['play_basic'] = {
     if( this.getInput('RELEASE') ){
       this.removeInput( 'RELEASE' );
     }
-    
+
     //REPOPULATE
     if(this.c_amp_){
       this.appendValueInput( 'AMP' )
@@ -192,7 +192,7 @@ Blockly.Blocks['play_basic'] = {
           .appendField( 'release');
       }
   },
-  
+
   decompose: function(workspace) {
     var topBlock = Blockly.Block.obtain(workspace, 'controls_play_play');
     topBlock.initSvg();
@@ -236,30 +236,33 @@ Blockly.Blocks['play_basic'] = {
     this.c_attack_ = false;
     this.c_decay_ = false;
     this.c_release_ = false;
-    
-    var block = topBlock.nextConnection && topBlock.nextConnection.targetBlock();
-    
-    while( block ) {
-      switch ( block.type ) {
-        case 'controls_play_amp':
-          this.c_amp_ = true;
-          break;
-        case 'controls_play_pan':
-          this.c_pan_ = true;
-          break;
-        case 'controls_play_attack':
-          this.c_attack_ = true;
-          break;
-        case 'controls_play_decay':
-          this.c_decay_ = true;
-          break;
-        case 'controls_play_release':
-          this.c_release_ = true;
-          break;
-        default:
-          throw 'Unknown block type.';
+
+    var children = topBlock.getChildren();
+
+    if ( children.length == 1 ) {
+      var block = children[0];
+      while( block ) {
+        switch ( block.type ) {
+          case 'controls_play_amp':
+            this.c_amp_ = true;
+            break;
+          case 'controls_play_pan':
+            this.c_pan_ = true;
+            break;
+          case 'controls_play_attack':
+            this.c_attack_ = true;
+            break;
+          case 'controls_play_decay':
+            this.c_decay_ = true;
+            break;
+          case 'controls_play_release':
+            this.c_release_ = true;
+            break;
+          default:
+            throw 'Unknown block type.';
+        }
+        block = block.nextConnection && block.nextConnection.targetBlock();
       }
-      block = block.nextConnection && block.nextConnection.targetBlock();
     }
     this.updateShape_();
 
@@ -294,17 +297,17 @@ Blockly.Blocks['note'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-												["C", ":C"], 
-												["C#/Db", ":Cs"], 
-												["D", ":D"], 
-												["D#/Eb", ":Ds"], 
-												["E", ":E"], 
-												["F", ":F"], 
-												["F#", ":Fs"], 
-												["G", ":G"], 
-												["G#", ":Gs"], 
-												["A", ":A"], 
-												["A#", ":As"], 
+												["C", ":C"],
+												["C#/Db", ":Cs"],
+												["D", ":D"],
+												["D#/Eb", ":Ds"],
+												["E", ":E"],
+												["F", ":F"],
+												["F#", ":Fs"],
+												["G", ":G"],
+												["G#", ":Gs"],
+												["A", ":A"],
+												["A#", ":As"],
 												["B", ":B"]
 												]), "NOTE")
         .appendField(new Blockly.FieldNumber(5, -2, 8, 1), "OCTAVE");
@@ -384,7 +387,7 @@ Blockly.Blocks['fx'] = {
     this.appendDummyInput()
         .appendField("add effect")
         .appendField(new Blockly.FieldDropdown([
-												["reverb", "reverb"], 
+												["reverb", "reverb"],
 												["echo", "echo"]
 												]), "FX_NAME");
     this.appendStatementInput("NAME")
@@ -419,8 +422,8 @@ Blockly.Blocks['duration'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldNumber(1), "DURATION")
         .appendField(new Blockly.FieldDropdown([
-												["whole", "1"], 
-												["half", "0.5"], 
+												["whole", "1"],
+												["half", "0.5"],
 												["quarter", "0.25"]
 												]), "NOTE_BASE")
         .appendField("note, ")
