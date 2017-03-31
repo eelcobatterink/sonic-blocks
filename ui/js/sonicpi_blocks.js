@@ -7,8 +7,9 @@ Blockly.Blocks['controls_play_pan'] = {
   init: function() {
 	this.appendDummyInput()
             .appendField('pan');
-this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+  this.setPreviousStatement(true, null);
+  this.setNextStatement(true, null);
+  this.setTooltip('The stereo position of the sound. -1 is left, 0 is in the middle and 1 is on the right. You may use a value in between -1 and 1 such as 0.25 ');
         }
 }
 
@@ -16,8 +17,9 @@ Blockly.Blocks['controls_play_amp'] = {
   init: function() {
 	this.appendDummyInput()
             .appendField('amp');
-this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+  this.setPreviousStatement(true, null);
+  this.setNextStatement(true, null);
+  this.setTooltip('The amplitude of the note. Input Math Number');
         }
 }
 Blockly.Blocks['controls_play_attack'] = {
@@ -26,6 +28,7 @@ Blockly.Blocks['controls_play_attack'] = {
             .appendField('attack');
 this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setTooltip('Amount of time (in beats) for sound to reach full amplitude (attack_level). A short attack (i.e. 0.01) makes the initial part of the sound very percussive like a sharp tap. A longer attack (i.e 1) fades the sound in gently. Input Math Number');
         }
 }
 Blockly.Blocks['controls_play_decay'] = {
@@ -34,6 +37,7 @@ Blockly.Blocks['controls_play_decay'] = {
             .appendField('decay');
 this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setTooltip('Amount of time (in beats) for the sound to move from full amplitude (attack_level) to the sustain amplitude (sustain_level). Input Math Number');
         }
 }
 Blockly.Blocks['controls_play_release'] = {
@@ -42,6 +46,7 @@ Blockly.Blocks['controls_play_release'] = {
             .appendField('release');
 this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setTooltip('Amount of time (in beats) for sound to move from sustain level amplitude to silent. A short release (i.e. 0.01) makes the final part of the sound very percussive (potentially resulting in a click). A longer release (i.e 1) fades the sound out gently. Input Math Number');
         }
 }
 
