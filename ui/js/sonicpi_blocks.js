@@ -172,9 +172,9 @@ Blockly.Blocks['play_basic'] = {
           .appendField( 'amp' );
     }
     if(this.c_pan_){
-      this.appendValueInput( 'PAN' )
-          .setCheck('math_number') //[-1,1]
-          .appendField( 'pan');
+      this.appendDummyInput()
+          .appendField( 'pan')
+          .appendField(new Blockly.FieldNumber('0',-1, 1, 0.001), 'PAN');
     }
     if(this.c_attack_){
       this.appendValueInput( 'ATTACK' )
