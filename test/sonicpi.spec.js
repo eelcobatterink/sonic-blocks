@@ -37,5 +37,40 @@ describe('Code generation', function() {
       code = generateCode(xmlText, this.workspace);
       expect(code).to.equal("play :C5\n");
     });
+
+    it('should play midi_note with options if the options are set', function() {
+      xmlText = `<xml>
+  <block type="play_basic" id="$r|3m(mEmVK$H-)],(1v" x="-58" y="64"><mutation amp="true" pan="true" attack="true" decay="true" release="true"></mutation>
+    <field name="PAN">0</field>
+    <value name="NOTE">
+      <block type="math_number" id="#YHK?u~+qGol?=t6twRP">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="AMP">
+      <block type="math_number" id="Ht^WY%0u@So}VaNwDW__">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="ATTACK">
+      <block type="math_number" id="-+U_xb.f74yDOy*+#H,N">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="DECAY">
+      <block type="math_number" id="0K0DJ%%SBQqtE1ag!PAt">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="RELEASE">
+      <block type="math_number" id="nj5sZFZ~?%$-Fxzd1OE-">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+</xml>`
+    code = generateCode(xmlText, this.workspace);
+    expect(code).to.equal("play 0, amp: 0, pan: 0, attack: 0, decay: 0, release: 0\n");
+    });
   });
 });
