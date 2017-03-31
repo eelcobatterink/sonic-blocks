@@ -1,12 +1,18 @@
 const Application = require('spectron').Application;
 const assert = require('assert');
 
+const isWindows = process.platform == "win32" ? true : false;
+let electronPath = `${__dirname}/../node_modules/.bin/electron`;
+if (isWindows) {
+  electronPath = electronPath + '.cmd';
+}
+
 describe('Application launch', function() {
   this.timeout(20000);
 
   beforeEach(function() {
     this.app = new Application({
-      path: `${__dirname}/../node_modules/.bin/electron.cmd`,
+      path: electronPath,
       args: ['main.js']
     });
 
