@@ -196,32 +196,33 @@ Blockly.Blocks['play_basic'] = {
   decompose: function(workspace) {
     var topBlock = Blockly.Block.obtain(workspace, 'controls_play_play');
     topBlock.initSvg();
-    var connection = topBlock.nextConnection;
+
+    var connection = topBlock.getInput('STATEMENT').connection;
     if(this.c_amp_){
       var block = workspace.newBlock('controls_play_amp');
       block.initSvg();
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
-    if(this.c_amp_){
+    if(this.c_pan_){
       var block = workspace.newBlock('controls_play_pan');
       block.initSvg();
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
-    if(this.c_amp_){
+    if(this.c_attack_){
       var block = workspace.newBlock('controls_play_attack');
       block.initSvg();
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
-    if(this.c_amp_){
+    if(this.c_decay_){
       var block = workspace.newBlock('controls_play_decay');
       block.initSvg();
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
-    if(this.c_amp_){
+    if(this.c_release_){
       var block = workspace.newBlock('controls_play_release');
       block.initSvg();
       connection.connect(block.previousConnection);
