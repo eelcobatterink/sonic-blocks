@@ -157,8 +157,8 @@ Blockly.Blocks['play_basic'] = {
     if( this.getInput('AMP') ){
       this.removeInput( 'AMP' );
     }
-    if( this.getInput('PAN') ){
-      this.removeInput( 'PAN' );
+    if( this.getInput('DUM_PAN') ){
+      this.removeInput( 'DUM_PAN' );
     }
     if( this.getInput('ATTACK') ){
       this.removeInput( 'ATTACK' );
@@ -177,7 +177,7 @@ Blockly.Blocks['play_basic'] = {
           .appendField( 'amp' );
     }
     if(this.c_pan_){
-      this.appendDummyInput()
+      this.appendDummyInput('DUM_PAN')
           .appendField( 'pan')
           .appendField(new Blockly.FieldNumber('0',-1, 1, 0.001), 'PAN');
     }
