@@ -85,4 +85,46 @@ describe('Code generation', function() {
       });
     });
   });
+
+  describe('use sample block', function() {
+    let xmlText = ` <xml">
+                      <block type="sample">
+                        <field name="SAMPLE">bd_808</field>
+                      </block>
+                    </xml>`;
+    let code = generateCode(xmlText, this.workspace);
+    expect(code).to.equal("sample :bd_808\n");
+  })
+
+  describe('use sample block with controls', function() {
+    let xmlText = ` <xml>
+                      <block type="sample">
+                        <mutation amp="true" pan="true" attack="true" decay="true" release="true"></mutation>
+                        <field name="SAMPLE">bd_808</field>
+                        <field name="PAN">0</field>
+                        <value name="AMP">
+                          <block type="math_number">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                        <value name="ATTACK">
+                          <block type="math_number">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                        <value name="DECAY">
+                          <block type="math_number">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                        <value name="RELEASE">
+                          <block type="math_number">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </xml>`
+    let code = generateCode(xmlText, this.workspace);
+    expect(code).to.equal("sample :bd_808, amp: 0, pan: 0, attack: 0, decay: 0, release: 0\n");
+  })
 });

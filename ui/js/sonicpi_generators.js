@@ -108,7 +108,30 @@ Blockly.SonicPi['in_thread'] = function (block) {
 
 Blockly.SonicPi['sample'] = function (block) {
     var dropdown_sample = block.getFieldValue('SAMPLE');
-    var code = 'sample :'+dropdown_sample+'\n';
+    var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
+    var pan = block.getFieldValue('PAN');
+    var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
+    var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
+    var release = Blockly.SonicPi.valueToCode(block, 'RELEASE', Blockly.SonicPi.ORDER_ATOMIC);
+
+    var controls = '';
+    if (amp != null && amp !== ''){
+      controls += ', amp: ' + amp;
+    }
+    if (pan != null){
+      controls += ', pan: ' + pan;
+    }
+    if (attack != null && attack !== ''){
+      controls += ', attack: ' + attack;
+    }
+    if (decay != null && decay !== ''){
+      controls += ', decay: '+decay;
+    }
+    if (release != null && release !== ''){
+      controls += ', release: '+release;
+    }
+
+    var code = 'sample :'+dropdown_sample+ controls + "\n";
     return code;
 };
 
