@@ -6,30 +6,7 @@ goog.require('Blockly.SonicPi');
 
 Blockly.SonicPi['play_basic'] = function(block) {
   var note = Blockly.SonicPi.valueToCode(block, 'NOTE', Blockly.SonicPi.ORDER_ATOMIC) || 72;
-  var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
-  var pan = block.getFieldValue('PAN');
-  var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
-  var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
-  var release = Blockly.SonicPi.valueToCode(block, 'RELEASE', Blockly.SonicPi.ORDER_ATOMIC);
-
-  var controls = '';
-  if (amp != null && amp !== ''){
-    controls += ', amp: ' + amp;
-  }
-  if (pan != null){
-    controls += ', pan: ' + pan;
-  }
-  if (attack != null && attack !== ''){
-    controls += ', attack: ' + attack;
-  }
-  if (decay != null && decay !== ''){
-    controls += ', decay: '+decay;
-  }
-  if (release != null && release !== ''){
-    controls += ', release: '+release;
-  }
-
-  var code = 'play ' + note + controls + "\n";
+  var code = 'play ' + note + mutatorCodeGen(block);
   return code;
 };
 
@@ -106,9 +83,8 @@ Blockly.SonicPi['in_thread'] = function (block) {
     return code;
 };
 
-Blockly.SonicPi['ambient_sample'] = function (block) {
-    var dropdown_sample = block.getFieldValue('SAMPLE');
-    var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
+function mutatorCodeGen(block) {
+	var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
     var pan = block.getFieldValue('PAN');
     var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
     var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
@@ -135,141 +111,76 @@ Blockly.SonicPi['ambient_sample'] = function (block) {
       controls += ', pitch: '+pitch;
     }
 
-    var code = 'sample :'+dropdown_sample+ controls + "\n";
+    var code = controls + "\n";
+    return code;
+	
+}
+
+function sampleBlockCodeGen(block) {
+	var dropdown_sample = block.getFieldValue('SAMPLE');
+    var code = 'sample :'+dropdown_sample + mutatorCodeGen(block)
+	return code
+};
+
+Blockly.SonicPi['ambient_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
     return code;
 };
 
 Blockly.SonicPi['bass_drum_sample'] = function (block) {
-    var dropdown_sample = block.getFieldValue('SAMPLE');
-    var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
-    var pan = block.getFieldValue('PAN');
-    var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
-    var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
-    var release = Blockly.SonicPi.valueToCode(block, 'RELEASE', Blockly.SonicPi.ORDER_ATOMIC);
-	var pitch = Blockly.SonicPi.valueToCode(block, 'PITCH', Blockly.SonicPi.ORDER_ATOMIC);
-
-    var controls = '';
-    if (amp != null && amp !== ''){
-      controls += ', amp: ' + amp;
-    }
-    if (pan != null){
-      controls += ', pan: ' + pan;
-    }
-    if (attack != null && attack !== ''){
-      controls += ', attack: ' + attack;
-    }
-    if (decay != null && decay !== ''){
-      controls += ', decay: '+decay;
-    }
-    if (release != null && release !== ''){
-      controls += ', release: '+release;
-    }
-	if (pitch != null && pitch !== ''){
-      controls += ', pitch: '+pitch;
-    }
-
-    var code = 'sample :'+dropdown_sample+ controls + "\n";
+    var code = sampleBlockCodeGen(block)
     return code;
 };
 
 Blockly.SonicPi['bass_sounds_sample'] = function (block) {
-    var dropdown_sample = block.getFieldValue('SAMPLE');
-    var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
-    var pan = block.getFieldValue('PAN');
-    var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
-    var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
-    var release = Blockly.SonicPi.valueToCode(block, 'RELEASE', Blockly.SonicPi.ORDER_ATOMIC);
-	var pitch = Blockly.SonicPi.valueToCode(block, 'PITCH', Blockly.SonicPi.ORDER_ATOMIC);
-
-    var controls = '';
-    if (amp != null && amp !== ''){
-      controls += ', amp: ' + amp;
-    }
-    if (pan != null){
-      controls += ', pan: ' + pan;
-    }
-    if (attack != null && attack !== ''){
-      controls += ', attack: ' + attack;
-    }
-    if (decay != null && decay !== ''){
-      controls += ', decay: '+decay;
-    }
-    if (release != null && release !== ''){
-      controls += ', release: '+release;
-    }
-	if (pitch != null && pitch !== ''){
-      controls += ', pitch: '+pitch;
-    }
-
-    var code = 'sample :'+dropdown_sample+ controls + "\n";
+    var code = sampleBlockCodeGen(block)
     return code;
 };
 
 Blockly.SonicPi['drum_sounds_sample'] = function (block) {
-    var dropdown_sample = block.getFieldValue('SAMPLE');
-    var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
-    var pan = block.getFieldValue('PAN');
-    var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
-    var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
-    var release = Blockly.SonicPi.valueToCode(block, 'RELEASE', Blockly.SonicPi.ORDER_ATOMIC);
-	var pitch = Blockly.SonicPi.valueToCode(block, 'PITCH', Blockly.SonicPi.ORDER_ATOMIC);
-
-    var controls = '';
-    if (amp != null && amp !== ''){
-      controls += ', amp: ' + amp;
-    }
-    if (pan != null){
-      controls += ', pan: ' + pan;
-    }
-    if (attack != null && attack !== ''){
-      controls += ', attack: ' + attack;
-    }
-    if (decay != null && decay !== ''){
-      controls += ', decay: '+decay;
-    }
-    if (release != null && release !== ''){
-      controls += ', release: '+release;
-    }
-	if (pitch != null && pitch !== ''){
-      controls += ', pitch: '+pitch;
-    }
-
-    var code = 'sample :'+dropdown_sample+ controls + "\n";
+    var code = sampleBlockCodeGen(block)
     return code;
 };
 
 Blockly.SonicPi['electric_sounds_sample'] = function (block) {
-    var dropdown_sample = block.getFieldValue('SAMPLE');
-    var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);
-    var pan = block.getFieldValue('PAN');
-    var attack = Blockly.SonicPi.valueToCode(block, 'ATTACK', Blockly.SonicPi.ORDER_ATOMIC);
-    var decay = Blockly.SonicPi.valueToCode(block, 'DECAY', Blockly.SonicPi.ORDER_ATOMIC);
-    var release = Blockly.SonicPi.valueToCode(block, 'RELEASE', Blockly.SonicPi.ORDER_ATOMIC);
-	var pitch = Blockly.SonicPi.valueToCode(block, 'PITCH', Blockly.SonicPi.ORDER_ATOMIC);
-
-    var controls = '';
-    if (amp != null && amp !== ''){
-      controls += ', amp: ' + amp;
-    }
-    if (pan != null){
-      controls += ', pan: ' + pan;
-    }
-    if (attack != null && attack !== ''){
-      controls += ', attack: ' + attack;
-    }
-    if (decay != null && decay !== ''){
-      controls += ', decay: '+decay;
-    }
-    if (release != null && release !== ''){
-      controls += ', release: '+release;
-    }
-	if (pitch != null && pitch !== ''){
-      controls += ', pitch: '+pitch;
-    }
-
-    var code = 'sample :'+dropdown_sample+ controls + "\n";
+    var code = sampleBlockCodeGen(block)
     return code;
 };
+
+Blockly.SonicPi['misc_sounds_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+};
+
+Blockly.SonicPi['perc_sounds_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+};
+
+Blockly.SonicPi['snare_drums_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+};
+
+Blockly.SonicPi['guitar_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+};
+
+Blockly.SonicPi['loop_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+};
+
+Blockly.SonicPi['tabla_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+};
+
+Blockly.SonicPi['vinyl_sample'] = function (block) {
+    var code = sampleBlockCodeGen(block)
+    return code;
+}
 
 Blockly.SonicPi['sample_custom'] = function(block) {
   var text_sample_name = block.getFieldValue('SAMPLE_NAME');

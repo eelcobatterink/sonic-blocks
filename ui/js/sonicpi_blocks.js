@@ -306,6 +306,15 @@ function controls_compose( topBlock ){
 
 }
 
+function sampleSetup(block) {
+	block.setPreviousStatement(true, null);
+	block.setNextStatement(true, null);
+	block.setColour(230);
+	block.setTooltip('');
+	block.setHelpUrl('');
+	block.setMutator( new Blockly.Mutator( controls_list ) );
+}
+
 Blockly.Blocks['play_basic'] = {
   init: function() {
     this.appendDummyInput()
@@ -319,20 +328,10 @@ Blockly.Blocks['play_basic'] = {
     this.setTooltip('');
     this.setMutator( new Blockly.Mutator( controls_list ) );
   },
-  c_amp_:false,
-  c_pan_:false,
-  c_attack_:false,
-  c_decay_:false,
-  c_release_:false,
-  c_pitch_:false,
   mutationToDom: controls_mutationToDom,
-
   domToMutation: controls_domToMutation,
-
   updateShape_: _controls_updateShape,
-
   decompose: controls_decompose('controls_play_play'),
-
   compose: controls_compose
 };
 
@@ -532,28 +531,14 @@ Blockly.Blocks['ambient_sample'] = {
                                                     ["dark woosh", "ambi_dark_woosh"],
                                                     ["choir", "ambi_choir"],
                                                     ]), "SAMPLE");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip('');
-        this.setHelpUrl('');
-        this.setMutator( new Blockly.Mutator( controls_list ) );
+        sampleSetup(this)
     },
-    c_amp_:false,
-    c_pan_:false,
-    c_attack_:false,
-    c_decay_:false,
-    c_release_:false,
-	c_pitch_:false,
-    mutationToDom: controls_mutationToDom,
-
+	mutationToDom: controls_mutationToDom,
     domToMutation: controls_domToMutation,
-
     updateShape_: _controls_updateShape,
-
     decompose: controls_decompose('controls_sample_sample'),
-
     compose: controls_compose
+
 };
 
 Blockly.Blocks['bass_drum_sample'] = {
@@ -574,27 +559,12 @@ Blockly.Blocks['bass_drum_sample'] = {
 													["fat", "bd_fat"],
 													["tek", "bd_tek"],
                                                     ]), "SAMPLE");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip('');
-        this.setHelpUrl('');
-        this.setMutator( new Blockly.Mutator( controls_list ) );
+        sampleSetup(this)
     },
-    c_amp_:false,
-    c_pan_:false,
-    c_attack_:false,
-    c_decay_:false,
-    c_release_:false,
-	c_pitch_:false,
     mutationToDom: controls_mutationToDom,
-
     domToMutation: controls_domToMutation,
-
     updateShape_: _controls_updateShape,
-
     decompose: controls_decompose('controls_sample_sample'),
-
     compose: controls_compose
 };
 
@@ -612,27 +582,12 @@ Blockly.Blocks['bass_sounds_sample'] = {
                                                     ["voxy hit bass", "bass_voxy_hit_c"],
                                                     ["dnb bass", "bass_dnb_f"],
                                                     ]), "SAMPLE");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip('');
-        this.setHelpUrl('');
-        this.setMutator( new Blockly.Mutator( controls_list ) );
+        sampleSetup(this)
     },
-    c_amp_:false,
-    c_pan_:false,
-    c_attack_:false,
-    c_decay_:false,
-    c_release_:false,
-	c_pitch_:false,
     mutationToDom: controls_mutationToDom,
-
     domToMutation: controls_domToMutation,
-
     updateShape_: _controls_updateShape,
-
     decompose: controls_decompose('controls_sample_sample'),
-
     compose: controls_compose
 };
 
@@ -662,28 +617,13 @@ Blockly.Blocks['drum_sounds_sample'] = {
                                                     ["cowbell", "drum_cowbell"],
                                                     ["drum roll", "drum_roll"],
                                                     ]), "SAMPLE");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip('');
-        this.setHelpUrl('');
-        this.setMutator( new Blockly.Mutator( controls_list ) );
+        sampleSetup(this)
     },
-    c_amp_:false,
-    c_pan_:false,
-    c_attack_:false,
-    c_decay_:false,
-    c_release_:false,
-	c_pitch_:false,
     mutationToDom: controls_mutationToDom,
-
     domToMutation: controls_domToMutation,
-
     updateShape_: _controls_updateShape,
-
     decompose: controls_decompose('controls_sample_sample'),
-
-    compose: controls_compose
+    compose: controls_compose,
 };
 
 Blockly.Blocks['electric_sounds_sample'] = {
@@ -717,29 +657,174 @@ Blockly.Blocks['electric_sounds_sample'] = {
                                                     ["plip", "elec_plip"],
                                                     ["blup", "elec_blup"],
                                                     ]), "SAMPLE");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip('');
-        this.setHelpUrl('');
-        this.setMutator( new Blockly.Mutator( controls_list ) );
+        sampleSetup(this)
     },
-    c_amp_:false,
-    c_pan_:false,
-    c_attack_:false,
-    c_decay_:false,
-    c_release_:false,
-	c_pitch_:false,
     mutationToDom: controls_mutationToDom,
-
     domToMutation: controls_domToMutation,
-
     updateShape_: _controls_updateShape,
-
     decompose: controls_decompose('controls_sample_sample'),
-
-    compose: controls_compose
+    compose: controls_compose,
 };
+
+Blockly.Blocks['misc_sounds_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("miscellaneous sound")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["burp", "misc_burp"],
+                                                    ["crow", "misc_crow"],
+                                                    ["boom", "misc_cineboom"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+
+Blockly.Blocks['perc_sounds_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("percussive sound")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["bell", "perc_bell"],
+                                                    ["snap 1", "perc_snap"],
+                                                    ["snap 2", "perc_snap2"],
+                                                    ["swash", "perc_swash"],
+                                                    ["till", "perc_till"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+
+Blockly.Blocks['snare_drums_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("snare drum")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["dub", "sn_dub"],
+                                                    ["dolf", "sn_dolf"],
+                                                    ["zome", "sn_zome"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+
+Blockly.Blocks['guitar_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("guitar sample")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["harmonics", "guit_harmonics"],
+                                                    ["fifths", "guit_e_fifths"],
+                                                    ["slide", "guit_e_slide"],
+                                                    ["minor 9", "guit_em9"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+
+Blockly.Blocks['loop_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("loop sample")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["industrial", "loop_industrial"],
+                                                    ["compus", "loop_compus"],
+                                                    ["amen", "loop_amen"],
+                                                    ["full amen", "loop_amen_full"],
+                                                    ["garzul", "loop_garzul"],
+                                                    ["mika", "loop_mika"],
+                                                    ["breakbeat", "loop_breakbeat"],
+                                                    ["safari", "loop_safari"],
+                                                    ["tabla", "loop_tabla"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+Blockly.Blocks['tabla_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("tabla drum")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["tas 1", "tabla_tas1"],
+                                                    ["tas 2", "tabla_tas2"],
+                                                    ["tas 3", "tabla_tas3"],
+                                                    ["ke 1", "tabla_ke1"],
+                                                    ["ke 2", "tabla_ke2"],
+                                                    ["ke 3", "tabla_ke3"],
+                                                    ["na", "tabla_na"],
+                                                    ["na_o", "tabla_na_o"],
+                                                    ["na_s", "tabla_na_s"],
+                                                    ["tun1", "tabla_tun1"],
+                                                    ["tun1", "tabla_tun2"],
+                                                    ["tun1", "tabla_tun3"],
+                                                    ["te1", "tabla_te1"],
+                                                    ["te2", "tabla_te2"],
+                                                    ["te_ne", "tabla_te_ne"],
+                                                    ["te_m", "tabla_te_m"],
+                                                    ["ghe1", "tabla_ghe1"],
+                                                    ["ghe2", "tabla_ghe2"],
+                                                    ["ghe3", "tabla_ghe3"],
+                                                    ["ghe4", "tabla_ghe4"],
+                                                    ["ghe5", "tabla_ghe5"],
+                                                    ["ghe6", "tabla_ghe6"],
+                                                    ["ghe7", "tabla_ghe7"],
+                                                    ["ghe8", "tabla_ghe8"],
+                                                    ["dhec", "tabla_dhec"],
+                                                    ["re", "tabla_re"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+
+Blockly.Blocks['vinyl_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("vinyl")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["backspin", "vinyl_backspin"],
+                                                    ["rewind", "vinyl_rewind"],
+                                                    ["scratch", "vinyl_scratch"],
+                                                    ["hiss", "vinyl_hiss"],
+                                                    ]), "SAMPLE");
+        sampleSetup(this)
+    },
+    mutationToDom: controls_mutationToDom,
+    domToMutation: controls_domToMutation,
+    updateShape_: _controls_updateShape,
+    decompose: controls_decompose('controls_sample_sample'),
+    compose: controls_compose,
+};
+
+
 
 Blockly.Blocks['sample_custom'] = {
   init: function() {
