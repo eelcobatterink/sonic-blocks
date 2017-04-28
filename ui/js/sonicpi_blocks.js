@@ -50,11 +50,22 @@ this.setPreviousStatement(true, null);
         }
 }
 
+Blockly.Blocks['controls_pitch'] = {
+  init: function() {
+	this.appendDummyInput()
+            .appendField('pitch');
+this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Pitch adjustment in semitones. 1 is up a semitone, 12 is up an octave, -12 is down an octave etc. Maximum upper limit of 24 (up 2 octaves). Lower limit of -72 (down 6 octaves). Decimal numbers can be used for fine tuning. ');
+        }
+}
+
 var controls_list = [ 'controls_amp',
                       'controls_pan',
                       'controls_attack',
                       'controls_decay',
-                      'controls_release'
+                      'controls_release',
+					  'controls_pitch',
                     ];
 
 
@@ -72,6 +83,8 @@ Blockly.Blocks['controls_play_play'] = {
 //      .appendField('decay')
 //      .appendField(new Blockly.FieldCheckbox("FALSE"), "IS_RELEASE")
 //      .appendField('release')
+//      .appendField(new Blockly.FieldCheckbox("FALSE"), "PITCH")
+//      .appendField('pitch')
       ;
   this.appendStatementInput("STATEMENT")
         .setCheck(null);
@@ -114,7 +127,7 @@ Blockly.Blocks['math_arithmetic'] = {
 };
 
 function controls_mutationToDom() {
-  if (!(this.c_amp_ || this.c_pan_ || this.c_attack_ || this.c_decay_ || this.c_release_)){
+  if (!(this.c_amp_ || this.c_pan_ || this.c_attack_ || this.c_decay_ || this.c_release_ || this.c_pitch_)){
       return null;
     } else {
       var container = document.createElement('mutation');
@@ -133,6 +146,9 @@ function controls_mutationToDom() {
       if (this.c_release_) {
         container.setAttribute('release', this.c_release_);
       }
+	  if (this.c_pitch_) {
+		container.setAttribute('pitch', this.c_pitch_);
+	  }
       return container;
      }
 }
@@ -143,6 +159,7 @@ function controls_domToMutation( xmlElement ) {
   this.c_attack_ = (xmlElement.getAttribute('attack')=='true') || false;
   this.c_decay_ = (xmlElement.getAttribute('decay') == 'true') || false;
   this.c_release_ = (xmlElement.getAttribute('release') == 'true') || false;
+  this.c_pitch_ = (xmlElement.getAttribute('pitch') == 'true') || false;
   this.updateShape_()
 }
 
@@ -162,6 +179,9 @@ function _controls_updateShape() {
   }
   if( this.getInput('RELEASE') ){
     this.removeInput( 'RELEASE' );
+  }
+  if( this.getInput('PITCH') ){
+    this.removeInput( 'PITCH' );
   }
 
   //REPOPULATE
@@ -189,6 +209,11 @@ function _controls_updateShape() {
     this.appendValueInput( 'RELEASE' )
     .setCheck('math_number')
     .appendField( 'release');
+  }
+  if(this.c_pitch_){
+    this.appendValueInput( 'PITCH' )
+    .setCheck('math_number')
+    .appendField( 'pitch' );
   }
 
 }
@@ -229,6 +254,12 @@ function controls_decompose(control_top_block){
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
+	if(this.c_pitch_){
+      var block = workspace.newBlock('controls_pitch');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
     return topBlock;
   };
 }
@@ -239,6 +270,7 @@ function controls_compose( topBlock ){
   this.c_attack_ = false;
   this.c_decay_ = false;
   this.c_release_ = false;
+  this.c_pitch_ = false;
 
   var children = topBlock.getChildren();
 
@@ -260,6 +292,9 @@ function controls_compose( topBlock ){
         break;
         case 'controls_release':
         this.c_release_ = true;
+        break;
+		case 'controls_pitch':
+		this.c_pitch_ = true;
         break;
         default:
         throw 'Unknown block type.';
@@ -289,6 +324,7 @@ Blockly.Blocks['play_basic'] = {
   c_attack_:false,
   c_decay_:false,
   c_release_:false,
+  c_pitch_:false,
   mutationToDom: controls_mutationToDom,
 
   domToMutation: controls_domToMutation,
@@ -480,22 +516,21 @@ Blockly.Blocks['in_thread'] = {
     }
 };
 
-Blockly.Blocks['sample'] = {
+Blockly.Blocks['ambient_sample'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("sample")
+            .appendField("ambient sample")
             .appendField(new Blockly.FieldDropdown([
-                                                    ["bd_808", "bd_808"],
-                                                    ["bd_ada", "bd_ada"],
-                                                    ["bd_gas", "bd_gas"],
-                                                    ["bd_haus", "bd_haus"],
-                                                    ["bd_klub", "bd_klub"],
-                                                    ["bd_pure", "bd_pure"],
-                                                    ["bd_sone", "bd_sone"],
-                                                    ["elec_triangle", "elec_triangle"],
-                                                    ["elec_hi_snare", "elec_hi_snare"],
-                                                    ["drum_snare_hard", "drum_snare_hard"],
-                                                    ["drum_cymbal_closed", "drum_cymbal_closed"]
+                                                    ["soft buzz", "ambi_soft_buzz"],
+                                                    ["swoosh", "ambi_swoosh"],
+                                                    ["drone", "ambi_drone"],
+                                                    ["glass hum", "ambi_glass_hum"],
+                                                    ["glass rub", "ambi_glass_rub"],
+                                                    ["haunted hum", "ambi_haunted_hum"],
+                                                    ["piano", "ambi_piano"],
+                                                    ["lunar land", "ambi_lunar_land"],
+                                                    ["dark woosh", "ambi_dark_woosh"],
+                                                    ["choir", "ambi_choir"],
                                                     ]), "SAMPLE");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -509,6 +544,192 @@ Blockly.Blocks['sample'] = {
     c_attack_:false,
     c_decay_:false,
     c_release_:false,
+	c_pitch_:false,
+    mutationToDom: controls_mutationToDom,
+
+    domToMutation: controls_domToMutation,
+
+    updateShape_: _controls_updateShape,
+
+    decompose: controls_decompose('controls_sample_sample'),
+
+    compose: controls_compose
+};
+
+Blockly.Blocks['bass_drum_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("bass drum sample")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["ada", "bd_ada"],
+                                                    ["pure", "bd_pure"],
+                                                    ["808", "bd_808"],
+                                                    ["zum", "bd_zum"],
+                                                    ["gas", "bd_gas"],
+                                                    ["sone", "bd_sone"],
+                                                    ["haus", "bd_haus"],
+                                                    ["zome", "bd_zome"],
+                                                    ["boom", "bd_boom"],
+                                                    ["klub", "bd_klub"],
+													["fat", "bd_fat"],
+													["tek", "bd_tek"],
+                                                    ]), "SAMPLE");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+        this.setMutator( new Blockly.Mutator( controls_list ) );
+    },
+    c_amp_:false,
+    c_pan_:false,
+    c_attack_:false,
+    c_decay_:false,
+    c_release_:false,
+	c_pitch_:false,
+    mutationToDom: controls_mutationToDom,
+
+    domToMutation: controls_domToMutation,
+
+    updateShape_: _controls_updateShape,
+
+    decompose: controls_decompose('controls_sample_sample'),
+
+    compose: controls_compose
+};
+
+Blockly.Blocks['bass_sounds_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("bass sounds sample")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["bass hit", "bass_hit_c"],
+                                                    ["hard bass", "bass_hard_c"],
+                                                    ["thick bass", "bass_thick_c"],
+                                                    ["bass drop", "bass_drop_c"],
+                                                    ["woodsy bass", "bass_woodsy_c"],
+                                                    ["voxy bass", "bass_voxy_c"],
+                                                    ["voxy hit bass", "bass_voxy_hit_c"],
+                                                    ["dnb bass", "bass_dnb_f"],
+                                                    ]), "SAMPLE");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+        this.setMutator( new Blockly.Mutator( controls_list ) );
+    },
+    c_amp_:false,
+    c_pan_:false,
+    c_attack_:false,
+    c_decay_:false,
+    c_release_:false,
+	c_pitch_:false,
+    mutationToDom: controls_mutationToDom,
+
+    domToMutation: controls_domToMutation,
+
+    updateShape_: _controls_updateShape,
+
+    decompose: controls_decompose('controls_sample_sample'),
+
+    compose: controls_compose
+};
+
+Blockly.Blocks['drum_sounds_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("drum sounds sample")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["heavy drum kick", "drum_heavy_kick"],
+                                                    ["soft mid tomtom", "drum_tom_mid_soft"],
+                                                    ["hard mid tomtom", "drum_tom_mid_hard"],
+                                                    ["soft low tomtom", "drum_tom_lo_soft"],
+                                                    ["hard low tomtom", "drum_tom_lo_hard"],
+                                                    ["soft high tomtom", "drum_tom_hi_soft"],
+                                                    ["hard high tomtom", "drum_tom_hi_hard"],
+                                                    ["soft drum splash", "drum_splash_soft"],
+                                                    ["hard drum splash", "drum_splash_hard"],
+                                                    ["soft snare drum", "drum_snare_soft"],
+                                                    ["hard snare drum", "drum_snare_hard"],
+                                                    ["soft cymbal", "drum_cymbal_soft"],
+                                                    ["hard cymbal", "drum_cymbal_hard"],
+                                                    ["open cymbal", "drum_cymbal_open"],
+													["closed cymbal", "drum_cymbal_closed"],
+                                                    ["pedal cymbal", "drum_cymbal_pedal"],
+                                                    ["soft bass drum", "drum_bass_soft"],
+                                                    ["hard bass drum", "drum_bass_hard"],
+                                                    ["cowbell", "drum_cowbell"],
+                                                    ["drum roll", "drum_roll"],
+                                                    ]), "SAMPLE");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+        this.setMutator( new Blockly.Mutator( controls_list ) );
+    },
+    c_amp_:false,
+    c_pan_:false,
+    c_attack_:false,
+    c_decay_:false,
+    c_release_:false,
+	c_pitch_:false,
+    mutationToDom: controls_mutationToDom,
+
+    domToMutation: controls_domToMutation,
+
+    updateShape_: _controls_updateShape,
+
+    decompose: controls_decompose('controls_sample_sample'),
+
+    compose: controls_compose
+};
+
+Blockly.Blocks['electric_sounds_sample'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("electric sounds sample")
+            .appendField(new Blockly.FieldDropdown([
+                                                    ["triangle", "elec_triangle"],
+                                                    ["snare", "elec_snare"],
+                                                    ["low snare", "elec_lo_snare"],
+                                                    ["mid snare", "elec_mid_snare"],
+                                                    ["mid snare", "elec_hi_snare"],
+                                                    ["cymbal", "elec_cymbal"],
+                                                    ["soft kick", "elec_soft_kick"],
+                                                    ["filtered snare", "elec_filt_snare"],
+                                                    ["fuzzed tomtom", "elec_fuzz_tom"],
+                                                    ["chime", "elec_chime"],
+                                                    ["bong", "elec_bong"],
+                                                    ["twang", "elec_twang"],
+                                                    ["wood", "elec_wood"],
+                                                    ["pop", "elec_pop"],
+													["beep", "elec_beep"],
+                                                    ["blip 1", "elec_blip"],
+                                                    ["blip 2", "elec_blip2"],
+                                                    ["ping", "elec_ping"],
+                                                    ["bell", "elec_bell"],
+                                                    ["flip", "elec_flip"],
+													["tick", "elec_tick"],
+                                                    ["hollow kick", "elec_hollow_kick"],
+                                                    ["twip", "elec_twip"],
+                                                    ["plip", "elec_plip"],
+                                                    ["blup", "elec_blup"],
+                                                    ]), "SAMPLE");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+        this.setMutator( new Blockly.Mutator( controls_list ) );
+    },
+    c_amp_:false,
+    c_pan_:false,
+    c_attack_:false,
+    c_decay_:false,
+    c_release_:false,
+	c_pitch_:false,
     mutationToDom: controls_mutationToDom,
 
     domToMutation: controls_domToMutation,
