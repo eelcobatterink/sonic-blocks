@@ -62,10 +62,9 @@ Blockly.SonicPi['fx'] = function(block) {
 };
 
 Blockly.SonicPi['play_advanced'] = function(block) {
-  //var note = Blockly.SonicPi.valueToCode(block, 'NOTE', Blockly.SonicPi.ORDER_ATOMIC);
-  var note = block.getFieldValue('NOTE');
+  var note = Blockly.SonicPi.statementToCode(block, 'NOTE');
   var duration = Blockly.SonicPi.valueToCode(block, 'DURATION', Blockly.SonicPi.ORDER_ATOMIC);
-  var code = "play_pattern_timed [" + note + "], " + duration + "\n";
+  var code = 'play_pattern_timed [' + note + '], ' + duration + '\n';
   return code;
 };
 
@@ -385,6 +384,6 @@ Blockly.SonicPi['scale'] = function(block) {
     var tonic = block.getFieldValue('TONIC');
     var name = block.getFieldValue('NAME');
     var num_octaves = block.getFieldValue('NUM_OCTAVES');
-    var code = '(scale :' + tonic + ', :' + name + ', num_octaves: ' + num_octaves + ')\n';
+    var code = '(scale :' + tonic + ', :' + name + ', num_octaves: ' + num_octaves + ')';
     return code;
 };
