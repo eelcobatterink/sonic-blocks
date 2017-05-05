@@ -48,10 +48,40 @@ Blockly.SonicPi['bpm'] = function(block) {
   return code;
 };
 
-Blockly.SonicPi['synth'] = function(block) {
+function synthBlockCodeGenerator(block) {
   var synth_name = block.getFieldValue('NAME');
   var code = "use_synth :" + synth_name + "\n";
   return code;
+}
+
+Blockly.SonicPi['synth_sine'] = function(block) {
+	var code = synthBlockCodeGenerator(block)
+	return code;
+};
+
+Blockly.SonicPi['synth_saw'] = function(block) {
+	var code = synthBlockCodeGenerator(block)
+	return code;
+};
+
+Blockly.SonicPi['synth_instrument'] = function(block) {
+	var code = synthBlockCodeGenerator(block)
+	return code;
+};
+
+Blockly.SonicPi['synth_noise'] = function(block) {
+	var code = synthBlockCodeGenerator(block)
+	return code;
+};
+
+Blockly.SonicPi['synth_tri'] = function(block) {
+	var code = synthBlockCodeGenerator(block)
+	return code;
+};
+
+Blockly.SonicPi['synth_square'] = function(block) {
+	var code = synthBlockCodeGenerator(block)
+	return code;
 };
 
 Blockly.SonicPi['fx'] = function(block) {
@@ -117,7 +147,7 @@ function mutatorCodeGen(block) {
 
 function sampleBlockCodeGen(block) {
 	var dropdown_sample = block.getFieldValue('SAMPLE');
-    var code = 'sample :'+dropdown_sample + mutatorCodeGen(block)
+    var code = 'sample :'+ dropdown_sample + mutatorCodeGen(block)
 	return code
 };
 

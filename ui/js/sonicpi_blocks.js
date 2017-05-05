@@ -315,6 +315,13 @@ function sampleSetup(block) {
 	block.setMutator( new Blockly.Mutator( controls_list ) );
 }
 
+function synthSetup(block) {
+    block.setPreviousStatement(true, null);
+    block.setNextStatement(true, null);
+    block.setColour(165);
+    block.setTooltip('');
+}
+
 Blockly.Blocks['play_basic'] = {
   init: function() {
     this.appendDummyInput()
@@ -427,26 +434,112 @@ Blockly.Blocks['bpm'] = {
   }
 };
 
-Blockly.Blocks['synth'] = {
+Blockly.Blocks['synth_sine'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("use synth")
+        .appendField("sine synth")
         .appendField(new Blockly.FieldDropdown([
                                                 ["sine", "sine"],
-                                                ["saw", "saw"],
-                                                ["tb303", "tb303"],
-                                                ["square", "square"],
+                                                ["modulating sine", "mod_sine"],
                                                 ["beep", "beep"],
-                                                ["chiplead", "chiplead"],
-                                                ["dpulse", "dpulse"],
+                                                ["modulating beep", "mod_beep"],
+                                                ["fm synthesis", "fm"],
+                                                ["beep", "beep"],
+                                                ["growl", "growl"],                                                
+                                                ["modulating fm synthesis", "mod_fm"],
                                                 ]), "NAME");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(165);
-    this.setTooltip('');
+	synthSetup(this)
+  }
+};
+
+Blockly.Blocks['synth_saw'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("saw synth")
+        .appendField(new Blockly.FieldDropdown([
+                                                ["saw", "saw"],
+                                                ["modulating saw", "mod_saw"],
+                                                ["detuned saw", "dsaw"],
+                                                ["blade", "blade"],
+                                                ["modulating detuned saw", "mod_dsaw"],
+                                                ["super saw", "supersaw"],
+                                                ["tech saw", "tech_saws"],
+                                                ["zawa", "zawa"],
+                                                ]), "NAME");
+	synthSetup(this)
 
   }
 };
+
+Blockly.Blocks['synth_instrument'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("instrument synth")
+        .appendField(new Blockly.FieldDropdown([
+                                                ["piano", "piano"],
+                                                ["pluck", "pluck"],
+                                                ["pretty bell", "pretty_bell"],
+                                                ["dull bell", "dull_bell"],
+                                                ["hollow", "hollow"],
+												["hoover", "hoover"],
+												["prophet", "prophet"],
+                                                ["dark ambience", "dark_ambience"],
+                                                ["tb303", "tb303"],
+                                                ]), "NAME");
+    synthSetup(this)
+
+  }
+};
+
+Blockly.Blocks['synth_noise'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("noise synth")
+        .appendField(new Blockly.FieldDropdown([
+                                                ["noise", "noise"],
+                                                ["brown noise ", "bnoise"],
+                                                ["chip noise", "chipnoise"],
+                                                ["clip noise", "cnoise"],
+                                                ["pink noise", "pnoise"],
+                                                ["grey noise", "gnoise"],
+                                                ]), "NAME");
+    synthSetup(this)
+
+  }
+};
+
+Blockly.Blocks['synth_tri'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("triangle synth")
+        .appendField(new Blockly.FieldDropdown([
+                                                ["tri", "tri"],
+                                                ["chipbass", "chipbass"],
+                                                ["detuned tri", "dtri"],
+                                                ["modulating tri", "mod_tri"],
+                                                ]), "NAME");
+    synthSetup(this)
+
+  }
+};
+
+Blockly.Blocks['synth_square'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("square synth")
+        .appendField(new Blockly.FieldDropdown([
+                                                ["square", "square"],
+                                                ["pulse", "pulse"],
+                                                ["chiplead", "chiplead"],
+                                                ["detuned pulse", "dpulse"],
+                                                ["modulating pulse", "mod_pulse"],
+                                                ["sub pulse", "subpulse"],
+                                                ]), "NAME");
+    synthSetup(this)
+
+  }
+};
+
 
 Blockly.Blocks['fx'] = {
   init: function() {
