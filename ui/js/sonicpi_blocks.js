@@ -5,30 +5,33 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks['controls_pan'] = {
   init: function() {
-	this.appendDummyInput()
-            .appendField('pan');
-  this.setPreviousStatement(true, null);
-  this.setNextStatement(true, null);
-  this.setTooltip('The stereo position of the sound. -1 is left, 0 is in the middle and 1 is on the right. You may use a value in between -1 and 1 such as 0.25 ');
+  	this.appendDummyInput()
+              .appendField('pan');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('The stereo position of the sound. -1 is left, 0 is in the middle and 1 is on the right. You may use a value in between -1 and 1 such as 0.25 ');
+    this.setColour(59);
         }
 }
 
 Blockly.Blocks['controls_amp'] = {
   init: function() {
-	this.appendDummyInput()
-            .appendField('amp');
-  this.setPreviousStatement(true, null);
-  this.setNextStatement(true, null);
-  this.setTooltip('The amplitude of the note. Input Math Number');
+  	this.appendDummyInput()
+              .appendField('amp');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('The amplitude of the note. Input Math Number');
+    this.setColour(119);
         }
 }
 Blockly.Blocks['controls_attack'] = {
   init: function() {
-	this.appendDummyInput()
+    this.appendDummyInput()
             .appendField('attack');
-this.setPreviousStatement(true, null);
+    this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Amount of time (in beats) for sound to reach full amplitude (attack_level). A short attack (i.e. 0.01) makes the initial part of the sound very percussive like a sharp tap. A longer attack (i.e 1) fades the sound in gently. Input Math Number');
+    this.setColour(179);
         }
 }
 Blockly.Blocks['controls_decay'] = {
@@ -38,6 +41,7 @@ Blockly.Blocks['controls_decay'] = {
 this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Amount of time (in beats) for the sound to move from full amplitude (attack_level) to the sustain amplitude (sustain_level). Input Math Number');
+    this.setColour(239);
         }
 }
 Blockly.Blocks['controls_release'] = {
@@ -47,6 +51,7 @@ Blockly.Blocks['controls_release'] = {
 this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Amount of time (in beats) for sound to move from sustain level amplitude to silent. A short release (i.e. 0.01) makes the final part of the sound very percussive (potentially resulting in a click). A longer release (i.e 1) fades the sound out gently. Input Math Number');
+    this.setColour(299);
         }
 }
 
@@ -57,6 +62,7 @@ Blockly.Blocks['controls_pitch'] = {
 this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Pitch adjustment in semitones. 1 is up a semitone, 12 is up an octave, -12 is down an octave etc. Maximum upper limit of 24 (up 2 octaves). Lower limit of -72 (down 6 octaves). Decimal numbers can be used for fine tuning. ');
+    this.setColour(0);
         }
 }
 
@@ -86,6 +92,7 @@ Blockly.Blocks['controls_play_play'] = {
 //      .appendField(new Blockly.FieldCheckbox("FALSE"), "PITCH")
 //      .appendField('pitch')
       ;
+  this.setColour(90);
   this.appendStatementInput("STATEMENT")
         .setCheck(null);
   }
@@ -93,10 +100,11 @@ Blockly.Blocks['controls_play_play'] = {
 
 Blockly.Blocks['controls_sample_sample'] = {
   init: function() {
-  this.appendDummyInput()
+    this.appendDummyInput()
       .appendField('sample');
-  this.appendStatementInput("STATEMENT")
+    this.appendStatementInput("STATEMENT")
         .setCheck(null);
+    this.setColour(230);
   }
 }
 
@@ -445,7 +453,7 @@ Blockly.Blocks['synth_sine'] = {
                                                 ["modulating beep", "mod_beep"],
                                                 ["fm synthesis", "fm"],
                                                 ["beep", "beep"],
-                                                ["growl", "growl"],                                                
+                                                ["growl", "growl"],
                                                 ["modulating fm synthesis", "mod_fm"],
                                                 ]), "NAME");
 	synthSetup(this)
