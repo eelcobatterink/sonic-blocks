@@ -50,7 +50,6 @@ define :vibraBell3 do
   end
 end
 
-
 define :vibraBellShort do
   in_thread do
     a = 0.1
@@ -176,28 +175,41 @@ end
 define :bassRun1 do
   in_thread do
     a = 0.1
+    b = 0.7
     use_synth :fm
-    play_pattern_timed [:e3,:e3,:e3,:e3,:e4,:e3],[1,1,0.5,0.5,0.5,1], sustain: a
-    play_pattern_timed [:e3,:e3,:e3,:e4,:e3,:g2],[1,1,0.5,0.5,0.5,1], sustain: a
-    play_pattern_timed [:g2,:g2,:g3,:g2,:g2,:g2],[1,1,0.5,1,1,1], sustain: a
-    play_pattern_timed [:g3,:g2,:g3,:b2,:b2,:b2],[0.5,0.5,0.5,1,1,1], sustain: a
-    play_pattern_timed [:b3,:b2,:b2,:b2,:b3,:b2],[0.5,1,1,1,0.5,0.5], sustain: a
-    play_pattern_timed [:b3,:c3,:g3,:e4,:g4,:c5],[0.5,0.5,0.5,0.5,1,1.5], sustain: a
-    play_pattern_timed [:d3,:a3,:fs4,:a4,:d5],[0.5,0.5,0.5,1,1.5], sustain: a
+    play_pattern_timed [:e2,:e3,:e4,:e3,:e5,:e3,:e2],[1,1,0.5,1,0.5,0.5,1.5], sustain: a, amp: b
+    play_pattern_timed [:g3,:a3,:b3,:d4,:g3,:g2,:g3,:g2],[0.5,0.5,0.5,1,0.5,1,0.5,1], sustain: a, amp: b
+    play_pattern_timed [:d5,:g4,:g3,:fs3,:g3,:a3,:d4],[1,1,0.5,0.5,0.5,0.5,0.5,0.5], sustain: a, amp: b
+    play_pattern_timed [:b2,:b2,:b3,:b2,:b2,:b3,:b2],[1,1,0.5,1,0.5,0.5,1], sustain: a, amp: b
+    play_pattern_timed [:b3,:b3,:b2,:d3,:e3],[0.5,0.5,0.5,0.5,0.5], sustain: a, amp: b
+    play_pattern_timed [:c3,:c4],[2,2], sustain: 1, amp: b
+    play :d3, sustain: 1, amp: b
+    sleep 1.5
+    play :d4, sustain: 0.5, amp: b
+    sleep 1.5
+    play :e4, sustain: 1, amp: b
+    sleep 1.5
+    
   end
 end
 
 define :bassRun2 do
   in_thread do
     a = 0.1
+    b = 0.7
     use_synth :fm
-    play_pattern_timed [:e3,:b3,:e3,:e4,:e3],[1,0.5,0.5,0.5,1], sustain: a
-    play_pattern_timed [:e3,:e3,:b3,:e4,:b3,:e3,:b3,:e3],[1,0.5,0.5,0.5,0.5,0.5,0.5,0.5], sustain: a
-    play_pattern_timed [:g2,:g3,:g2,:g2,:g3],[0.5,0.5,1,1,0.5], sustain: a
-    play_pattern_timed [:g2,:g2,:g2,:g3,:g2,:g3],[1,1,1,0.5,0.5,0.5], sustain: a
-    play_pattern_timed [:b2,:b2,:b2,:b3,:b2,:b2,:b2,:b3,:b2,:b3],[1,1,1,0.5,1,1,1,0.5,0.5,0.5], sustain: a
-    play_pattern_timed [:a2,:e2,:c3,:e3,:a3,:c4],[0.5,0.5,0.5,0.5,0.5,1.5], sustain: a
-    play_pattern_timed [:b2,:fs2,:d3,:fs3,:b3,:d4],[0.5,0.5,0.5,0.5,0.5,1.5], sustain: a
+    play_pattern_timed [:e2,:e3,:e4,:e2,:e5,:e4 ],[1,1,0.5,1,1,1.5], sustain: a, amp: b
+    play_pattern_timed [:e3,:g3,:a3,:d4,:g3,:g2,:g3,:g2],[0.5,0.5,0.5,1,0.5,1,0.5,1], sustain: a, amp: b
+    play_pattern_timed [:d5,:g4,:g3,:fs3,:g3,:a3,:d4],[1,1,0.5,0.5,0.5,0.5,0.5,0.5], sustain: a, amp: b
+    play_pattern_timed [:b2,:b2,:b3,:b2,:b2,:b3,:b2],[1,1,0.5,1,0.5,0.5,1], sustain: a, amp: b
+    play_pattern_timed [:a3,:g3,:fs3],[1,0.5,1], sustain: a, amp: b
+    play :a2, sustain:2, amp: b
+    sleep 2
+    play :a3, sustain: 0.5, amp: b
+    sleep 0.5
+    play_pattern_timed [:a2,:b2,:b3,:b2],[1.5,1.5,1.5,1], sustain: 1, amp: b
+    
+    
   end
 end
 
@@ -206,40 +218,21 @@ define :bassRun3 do
     a = 0.1
     b = 0.7
     use_synth :fm
-    2.times do
-      play_pattern_timed [:c3,:g3,:c4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:c3,:g3,:c4],[0,0,0.5], sustain: a, amp: b
-    3.times do
-      play_pattern_timed [:c3,:g3,:c4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:c3,:g3,:c4],[0,0,0.5], sustain: a, amp: b
-    2.times do
-      play_pattern_timed [:c3,:g3,:c4],[0,0,1], sustain: a, amp: b
-    end
-    2.times do
-      play_pattern_timed [:d3,:a3,:d4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:d3,:a3,:d4],[0,0,0.5], sustain: a, amp: b
-    3.times do
-      play_pattern_timed [:d3,:a3,:d4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:d3,:a3,:d4],[0,0,0.5], sustain: a, amp: b
-    2.times do
-      play_pattern_timed [:d3,:a3,:d4],[0,0,1], sustain: a, amp: b
-    end
-    2.times do
-      play_pattern_timed [:e3,:b3,:e4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:e3,:b3,:e4],[0,0,0.5], sustain: a, amp: b
-    4.times do
-      play_pattern_timed [:e3,:b3,:e4],[0,0,1], sustain: a, amp: b
-    end
-    2.times do
-      play_pattern_timed [:e3,:b3,:e4],[0,0,0.5], sustain: a, amp: b
-    end
-    play_pattern_timed [:a2,:a3,:a3,:e4,:a4,:b4,:c5,:e5],[0,0.5,0.5,0.5,0.5,0.5,0.5,1], sustain: a, amp: b
-    play_pattern_timed [:b2,:b3,:b3,:d4,:fs4,:a4,:b4,:d5],[0,0.5,0.5,0.5,0.5,0.5,0.5,0.5], sustain: a, amp: b
+    play_pattern_timed [:c3,:c3,:c4,:c3,:c3,:c4,:c3,:c4],[1,1,0.5,1,0.5,0.5,1,1], sustain: a, amp: b
+    play_pattern_timed [:g3,:a3,:d4,:d4,:d3,:d4,:d3],[0.5,0.5,1,0.5,1,0.5,1], sustain: a, amp: b
+    play_pattern_timed [:d5,:d4,:b4,:g4,:a4,:d5],[1,1,1,0.5,0.5,0.5], sustain: a, amp: b
+    play_pattern_timed [:e2,:e3,:e4,:e3,:e2,:e4,:e3,:e2],[1,1,0.5,1,0.5,0.5,1,1], sustain: a, amp: b
+    play :e3, sustain: a, amp: b
+    sleep 0.5
+    play :g3, sustain: 1, amp: b
+    sleep 1
+    play :a2, sustain:2
+    sleep 2
+    play :a3, sustain: 0.5
+    sleep 0.5
+    play_pattern_timed [:a2,:b2,:b3,:b2],[1.5,1.5,1.5,1], sustain: 1
+    
+    
   end
 end
 
@@ -247,33 +240,17 @@ define :bassRun4 do
   in_thread do
     a = 0.1
     b = 0.7
-    c = 1
     use_synth :fm
-    2.times do
-      play_pattern_timed [:c3,:g3,:c4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:c3,:g3,:c4],[0,0,0.5], sustain: a, amp: b
-    3.times do
-      play_pattern_timed [:c3,:g3,:c4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:c3,:g3,:c4],[0,0,0.5], sustain: a, amp: b
-    2.times do
-      play_pattern_timed [:c3,:g3,:c4],[0,0,1], sustain: a, amp: b
-    end
-    2.times do
-      play_pattern_timed [:d3,:a3,:d4],[0,0,1], sustain: a, amp: b
-    end
-    play_pattern_timed [:d3,:a3,:d4],[0,0,0.5], sustain: a, amp: b
-    play_pattern_timed [:d3,:a3,:d4],[0,0,1], sustain: a, amp: b
+    play_pattern_timed [:c3,:c3,:c4,:c3,:c3,:c4,:c3,:c4],[1,1,0.5,1,0.5,0.5,1,1], sustain: a, amp: b
+    play_pattern_timed [:g3,:a3,:d4,:d4,:d3,:d4,:d3],[0.5,0.5,1,0.5,1,0.5,1], sustain: a, amp: b
+    play_pattern_timed [:d5,:c5,:b4,:d3,:g3,:a3,:d4],[1,1,0.5,0.5,0.5,0.5,0.5], sustain: a, amp: b
+    play_pattern_timed [:e3,:e3,:e4,:e3,:e3,:e4,:e3,:e3],[1,1,0.5,1,0.5,0.5,1,1], sustain: a, amp: b
+    play_pattern_timed [:e3,:g3], [0.5,1], sustain: a, amp: b
+    play :e3, sustain: 1
+    sleep 1.5
+    play :e4, sustain: 5
+    sleep 5
     
-    play_pattern_timed [:d3,:d4,:c3,:c4,:b2,:b3,:a2,:a3,:b2,:b3],[0,1,0,1,0,1,0,0.5,0,1], sustain: a, amp: b
-    play_pattern_timed [:e2,:e3,:e4,:e3],[1,1,0.5,1], sustain: a, amp: c
-    
-    play_pattern_timed [:e3,:e2,:e3,:e3,:e3,:g3,:g3],[0.5,0.5,1,1,0.5,0.5,0.5], sustain: a, amp: c
-    
-    play_pattern_timed [:e3,:e4,:e3,:e4,],[0,1,0,1,], sustain: a, amp: c
-    
-    play_pattern_timed [:e2,:e3,:g4,:b4,:e5],[0,0,0,0,1], sustain: 3, decay: 1, amp: 0.5
   end
 end
 
@@ -468,6 +445,6 @@ live_loop :main do
     drum3
     bassRun4
   end
-  sleep 32
+  sleep 40
 end
 

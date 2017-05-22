@@ -133,6 +133,1078 @@
         <category name="Variables" colour="100" custom="VARIABLE"></category>
         <category name="Functions" colour="60" custom="PROCEDURE"></category>
 		<category name="Examples">
+			<category name="Pacman">
+			<category name="Bass">
+				<block type="procedures_defnoreturn" id="ZZ:^=6%c66|!SPkS9uTb" x="27" y="69">
+					<field name="NAME">bass</field>
+					<comment pinned="false" h="80" w="160">Describe this function...</comment>
+					<statement name="STACK">
+					  <block type="variables_set" id="#`#EaRT$aUGQqv{`00=k">
+						<field name="VAR">a</field>
+						<value name="VALUE">
+						  <block type="math_number" id="I5kOWl=tHT1z0*?Y^f3.">
+							<field name="NUM">0.4</field>
+						  </block>
+						</value>
+						<next>
+						  <block type="variables_set" id="[2z96=zC~Oe`R4!PvD{[">
+							<field name="VAR">b</field>
+							<value name="VALUE">
+							  <block type="math_number" id=".EAnT}-_`+AV0SuHj5!2">
+								<field name="NUM">0.6</field>
+							  </block>
+							</value>
+							<next>
+							  <block type="synth_saw" id="RSO1w@}UbvRP`/F(!#[`">
+								<field name="NAME">saw</field>
+								<next>
+								  <block type="controls_repeat_ext" id="J*yFb8Elt1HtQwGc=gwi">
+									<value name="TIMES">
+									  <block type="math_number" id="s~`W.E1`zZFs{`%^h{Gr">
+										<field name="NUM">2</field>
+									  </block>
+									</value>
+									<statement name="DO">
+									  <block type="play_basic" id="L`4RPjH[5DK{{C38-5u7">
+										<mutation release="true"></mutation>
+										<value name="NOTE">
+										  <block type="note" id="[TigaKOP6KcB)@]$@ltD">
+											<field name="NOTE">:B</field>
+											<field name="OCTAVE">1</field>
+										  </block>
+										</value>
+										<value name="RELEASE">
+										  <block type="variables_get" id="k5^.pZWx!17+b86D|rIQ">
+											<field name="VAR">b</field>
+										  </block>
+										</value>
+										<next>
+										  <block type="sleep" id=",QYG7/Ns_(bA{=8vZWH1">
+											<value name="SLEEP_PERIOD">
+											  <block type="math_number" id="FZ!{CY;JR]]MJdZ7]Fpn">
+												<field name="NUM">0.75</field>
+											  </block>
+											</value>
+											<next>
+											  <block type="play_basic" id="TMIY$Vqd0=X4~PjJBUap">
+												<mutation release="true"></mutation>
+												<value name="NOTE">
+												  <block type="note" id="?Re,($`FP[!V.[wd-VEj">
+													<field name="NOTE">:B</field>
+													<field name="OCTAVE">2</field>
+												  </block>
+												</value>
+												<value name="RELEASE">
+												  <block type="variables_get" id="GPXh,eCj/KRHCwLW0M54">
+													<field name="VAR">a</field>
+												  </block>
+												</value>
+												<next>
+												  <block type="sleep" id="$8IjFF4R-%sS9Kh[qIk%">
+													<value name="SLEEP_PERIOD">
+													  <block type="math_number" id="Aj/,N5JXJAsFg=?[m){|">
+														<field name="NUM">0.25</field>
+													  </block>
+													</value>
+												  </block>
+												</next>
+											  </block>
+											</next>
+										  </block>
+										</next>
+									  </block>
+									</statement>
+									<next>
+									  <block type="controls_repeat_ext" id="1m2?S@}r)-EK!r.DORF|">
+										<value name="TIMES">
+										  <block type="math_number" id="4;yZzQG=9h8#E/?IdPaa">
+											<field name="NUM">2</field>
+										  </block>
+										</value>
+										<statement name="DO">
+										  <block type="play_basic" id="-yv!e=sa@Nlb_e|;k2zr">
+											<mutation release="true"></mutation>
+											<value name="NOTE">
+											  <block type="note" id=":xkR#scoJw@vU38hB7qm">
+												<field name="NOTE">:C</field>
+												<field name="OCTAVE">2</field>
+											  </block>
+											</value>
+											<value name="RELEASE">
+											  <block type="variables_get" id="4)R/D`%TBcfQ@?Hob1NE">
+												<field name="VAR">b</field>
+											  </block>
+											</value>
+											<next>
+											  <block type="sleep" id="!2jQ|G.MC{*eUKnyP`}D">
+												<value name="SLEEP_PERIOD">
+												  <block type="math_number" id=".,9m]y@2KA.q:MJTC6fJ">
+													<field name="NUM">0.75</field>
+												  </block>
+												</value>
+												<next>
+												  <block type="play_basic" id="$+_w(RSd@%UrP[,3iohE">
+													<mutation release="true"></mutation>
+													<value name="NOTE">
+													  <block type="note" id="[`!B5hu`YiZqy-q(*3cg">
+														<field name="NOTE">:C</field>
+														<field name="OCTAVE">3</field>
+													  </block>
+													</value>
+													<value name="RELEASE">
+													  <block type="variables_get" id="fm$z/t)sd)l=T3R)CbeO">
+														<field name="VAR">a</field>
+													  </block>
+													</value>
+													<next>
+													  <block type="sleep" id="WFFBb0Xm3sV.mBiAG#G9">
+														<value name="SLEEP_PERIOD">
+														  <block type="math_number" id="-p*E}kb$I7_K@9.I##`g">
+															<field name="NUM">0.25</field>
+														  </block>
+														</value>
+													  </block>
+													</next>
+												  </block>
+												</next>
+											  </block>
+											</next>
+										  </block>
+										</statement>
+										<next>
+										  <block type="controls_repeat_ext" id="/(MGw1eOhmrW%S2nIMm2">
+											<value name="TIMES">
+											  <block type="math_number" id="Aeo(GC5m}erLd)(S#ur9">
+												<field name="NUM">2</field>
+											  </block>
+											</value>
+											<statement name="DO">
+											  <block type="play_basic" id="`UW}WxNGr3w3S]|EM/CJ">
+												<mutation release="true"></mutation>
+												<value name="NOTE">
+												  <block type="note" id="8/hfpn[h)HA!F]!oCy4E">
+													<field name="NOTE">:B</field>
+													<field name="OCTAVE">1</field>
+												  </block>
+												</value>
+												<value name="RELEASE">
+												  <block type="variables_get" id="Ms^}`-~+I,BBA0Kl2|D?">
+													<field name="VAR">b</field>
+												  </block>
+												</value>
+												<next>
+												  <block type="sleep" id="Infnw,h2YpzI1pu`l3e_">
+													<value name="SLEEP_PERIOD">
+													  <block type="math_number" id="E;jH7?Fuwh1-k,dfmotB">
+														<field name="NUM">0.75</field>
+													  </block>
+													</value>
+													<next>
+													  <block type="play_basic" id="SVc.VFLNVn9fRCuk,5f5">
+														<mutation release="true"></mutation>
+														<value name="NOTE">
+														  <block type="note" id="@ia3lA#mBQ10j,CYCRBj">
+															<field name="NOTE">:B</field>
+															<field name="OCTAVE">2</field>
+														  </block>
+														</value>
+														<value name="RELEASE">
+														  <block type="variables_get" id="cA.P7H$,=%6rRdfm|yV-">
+															<field name="VAR">a</field>
+														  </block>
+														</value>
+														<next>
+														  <block type="sleep" id="br);5pGBE[NIyUbZ3zX]">
+															<value name="SLEEP_PERIOD">
+															  <block type="math_number" id="Gnvjvhp+)2B{Q5?;PeL?">
+																<field name="NUM">0.25</field>
+															  </block>
+															</value>
+														  </block>
+														</next>
+													  </block>
+													</next>
+												  </block>
+												</next>
+											  </block>
+											</statement>
+											<next>
+											  <block type="play_basic" id="UKeLw7yNcw.X{6-.HS)e">
+												<value name="NOTE">
+												  <block type="note" id="~8#,AD_U~s~w4}h}];M[">
+													<field name="NOTE">:Fs</field>
+													<field name="OCTAVE">1</field>
+												  </block>
+												</value>
+												<next>
+												  <block type="sleep" id="$YO?~HaM-#?cH7R5kTiE">
+													<value name="SLEEP_PERIOD">
+													  <block type="math_number" id="OP|hZjHiSv+r50G|~S8J">
+														<field name="NUM">0.5</field>
+													  </block>
+													</value>
+													<next>
+													  <block type="play_basic" id="*G#z8+,=D=yWpb2iNv3c">
+														<value name="NOTE">
+														  <block type="note" id="rxsA@4Mm@,J}Gk)8hi2,">
+															<field name="NOTE">:Gs</field>
+															<field name="OCTAVE">1</field>
+														  </block>
+														</value>
+														<next>
+														  <block type="sleep" id="l*ePLFn0mv_GeV[dyrw`">
+															<value name="SLEEP_PERIOD">
+															  <block type="math_number" id="0limy0}e/o(qd(Ulv#H_">
+																<field name="NUM">0.5</field>
+															  </block>
+															</value>
+															<next>
+															  <block type="play_basic" id="hpZ%ilsAm[9#tm)cVvAt">
+																<value name="NOTE">
+																  <block type="note" id="LquR^%T#*),fkn2d($F^">
+																	<field name="NOTE">:As</field>
+																	<field name="OCTAVE">1</field>
+																  </block>
+																</value>
+																<next>
+																  <block type="sleep" id="%uICE{}G87?}#G2JQWQ-">
+																	<value name="SLEEP_PERIOD">
+																	  <block type="math_number" id="d30TP5=2Lgyl}P2qJ5a-">
+																		<field name="NUM">0.5</field>
+																	  </block>
+																	</value>
+																	<next>
+																	  <block type="play_basic" id="j3d1HzgfF1G)=3in^jF:">
+																		<value name="NOTE">
+																		  <block type="note" id="T3`,Kh%Pg.^:%Z6nJ4`P">
+																			<field name="NOTE">:B</field>
+																			<field name="OCTAVE">1</field>
+																		  </block>
+																		</value>
+																		<next>
+																		  <block type="sleep" id="3|Jk`czL]6GYuqS8S|w:">
+																			<value name="SLEEP_PERIOD">
+																			  <block type="math_number" id="M1S${WHV;bQ@E4aB/.:U">
+																				<field name="NUM">0.5</field>
+																			  </block>
+																			</value>
+																		  </block>
+																		</next>
+																	  </block>
+																	</next>
+																  </block>
+																</next>
+															  </block>
+															</next>
+														  </block>
+														</next>
+													  </block>
+													</next>
+												  </block>
+												</next>
+											  </block>
+											</next>
+										  </block>
+										</next>
+									  </block>
+									</next>
+								  </block>
+								</next>
+							  </block>
+							</next>
+						  </block>
+						</next>
+					  </block>
+					</statement>
+				  </block>
+				</category>
+			<category name="Theme">
+				<block type="procedures_defnoreturn" id="HhwSIaFEI74I;SQ(=%u}" x="27" y="79">
+					<field name="NAME">Pacman</field>
+					<comment pinned="false" h="80" w="160">Describe this function...</comment>
+					<statement name="STACK">
+					  <block type="synth_sine" id="T@@s!1EO*CJI1N46T/[s">
+						<field name="NAME">sine</field>
+						<next>
+						  <block type="play_basic" id="a:NvFo[ei40a%G[N;T6x">
+							<mutation amp="true"></mutation>
+							<value name="NOTE">
+							  <block type="note" id="(Q#Qd!:T;XJc,_tspqIH">
+								<field name="NOTE">:B</field>
+								<field name="OCTAVE">4</field>
+							  </block>
+							</value>
+							<value name="AMP">
+							  <block type="math_number" id="=/$A1E~L,{`9xUWNXa}p">
+								<field name="NUM">0.5</field>
+							  </block>
+							</value>
+							<next>
+							  <block type="sleep" id="veH;n*|W-B%mGu}b_=`%">
+								<value name="SLEEP_PERIOD">
+								  <block type="math_number" id="wOk8wXY*e-OL!{2m~*/8">
+									<field name="NUM">0.25</field>
+								  </block>
+								</value>
+								<next>
+								  <block type="play_basic" id="0IJ-QuL1rQ)!8=pzk*Lh">
+									<mutation amp="true"></mutation>
+									<value name="NOTE">
+									  <block type="note" id="ET+[=3gd`WEWD%fa86%Y">
+										<field name="NOTE">:B</field>
+										<field name="OCTAVE">5</field>
+									  </block>
+									</value>
+									<value name="AMP">
+									  <block type="math_number" id="SpnWv=[W@`G8ee`^**6X">
+										<field name="NUM">0.5</field>
+									  </block>
+									</value>
+									<next>
+									  <block type="sleep" id="HpSX;*D!}SF!{P4Yf1d;">
+										<value name="SLEEP_PERIOD">
+										  <block type="math_number" id="O61UGP*RfhLT*XW~%TFn">
+											<field name="NUM">0.25</field>
+										  </block>
+										</value>
+										<next>
+										  <block type="play_basic" id="gf5jQ0k6k7,0Y|/h9O{y">
+											<mutation amp="true"></mutation>
+											<value name="NOTE">
+											  <block type="note" id="p-7lV1ZBQ@]TF-iD}Ves">
+												<field name="NOTE">:Fs</field>
+												<field name="OCTAVE">5</field>
+											  </block>
+											</value>
+											<value name="AMP">
+											  <block type="math_number" id="c;H5?vuyKt$dELBOi7Zb">
+												<field name="NUM">0.5</field>
+											  </block>
+											</value>
+											<next>
+											  <block type="sleep" id="I,Y^0_i~ZxrB5R}Pp|~G">
+												<value name="SLEEP_PERIOD">
+												  <block type="math_number" id="6/n~~pDJ1dX#x8g0?aMx">
+													<field name="NUM">0.25</field>
+												  </block>
+												</value>
+												<next>
+												  <block type="play_basic" id="PoW!2xWNa%DNw4)+$}PJ">
+													<mutation amp="true"></mutation>
+													<value name="NOTE">
+													  <block type="note" id="J$SEL0k+5qViH|UsIIo|">
+														<field name="NOTE">:Ds</field>
+														<field name="OCTAVE">5</field>
+													  </block>
+													</value>
+													<value name="AMP">
+													  <block type="math_number" id="XY%Qy[CAY(FGRrkKkw(E">
+														<field name="NUM">0.5</field>
+													  </block>
+													</value>
+													<next>
+													  <block type="sleep" id="dz#zm~dG;I9z~xN$cGhE">
+														<value name="SLEEP_PERIOD">
+														  <block type="math_number" id="nPW;5#y;fvi5bre##H^G">
+															<field name="NUM">0.25</field>
+														  </block>
+														</value>
+														<next>
+														  <block type="play_basic" id="ez)C_aWnjOXn1]s$Fa}3">
+															<mutation amp="true"></mutation>
+															<value name="NOTE">
+															  <block type="note" id="!JiQZI!@,1SKU)E[a4SY">
+																<field name="NOTE">:B</field>
+																<field name="OCTAVE">5</field>
+															  </block>
+															</value>
+															<value name="AMP">
+															  <block type="math_number" id="B%Qc/0SkPt0vawx^H7j0">
+																<field name="NUM">0.5</field>
+															  </block>
+															</value>
+															<next>
+															  <block type="sleep" id="TOtJ|qb/tf;?u~KYl~iT">
+																<value name="SLEEP_PERIOD">
+																  <block type="math_number" id="h|T_`tczizvmwD0KuN[V">
+																	<field name="NUM">0.125</field>
+																  </block>
+																</value>
+																<next>
+																  <block type="play_basic" id="J.^Vgv9Rrs7pdDJFx=~f">
+																	<mutation amp="true"></mutation>
+																	<value name="NOTE">
+																	  <block type="note" id="UGUh4gsiEuq!6z`LB6_B">
+																		<field name="NOTE">:Fs</field>
+																		<field name="OCTAVE">5</field>
+																	  </block>
+																	</value>
+																	<value name="AMP">
+																	  <block type="math_number" id="0BWeSoPn@RG$xIzYOtBm">
+																		<field name="NUM">0.5</field>
+																	  </block>
+																	</value>
+																	<next>
+																	  <block type="sleep" id="08UoO*CH$RkMC3]8w6I=">
+																		<value name="SLEEP_PERIOD">
+																		  <block type="math_number" id="6Ep$zVcdEkdw,a]9Tol;">
+																			<field name="NUM">0.375</field>
+																		  </block>
+																		</value>
+																		<next>
+																		  <block type="play_basic" id="m86X,nC9q,S:3.+7XoLY">
+																			<mutation amp="true"></mutation>
+																			<value name="NOTE">
+																			  <block type="note" id="SYtIX9xWb{C.Yf?t`]XY">
+																				<field name="NOTE">:Ds</field>
+																				<field name="OCTAVE">5</field>
+																			  </block>
+																			</value>
+																			<value name="AMP">
+																			  <block type="math_number" id="p}_Y=dcM39Vhf:TZ8=T/">
+																				<field name="NUM">0.5</field>
+																			  </block>
+																			</value>
+																			<next>
+																			  <block type="sleep" id="8Z^^qhC+#W/2K(u.ljUj">
+																				<value name="SLEEP_PERIOD">
+																				  <block type="math_number" id=";J]ai8_@b?.@Ukg`9E/(">
+																					<field name="NUM">0.5</field>
+																				  </block>
+																				</value>
+																				<next>
+																				  <block type="play_basic" id="R1IA1T=4SoAgPedqt.8L">
+																					<mutation amp="true"></mutation>
+																					<value name="NOTE">
+																					  <block type="note" id="+c*$As;4gi{!qp-co[YP">
+																						<field name="NOTE">:C</field>
+																						<field name="OCTAVE">5</field>
+																					  </block>
+																					</value>
+																					<value name="AMP">
+																					  <block type="math_number" id="151uO9XaX56|p*mD~4L3">
+																						<field name="NUM">0.5</field>
+																					  </block>
+																					</value>
+																					<next>
+																					  <block type="sleep" id="+!My!vIA}PF-PH-]}ZUH">
+																						<value name="SLEEP_PERIOD">
+																						  <block type="math_number" id="^i_ivPPSwN*Sp4KSzL$e">
+																							<field name="NUM">0.25</field>
+																						  </block>
+																						</value>
+																						<next>
+																						  <block type="play_basic" id="fVP(!`b$sG}/J79,^[@P">
+																							<mutation amp="true"></mutation>
+																							<value name="NOTE">
+																							  <block type="note" id="oIw]k4@,Rxy,3sl7(RXw">
+																								<field name="NOTE">:C</field>
+																								<field name="OCTAVE">6</field>
+																							  </block>
+																							</value>
+																							<value name="AMP">
+																							  <block type="math_number" id="`iIM_3ca1I`2_#N7EU:S">
+																								<field name="NUM">0.5</field>
+																							  </block>
+																							</value>
+																							<next>
+																							  <block type="sleep" id="KV*MG]j5}hI95kBb:}wg">
+																								<value name="SLEEP_PERIOD">
+																								  <block type="math_number" id="rZ+C#eXCd6wWO1?fI@x*">
+																									<field name="NUM">0.25</field>
+																								  </block>
+																								</value>
+																								<next>
+																								  <block type="play_basic" id="KM0[K^HAt`T6gNA}CD9N">
+																									<mutation amp="true"></mutation>
+																									<value name="NOTE">
+																									  <block type="note" id="KQ$b+H0U6/uV?ao~?z$L">
+																										<field name="NOTE">:G</field>
+																										<field name="OCTAVE">5</field>
+																									  </block>
+																									</value>
+																									<value name="AMP">
+																									  <block type="math_number" id="1o%gA0psDk./*u`,eG~s">
+																										<field name="NUM">0.5</field>
+																									  </block>
+																									</value>
+																									<next>
+																									  <block type="sleep" id="v=%{Ze!vYx9CP75ICp}E">
+																										<value name="SLEEP_PERIOD">
+																										  <block type="math_number" id="U.U)N`gM=n5RTCq^L0{b">
+																											<field name="NUM">0.25</field>
+																										  </block>
+																										</value>
+																										<next>
+																										  <block type="play_basic" id="Y!H6TOGv)j,|Q^ogAAGg">
+																											<mutation amp="true"></mutation>
+																											<value name="NOTE">
+																											  <block type="note" id="h9`yG4|@*T=L`*)RI62=">
+																												<field name="NOTE">:E</field>
+																												<field name="OCTAVE">5</field>
+																											  </block>
+																											</value>
+																											<value name="AMP">
+																											  <block type="math_number" id="y@[Jm$H9%{}-*MZO$bDE">
+																												<field name="NUM">0.5</field>
+																											  </block>
+																											</value>
+																											<next>
+																											  <block type="sleep" id="z}iRAt^]=vJ$:H(]*`#Z">
+																												<value name="SLEEP_PERIOD">
+																												  <block type="math_number" id="doZaMxX]e[mnPW4r1*6S">
+																													<field name="NUM">0.25</field>
+																												  </block>
+																												</value>
+																												<next>
+																												  <block type="play_basic" id="6_.ZO4JNNzYG=,O$z_Xh">
+																													<mutation amp="true"></mutation>
+																													<value name="NOTE">
+																													  <block type="note" id="Jyb8B-S55zu//aEy^Zf2">
+																														<field name="NOTE">:C</field>
+																														<field name="OCTAVE">6</field>
+																													  </block>
+																													</value>
+																													<value name="AMP">
+																													  <block type="math_number" id="vvT|o^Y.;O.$V,-)$3q-">
+																														<field name="NUM">0.5</field>
+																													  </block>
+																													</value>
+																													<next>
+																													  <block type="sleep" id="xAz$rT:{XmvYvbhr};{.">
+																														<value name="SLEEP_PERIOD">
+																														  <block type="math_number" id="G]xU`8D2M.^O,$~mV8B[">
+																															<field name="NUM">0.125</field>
+																														  </block>
+																														</value>
+																														<next>
+																														  <block type="play_basic" id="31*3)n5Y$2]e-E(1cU]r">
+																															<mutation amp="true"></mutation>
+																															<value name="NOTE">
+																															  <block type="note" id="}jQazrU3g6uT:[$%Jcd4">
+																																<field name="NOTE">:G</field>
+																																<field name="OCTAVE">5</field>
+																															  </block>
+																															</value>
+																															<value name="AMP">
+																															  <block type="math_number" id="gAO)sr+50S(rP-^p%npd">
+																																<field name="NUM">0.5</field>
+																															  </block>
+																															</value>
+																															<next>
+																															  <block type="sleep" id="[wxWVUey^pw_/36AUO7p">
+																																<value name="SLEEP_PERIOD">
+																																  <block type="math_number" id="IuW(qZBg;1f3^_V:ymD0">
+																																	<field name="NUM">0.375</field>
+																																  </block>
+																																</value>
+																																<next>
+																																  <block type="play_basic" id="ZLrW[_}Dj=0Ex$:G?79T">
+																																	<mutation amp="true"></mutation>
+																																	<value name="NOTE">
+																																	  <block type="note" id="~x$dNJ4T2lcfTX0hltsJ">
+																																		<field name="NOTE">:E</field>
+																																		<field name="OCTAVE">5</field>
+																																	  </block>
+																																	</value>
+																																	<value name="AMP">
+																																	  <block type="math_number" id="kDRH`|}Bg{41^bv3fzl:">
+																																		<field name="NUM">0.5</field>
+																																	  </block>
+																																	</value>
+																																	<next>
+																																	  <block type="sleep" id="G[orKJ.3C_9.ASO{amb:">
+																																		<value name="SLEEP_PERIOD">
+																																		  <block type="math_number" id="NA~HPa3EX+QzCv1|:|pM">
+																																			<field name="NUM">0.5</field>
+																																		  </block>
+																																		</value>
+																																		<next>
+																																		  <block type="play_basic" id=":H+?/G8;+^g+S3PF5n:k">
+																																			<mutation amp="true"></mutation>
+																																			<value name="NOTE">
+																																			  <block type="note" id="CIH((mq=m}R4d0iQSV9e">
+																																				<field name="NOTE">:B</field>
+																																				<field name="OCTAVE">4</field>
+																																			  </block>
+																																			</value>
+																																			<value name="AMP">
+																																			  <block type="math_number" id="3QDolt^v6N;LRSC`V2r(">
+																																				<field name="NUM">0.5</field>
+																																			  </block>
+																																			</value>
+																																			<next>
+																																			  <block type="sleep" id="yu5*:LL)V6.q+z*)f#t!">
+																																				<value name="SLEEP_PERIOD">
+																																				  <block type="math_number" id="]?Gd7^cFS(1ZCq02qECY">
+																																					<field name="NUM">0.25</field>
+																																				  </block>
+																																				</value>
+																																				<next>
+																																				  <block type="play_basic" id="Z^h(!?ukp5yW:{HN!E}_">
+																																					<mutation amp="true"></mutation>
+																																					<value name="NOTE">
+																																					  <block type="note" id=")YarMMA=hu+VX~XEa:zV">
+																																						<field name="NOTE">:B</field>
+																																						<field name="OCTAVE">5</field>
+																																					  </block>
+																																					</value>
+																																					<value name="AMP">
+																																					  <block type="math_number" id="X:R*P@YL(l1!KX-oWR0N">
+																																						<field name="NUM">0.5</field>
+																																					  </block>
+																																					</value>
+																																					<next>
+																																					  <block type="sleep" id="ro7E.M,M*rdx@vXCXrkc">
+																																						<value name="SLEEP_PERIOD">
+																																						  <block type="math_number" id="KQk}th2xEBn?dtwy!YtY">
+																																							<field name="NUM">0.25</field>
+																																						  </block>
+																																						</value>
+																																						<next>
+																																						  <block type="play_basic" id="}LhPt]29kE-n:J}h7KE_">
+																																							<mutation amp="true"></mutation>
+																																							<value name="NOTE">
+																																							  <block type="note" id="{6^o@dtiEDnI#Rni!mP.">
+																																								<field name="NOTE">:Fs</field>
+																																								<field name="OCTAVE">5</field>
+																																							  </block>
+																																							</value>
+																																							<value name="AMP">
+																																							  <block type="math_number" id="Sv1lGuG^LVa@R_*TWs.-">
+																																								<field name="NUM">0.5</field>
+																																							  </block>
+																																							</value>
+																																							<next>
+																																							  <block type="sleep" id="IDHzmng$)Y3kd-gc~kuq">
+																																								<value name="SLEEP_PERIOD">
+																																								  <block type="math_number" id="]GucZSru.)?wb29;FxZ^">
+																																									<field name="NUM">0.25</field>
+																																								  </block>
+																																								</value>
+																																								<next>
+																																								  <block type="play_basic" id="V!k2LSM)y:bAfpu{fo?:">
+																																									<mutation amp="true"></mutation>
+																																									<value name="NOTE">
+																																									  <block type="note" id="8K:D%ok{j~E2S-DrmPmK">
+																																										<field name="NOTE">:Ds</field>
+																																										<field name="OCTAVE">5</field>
+																																									  </block>
+																																									</value>
+																																									<value name="AMP">
+																																									  <block type="math_number" id="UmGojS`66$%9eJ0#_:y%">
+																																										<field name="NUM">0.5</field>
+																																									  </block>
+																																									</value>
+																																									<next>
+																																									  <block type="sleep" id="`7xfBUIhc*[?HhKL8ti.">
+																																										<value name="SLEEP_PERIOD">
+																																										  <block type="math_number" id="rtn1UJ5$!+e);WvJc[/s">
+																																											<field name="NUM">0.25</field>
+																																										  </block>
+																																										</value>
+																																										<next>
+																																										  <block type="play_basic" id="I{vhx*^FJlt(JiVla}f*">
+																																											<mutation amp="true"></mutation>
+																																											<value name="NOTE">
+																																											  <block type="note" id="xAy*kqo=6Jc9eQXhLx4u">
+																																												<field name="NOTE">:B</field>
+																																												<field name="OCTAVE">5</field>
+																																											  </block>
+																																											</value>
+																																											<value name="AMP">
+																																											  <block type="math_number" id="6L.0PLC8CVQTep.6(^#|">
+																																												<field name="NUM">0.5</field>
+																																											  </block>
+																																											</value>
+																																											<next>
+																																											  <block type="sleep" id=":z@Bry5Hj9m9X)uj5?BG">
+																																												<value name="SLEEP_PERIOD">
+																																												  <block type="math_number" id="-Cy+oLh@;?3aN,WAT+OI">
+																																													<field name="NUM">0.125</field>
+																																												  </block>
+																																												</value>
+																																												<next>
+																																												  <block type="play_basic" id="hHjGb/}l!xvr;~S#yUdJ">
+																																													<mutation amp="true"></mutation>
+																																													<value name="NOTE">
+																																													  <block type="note" id="=wA?rXE9|Md`~-CiH4Ev">
+																																														<field name="NOTE">:Fs</field>
+																																														<field name="OCTAVE">5</field>
+																																													  </block>
+																																													</value>
+																																													<value name="AMP">
+																																													  <block type="math_number" id="~$*LM,@y:.VZ|f9k4RS:">
+																																														<field name="NUM">0.5</field>
+																																													  </block>
+																																													</value>
+																																													<next>
+																																													  <block type="sleep" id=".tY#]xpriFnEpVH_0`4-">
+																																														<value name="SLEEP_PERIOD">
+																																														  <block type="math_number" id="kHhEsnHuJ_$q3bHJx/tC">
+																																															<field name="NUM">0.375</field>
+																																														  </block>
+																																														</value>
+																																														<next>
+																																														  <block type="play_basic" id="HVD(^p2P[7BV,M%W{f(R">
+																																															<mutation amp="true"></mutation>
+																																															<value name="NOTE">
+																																															  <block type="note" id="-Rh2jltjAFDmX{(Psgii">
+																																																<field name="NOTE">:Ds</field>
+																																																<field name="OCTAVE">5</field>
+																																															  </block>
+																																															</value>
+																																															<value name="AMP">
+																																															  <block type="math_number" id="?p/|)P(y2*t/}KfI7hI$">
+																																																<field name="NUM">0.5</field>
+																																															  </block>
+																																															</value>
+																																															<next>
+																																															  <block type="sleep" id="A:2ZpU5ukcKPy=K^VJ10">
+																																																<value name="SLEEP_PERIOD">
+																																																  <block type="math_number" id="(BJHh*OxT0!I@nfT=!d%">
+																																																	<field name="NUM">0.5</field>
+																																																  </block>
+																																																</value>
+																																																<next>
+																																																  <block type="play_basic" id="X*92OC@dM-%3R%I6{z@)">
+																																																	<mutation amp="true"></mutation>
+																																																	<value name="NOTE">
+																																																	  <block type="note" id="}mMn%EoLZelhx/cATb1/">
+																																																		<field name="NOTE">:Ds</field>
+																																																		<field name="OCTAVE">5</field>
+																																																	  </block>
+																																																	</value>
+																																																	<value name="AMP">
+																																																	  <block type="math_number" id="]kmSb^9l;-T1?|ux4N/O">
+																																																		<field name="NUM">0.5</field>
+																																																	  </block>
+																																																	</value>
+																																																	<next>
+																																																	  <block type="sleep" id="F9Pkkw%D~=4/*zt[~5c]">
+																																																		<value name="SLEEP_PERIOD">
+																																																		  <block type="math_number" id="%mL#@%HlWIZItgO(*0me">
+																																																			<field name="NUM">0.125</field>
+																																																		  </block>
+																																																		</value>
+																																																		<next>
+																																																		  <block type="play_basic" id="kzA8bL-zab1n0%IyOj_+">
+																																																			<mutation amp="true"></mutation>
+																																																			<value name="NOTE">
+																																																			  <block type="note" id="::jk7Df)Yl_ct_+`fDiA">
+																																																				<field name="NOTE">:E</field>
+																																																				<field name="OCTAVE">5</field>
+																																																			  </block>
+																																																			</value>
+																																																			<value name="AMP">
+																																																			  <block type="math_number" id="O!v^U+$Gir?|qgCRXgu)">
+																																																				<field name="NUM">0.5</field>
+																																																			  </block>
+																																																			</value>
+																																																			<next>
+																																																			  <block type="sleep" id="[!SGYVqbjQ+j^;xenWr)">
+																																																				<value name="SLEEP_PERIOD">
+																																																				  <block type="math_number" id="MRJ[g+Z)J)Wb)s]zmWJ8">
+																																																					<field name="NUM">0.125</field>
+																																																				  </block>
+																																																				</value>
+																																																				<next>
+																																																				  <block type="play_basic" id="/qkH_#*D1(0wvoQ@_,;]">
+																																																					<mutation amp="true"></mutation>
+																																																					<value name="NOTE">
+																																																					  <block type="note" id="NIURLA/?5A^y}IB+.L%l">
+																																																						<field name="NOTE">:F</field>
+																																																						<field name="OCTAVE">5</field>
+																																																					  </block>
+																																																					</value>
+																																																					<value name="AMP">
+																																																					  <block type="math_number" id="@m9?!$p8A{pM)%2K$43G">
+																																																						<field name="NUM">0.5</field>
+																																																					  </block>
+																																																					</value>
+																																																					<next>
+																																																					  <block type="sleep" id="/=7@q1vB-7:9fl`1CP!N">
+																																																						<value name="SLEEP_PERIOD">
+																																																						  <block type="math_number" id=".0otDE*@x-kt8NWFAg,4">
+																																																							<field name="NUM">0.25</field>
+																																																						  </block>
+																																																						</value>
+																																																						<next>
+																																																						  <block type="play_basic" id="!BRLpSgY*|;f%Pa5S~:b">
+																																																							<mutation amp="true"></mutation>
+																																																							<value name="NOTE">
+																																																							  <block type="note" id="E}[{f*%5X{JHPYEk(4d)">
+																																																								<field name="NOTE">:F</field>
+																																																								<field name="OCTAVE">5</field>
+																																																							  </block>
+																																																							</value>
+																																																							<value name="AMP">
+																																																							  <block type="math_number" id="mJhb4(K9WKn_Gr$}o%V1">
+																																																								<field name="NUM">0.5</field>
+																																																							  </block>
+																																																							</value>
+																																																							<next>
+																																																							  <block type="sleep" id="8]?8,r;Su^`^bS;K6rDL">
+																																																								<value name="SLEEP_PERIOD">
+																																																								  <block type="math_number" id="Wc%rUZ(..;UWIv,M9rH4">
+																																																									<field name="NUM">0.125</field>
+																																																								  </block>
+																																																								</value>
+																																																								<next>
+																																																								  <block type="play_basic" id="uop=[9*@Mbs6gp/sM}Mz">
+																																																									<mutation amp="true"></mutation>
+																																																									<value name="NOTE">
+																																																									  <block type="note" id="E+VU=iojO=N{:WQtjF-z">
+																																																										<field name="NOTE">:Fs</field>
+																																																										<field name="OCTAVE">5</field>
+																																																									  </block>
+																																																									</value>
+																																																									<value name="AMP">
+																																																									  <block type="math_number" id="5q(518(Qr@cF3mAbw=sW">
+																																																										<field name="NUM">0.5</field>
+																																																									  </block>
+																																																									</value>
+																																																									<next>
+																																																									  <block type="sleep" id="ixN~{0O7Ri#;X$yvX7Z!">
+																																																										<value name="SLEEP_PERIOD">
+																																																										  <block type="math_number" id="w)TPN4)p%4fF6CuX@+1,">
+																																																											<field name="NUM">0.125</field>
+																																																										  </block>
+																																																										</value>
+																																																										<next>
+																																																										  <block type="play_basic" id="tb#0l5ej~n{3%]GV41ZJ">
+																																																											<mutation amp="true"></mutation>
+																																																											<value name="NOTE">
+																																																											  <block type="note" id="My1QDyDJ-Zd~G$lWJYu,">
+																																																												<field name="NOTE">:G</field>
+																																																												<field name="OCTAVE">5</field>
+																																																											  </block>
+																																																											</value>
+																																																											<value name="AMP">
+																																																											  <block type="math_number" id="r7ZwZI?4e)8Q/%X_qz{2">
+																																																												<field name="NUM">0.5</field>
+																																																											  </block>
+																																																											</value>
+																																																											<next>
+																																																											  <block type="sleep" id="/pAWz$(GZr^,b(L}:q;)">
+																																																												<value name="SLEEP_PERIOD">
+																																																												  <block type="math_number" id="vQ)$CDR)Nd]RUZ(.ke}W">
+																																																													<field name="NUM">0.25</field>
+																																																												  </block>
+																																																												</value>
+																																																												<next>
+																																																												  <block type="play_basic" id="E@HmTfq|+c?TJoiiym)B">
+																																																													<mutation amp="true"></mutation>
+																																																													<value name="NOTE">
+																																																													  <block type="note" id="B(r-6T:^CyEbip%k.{}1">
+																																																														<field name="NOTE">:G</field>
+																																																														<field name="OCTAVE">5</field>
+																																																													  </block>
+																																																													</value>
+																																																													<value name="AMP">
+																																																													  <block type="math_number" id="Myjt;FMgl_NXA%Fb4|}N">
+																																																														<field name="NUM">0.5</field>
+																																																													  </block>
+																																																													</value>
+																																																													<next>
+																																																													  <block type="sleep" id="%#H2%lVhr#vI2T+VF]!@">
+																																																														<value name="SLEEP_PERIOD">
+																																																														  <block type="math_number" id="f3vdz(w1+iuI2,37FP6f">
+																																																															<field name="NUM">0.125</field>
+																																																														  </block>
+																																																														</value>
+																																																														<next>
+																																																														  <block type="play_basic" id="T4%[SOOf.V.eg[`y66bZ">
+																																																															<mutation amp="true"></mutation>
+																																																															<value name="NOTE">
+																																																															  <block type="note" id="W|oEzVQGKm}KiDAI:i)2">
+																																																																<field name="NOTE">:Gs</field>
+																																																																<field name="OCTAVE">5</field>
+																																																															  </block>
+																																																															</value>
+																																																															<value name="AMP">
+																																																															  <block type="math_number" id="7Xz7sIPO%37=I!@^jXA*">
+																																																																<field name="NUM">0.5</field>
+																																																															  </block>
+																																																															</value>
+																																																															<next>
+																																																															  <block type="sleep" id="?tfuNoI;qbN]?.2y%mv)">
+																																																																<value name="SLEEP_PERIOD">
+																																																																  <block type="math_number" id="~iL;M-af_t($3qVPwN+?">
+																																																																	<field name="NUM">0.125</field>
+																																																																  </block>
+																																																																</value>
+																																																																<next>
+																																																																  <block type="play_basic" id="[NN=Lg;%lwbIYQkA690T">
+																																																																	<mutation amp="true"></mutation>
+																																																																	<value name="NOTE">
+																																																																	  <block type="note" id="s/[g8^ji+pc^DTUtAgL-">
+																																																																		<field name="NOTE">:A</field>
+																																																																		<field name="OCTAVE">5</field>
+																																																																	  </block>
+																																																																	</value>
+																																																																	<value name="AMP">
+																																																																	  <block type="math_number" id="nq,H|`]`^mzAZnEdIi^v">
+																																																																		<field name="NUM">0.5</field>
+																																																																	  </block>
+																																																																	</value>
+																																																																	<next>
+																																																																	  <block type="sleep" id="1}!B=6A]0*J?Epi~)jFS">
+																																																																		<value name="SLEEP_PERIOD">
+																																																																		  <block type="math_number" id="hC8Is|1dL+HmW@dTAFI2">
+																																																																			<field name="NUM">0.25</field>
+																																																																		  </block>
+																																																																		</value>
+																																																																		<next>
+																																																																		  <block type="play_basic" id="?^@8469z1}Yu/}Sh}j{J">
+																																																																			<mutation amp="true"></mutation>
+																																																																			<value name="NOTE">
+																																																																			  <block type="note" id="OnlH5*R!RE@zcP_=Xzr4">
+																																																																				<field name="NOTE">:B</field>
+																																																																				<field name="OCTAVE">5</field>
+																																																																			  </block>
+																																																																			</value>
+																																																																			<value name="AMP">
+																																																																			  <block type="math_number" id="]G5S]H6z2I0g=@qqr`,Q">
+																																																																				<field name="NUM">0.5</field>
+																																																																			  </block>
+																																																																			</value>
+																																																																			<next>
+																																																																			  <block type="sleep" id="`w5t]l~/DFdr103:x;N)">
+																																																																				<value name="SLEEP_PERIOD">
+																																																																				  <block type="math_number" id="?r*4Od5*_td_SDeF@WAb">
+																																																																					<field name="NUM">0.5</field>
+																																																																				  </block>
+																																																																				</value>
+																																																																			  </block>
+																																																																			</next>
+																																																																		  </block>
+																																																																		</next>
+																																																																	  </block>
+																																																																	</next>
+																																																																  </block>
+																																																																</next>
+																																																															  </block>
+																																																															</next>
+																																																														  </block>
+																																																														</next>
+																																																													  </block>
+																																																													</next>
+																																																												  </block>
+																																																												</next>
+																																																											  </block>
+																																																											</next>
+																																																										  </block>
+																																																										</next>
+																																																									  </block>
+																																																									</next>
+																																																								  </block>
+																																																								</next>
+																																																							  </block>
+																																																							</next>
+																																																						  </block>
+																																																						</next>
+																																																					  </block>
+																																																					</next>
+																																																				  </block>
+																																																				</next>
+																																																			  </block>
+																																																			</next>
+																																																		  </block>
+																																																		</next>
+																																																	  </block>
+																																																	</next>
+																																																  </block>
+																																																</next>
+																																															  </block>
+																																															</next>
+																																														  </block>
+																																														</next>
+																																													  </block>
+																																													</next>
+																																												  </block>
+																																												</next>
+																																											  </block>
+																																											</next>
+																																										  </block>
+																																										</next>
+																																									  </block>
+																																									</next>
+																																								  </block>
+																																								</next>
+																																							  </block>
+																																							</next>
+																																						  </block>
+																																						</next>
+																																					  </block>
+																																					</next>
+																																				  </block>
+																																				</next>
+																																			  </block>
+																																			</next>
+																																		  </block>
+																																		</next>
+																																	  </block>
+																																	</next>
+																																  </block>
+																																</next>
+																															  </block>
+																															</next>
+																														  </block>
+																														</next>
+																													  </block>
+																													</next>
+																												  </block>
+																												</next>
+																											  </block>
+																											</next>
+																										  </block>
+																										</next>
+																									  </block>
+																									</next>
+																								  </block>
+																								</next>
+																							  </block>
+																							</next>
+																						  </block>
+																						</next>
+																					  </block>
+																					</next>
+																				  </block>
+																				</next>
+																			  </block>
+																			</next>
+																		  </block>
+																		</next>
+																	  </block>
+																	</next>
+																  </block>
+																</next>
+															  </block>
+															</next>
+														  </block>
+														</next>
+													  </block>
+													</next>
+												  </block>
+												</next>
+											  </block>
+											</next>
+										  </block>
+										</next>
+									  </block>
+									</next>
+								  </block>
+								</next>
+							  </block>
+							</next>
+						  </block>
+						</next>
+					  </block>
+					</statement>
+				  </block>
+				</category>
+			</category>
 			<category name="Drum Rhythms">
 				
 			<block type="procedures_defnoreturn" id="rBzf$@ka@oS5sPyOP(q[" x="46" y="-75">
