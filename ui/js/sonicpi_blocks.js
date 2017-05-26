@@ -401,14 +401,14 @@ Blockly.Blocks['note'] = {
 Blockly.Blocks['live_loop'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("loop")
+        .appendField("live loop")
         .appendField(new Blockly.FieldTextInput("loop_name"), "LOOP_NAME");
     this.appendStatementInput("STATEMENT")
         .setCheck(null);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(45);
+    this.setColour(10);
     this.setTooltip('');
 
   }
