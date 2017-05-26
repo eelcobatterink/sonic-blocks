@@ -15,3 +15,19 @@
 
 TRIBE.ZIP, UNZIP INSIDE ELECTRON_BUILD
 https://gist.github.com/anonymous/af1555422fed9c4277312d4b7dd9c39b
+
+
+2 minutes video steps
+a few minutes demo of the product
+    1. Steps to run the product
+    2. Show the structure of application
+    3. Play DNA video of building blocks + generated sound
+        - play 70
+        - play C
+        - play sleep 1
+        - play sleep in a live loop (simple node progression)
+        - play synth
+        - play a sample (demo mutators)
+        - introduce function —> encapsulate sample
+        - thread
+        - pull out a pre-compiled example
