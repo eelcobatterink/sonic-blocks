@@ -18,14 +18,14 @@
 			} else {
 				xhttp=new ActiveXObject("Microsoft.XMLDOM");
 			}
-			
+
 			xhttp.open("GET", dname, false);
 			xhttp.send();
 			return xhttp.responseXML;
 		}
 	</script>
-				
-				
+
+
 	<style>
 		/* TODO: CHANGE ME */
 		.blocklySelected > .blocklyPath { stroke: #111 !important; stroke-width: 1pt !important; }
@@ -54,10 +54,10 @@
 		}
 
 		#conn-status {
-			color: #fff; 
-			background: #e74c3c; 
-			display: inline-block; 
-			padding: 10px; 
+			color: #fff;
+			background: #e74c3c;
+			display: inline-block;
+			padding: 10px;
 			border-radius: 3px;
 		}
 	</style>
@@ -72,8 +72,8 @@
     <button class="dev" onclick="displayXml()">[DEBUG] Show XML</button>
   </p>
 
-  <div id="blocklyDiv" style="height: 480px; width: 600px; display:inline-block"></div>
-	
+  <div id="blocklyDiv" style="height: 600px; width: 80%; display:inline-block"></div>
+
 	<!--<script>
 		xmlDoc=loadXMLDoc("./toolbox.xml");
 		document.write(xmlDoc.getElementById("toolbox"));
@@ -91,9 +91,9 @@
 				<block type="sleep"></block>
 				<block type="duration"></block>
 				<category name="Samples">
-					<block type="ambient_sample"></block>	
-					<block type="bass_drum_sample"></block>	
-					<block type="bass_sounds_sample"></block>	
+					<block type="ambient_sample"></block>
+					<block type="bass_drum_sample"></block>
+					<block type="bass_sounds_sample"></block>
 					<block type="drum_sounds_sample"></block>
 					<block type="electric_sounds_sample"></block>
 					<block type="misc_sounds_sample"></block>
@@ -1206,7 +1206,7 @@
 				</category>
 			</category>
 			<category name="Drum Rhythms">
-				
+
 			<block type="procedures_defnoreturn" id="rBzf$@ka@oS5sPyOP(q[" x="46" y="-75">
 				<field name="NAME">Drum 1</field>
 				<comment pinned="false" h="80" w="160">Describe this function...</comment>
@@ -1240,7 +1240,7 @@
 				  </block>
 				</statement>
 			  </block>
-			
+
 			<block type="procedures_defnoreturn" id=":)`r!wd=97g$G(.R-]_4" x="38" y="-28">
 				<field name="NAME">Drum 2</field>
 				<comment pinned="false" h="80" w="160">Describe this function...</comment>
@@ -1309,10 +1309,10 @@
 				</statement>
 			  </block>
 			</category>
-		  
+
 	  </category>
     </xml>
-	
+
   <xml id="startBlocks" style="display: none">
     <block type="play_basic" x="20" y="20">
     </block>
@@ -1388,7 +1388,7 @@
       var code = Blockly.SonicPi.workspaceToCode(workspace);
       el.value = code;
     }
-	
+
     function displayXml() {
       var e1 = document.getElementById("xml-code");
       var xmlDom = Blockly.Xml.workspaceToDom(workspace);
