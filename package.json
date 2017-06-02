@@ -7,7 +7,7 @@
     "pretest": "gulp pretest",
     "test": "mocha test/*.spec.js",
     "test:electron": "mocha test/electron.spec.js",
-    "test:sonicpi": "gulp pretest && mocha test/sonicpi.spec.js",
+    "test:sonicpi": "gulp pretest && nyc mocha test/sonicpi.spec.js",
     "start": "electron ."
   },
   "repository": {
@@ -28,7 +28,9 @@
     "gulp": "^3.9.1",
     "gulp-insert": "^0.5.0",
     "gulp-replace": "^0.5.4",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "nyc": "^11.0.1",
     "spectron": "^3.6.0"
   },
   "build": {
@@ -36,5 +38,12 @@
     "win": {
       "target": "portable"
     }
+  },
+  "nyc": {
+    "include": [
+      "ui/js/*.js",
+      "test/js/sonicpi*.js"
+    ],
+    "exclude": []
   }
 }

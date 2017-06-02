@@ -75,56 +75,79 @@ describe('Code generation', function() {
   });
 
   describe('use synth block', function() {
-    let synthTypes = ["sine", "saw", "tb303", "square", "beep", "chiplead", "dpulse"];
+    let synthTypes = ["sine", "saw", "instrument", "noise", "tri", "square"];
     synthTypes.forEach((synth) => {
       it(`should generate code for synth type ${synth}`, function() {
-        let xmlText = `<xml><block type="synth"><field name="NAME">${synth}</field></block></xml>`;
+        let xmlText = `<xml><block type="synth_${synth}"><field name="NAME">${synth}</field></block></xml>`;
         let code = generateCode(xmlText, this.workspace);
         expect(code).to.equal(`use_synth :${synth}\n`);
-        this.workspace.clear();
       });
     });
   });
 
-  describe('use sample block', function() {
-    let xmlText = ` <xml">
-                      <block type="sample">
-                        <field name="SAMPLE">bd_808</field>
-                      </block>
-                    </xml>`;
-    let code = generateCode(xmlText, this.workspace);
-    expect(code).to.equal("sample :bd_808\n");
-  })
+  describe('use ambient sample block', function() {
+    let ambientSamples = ["ambi_soft_buzz", "ambi_swoosh", "ambi_drone", "ambi_glass_hum",
+                          "ambi_glass_rub", "ambi_haunted_hum", "ambi_piano", 
+                          "ambi_lunar_land", "ambi_dark_woosh", "ambi_choir"];
+    ambientSamples.forEach((sample) => {
+      it("should generate code for ambient sample", function() {
+        let xmlText = `<xml>
+                        <block type="ambient_sample">
+                          <field name="SAMPLE">${sample}</field>
+                        </block>
+                      </xml>`;
+        let code = generateCode(xmlText, this.workspace);
+        expect(code).to.equal(`sample :${sample}\n`);
+      });
+    });
+  });
 
-  describe('use sample block with controls', function() {
-    let xmlText = ` <xml>
-                      <block type="sample">
-                        <mutation amp="true" pan="true" attack="true" decay="true" release="true"></mutation>
-                        <field name="SAMPLE">bd_808</field>
-                        <field name="PAN">0</field>
-                        <value name="AMP">
-                          <block type="math_number">
-                            <field name="NUM">0</field>
-                          </block>
-                        </value>
-                        <value name="ATTACK">
-                          <block type="math_number">
-                            <field name="NUM">0</field>
-                          </block>
-                        </value>
-                        <value name="DECAY">
-                          <block type="math_number">
-                            <field name="NUM">0</field>
-                          </block>
-                        </value>
-                        <value name="RELEASE">
-                          <block type="math_number">
-                            <field name="NUM">0</field>
-                          </block>
-                        </value>
-                      </block>
-                    </xml>`
-    let code = generateCode(xmlText, this.workspace);
-    expect(code).to.equal("sample :bd_808, amp: 0, pan: 0, attack: 0, decay: 0, release: 0\n");
-  })
+  describe('use bass drum sample block', function() {
+    let bassDrumSamples = ["bd_ada", "bd_pure", "bd_808", "bd_zum",
+                          "bd_gas", "bd_sone", "bd_haus", "bd_zome",
+                          "bd_boom", "bd_klub", "bd_fat", "bd_tek"];
+    bassDrumSamples.forEach((sample) => {
+      it("should generate code for bass drum sample", function() {
+        let xmlText = `<xml>
+                        <block type="bass_drum_sample">
+                          <field name="SAMPLE">${sample}</field>
+                        </block>
+                      </xml>`;
+        let code = generateCode(xmlText, this.workspace);
+        expect(code).to.equal(`sample :${sample}\n`);
+      });
+    });
+  });
+
+  // describe('use sample block with controls', function() {
+  //   let xmlText = ` <xml>
+  //                     <block type="sample">
+  //                       <mutation amp="true" pan="true" attack="true" decay="true" release="true"></mutation>
+  //                       <field name="SAMPLE">bd_808</field>
+  //                       <field name="PAN">0</field>
+  //                       <value name="AMP">
+  //                         <block type="math_number">
+  //                           <field name="NUM">0</field>
+  //                         </block>
+  //                       </value>
+  //                       <value name="ATTACK">
+  //                         <block type="math_number">
+  //                           <field name="NUM">0</field>
+  //                         </block>
+  //                       </value>
+  //                       <value name="DECAY">
+  //                         <block type="math_number">
+  //                           <field name="NUM">0</field>
+  //                         </block>
+  //                       </value>
+  //                       <value name="RELEASE">
+  //                         <block type="math_number">
+  //                           <field name="NUM">0</field>
+  //                         </block>
+  //                       </value>
+  //                     </block>
+  //                   </xml>`
+  //   let code = generateCode(xmlText, this.workspace);
+  //   expect(code).to.equal("sample :bd_808, amp: 0, pan: 0, attack: 0, decay: 0, release: 0\n");
+  // })
 });

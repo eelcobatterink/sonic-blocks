@@ -1,5 +1,6 @@
 */.DS_Store
 .DS_Store
+.nyc_output
 logs/*
 node_modules/*
 dist/*
