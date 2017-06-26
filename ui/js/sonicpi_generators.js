@@ -98,6 +98,26 @@ Blockly.SonicPi['play_advanced'] = function(block) {
   return code;
 };
 
+Blockly.SonicPi['play_pattern_timed'] = function(block) {
+  var value_notes = Blockly.SonicPi.statementToCode(block, 'NOTES');
+  var value_times = Blockly.SonicPi.statementToCode(block, 'TIMING');
+
+  var code = 'play_pattern_timed [' + value_notes + '], [' + value_times + ']' + mutatorCodeGen(block);
+  return code;
+};
+
+Blockly.SonicPi['notes'] = function(block) {
+  var value_notes_list = Blockly.SonicPi.valueToCode(block, 'NOTE_LIST', Blockly.SonicPi.ORDER_ATOMIC);
+  var code = value_notes_list + mutatorNotes(block);
+  return code;
+};
+
+Blockly.SonicPi['timings'] = function(block) {
+  var value_timings_list = Blockly.SonicPi.valueToCode(block, 'TIMINGS_LIST', Blockly.SonicPi.ORDER_ATOMIC);
+  var code = value_timings_list + mutatorTimings(block);
+  return code;
+};
+
 Blockly.SonicPi['duration'] = function(block) {
   var note_base = parseFloat(block.getFieldValue('NOTE_BASE'));
   var duration = parseFloat(block.getFieldValue('DURATION'));
@@ -111,6 +131,26 @@ Blockly.SonicPi['in_thread'] = function (block) {
     var code = 'in_thread do\n'+statements_do+'end\n';
     return code;
 };
+
+function mutatorNotes(block) {
+	var list  = ''
+	var note = Blockly.SonicPi.valueToCode(block, 'NOTE', Blockly.SonicPi.ORDER_ATOMIC);
+	if (note != null && note !== ''){
+      list += ', ' + note;
+    }
+    return list;
+}
+
+
+function mutatorTimings(block) {
+	var list  = ''
+	var timing = Blockly.SonicPi.valueToCode(block, 'TIMING', Blockly.SonicPi.ORDER_ATOMIC);
+	if (timing != null && timing !== ''){
+      list += ', ' + timing;
+    }
+    return list;
+}
+
 
 function mutatorCodeGen(block) {
 	var amp = Blockly.SonicPi.valueToCode(block, 'AMP', Blockly.SonicPi.ORDER_ATOMIC);

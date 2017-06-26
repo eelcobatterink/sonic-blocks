@@ -66,6 +66,28 @@ this.setPreviousStatement(true, null);
         }
 }
 
+Blockly.Blocks['controls_note'] = {
+  init: function() {
+  	this.appendDummyInput()
+		.appendField('note');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Add a note to the pattern');
+    this.setColour(119);
+        }
+}
+
+Blockly.Blocks['controls_timing'] = {
+  init: function() {
+  	this.appendDummyInput()
+		.appendField('timing');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Add a timing for the corresponding note');
+    this.setColour(119);
+        }
+}
+
 var controls_list = [ 'controls_amp',
                       'controls_pan',
                       'controls_attack',
@@ -74,6 +96,9 @@ var controls_list = [ 'controls_amp',
 					  'controls_pitch',
                     ];
 
+var notes_controls_list = [ 'controls_note' ];
+var timings_controls_list = ['controls_timing'];
+					
 
 Blockly.Blocks['controls_play_play'] = {
   init: function() {
@@ -108,6 +133,25 @@ Blockly.Blocks['controls_sample_sample'] = {
   }
 }
 
+Blockly.Blocks['controls_notes_notes'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField('note');
+    this.appendStatementInput("STATEMENT")
+        .setCheck(null);
+    this.setColour(230);
+  }
+}
+
+Blockly.Blocks['controls_timings_timings'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField('timing');
+    this.appendStatementInput("STATEMENT")
+        .setCheck(null);
+    this.setColour(230);
+  }
+}
 
 Blockly.Blocks['math_number'] = {
   init: function() {
@@ -161,6 +205,30 @@ function controls_mutationToDom() {
      }
 }
 
+function notes_mutationToDom() {
+  if (!this.c_notes_ ){
+      return null;
+    } else {
+      var container = document.createElement('mutation');
+      if (this.c_notes_) {
+        container.setAttribute('note', this.c_notes_);
+      }
+      return container;
+     }
+}
+
+function timings_mutationToDom() {
+  if (!this.c_timings_ ){
+      return null;
+    } else {
+      var container = document.createElement('mutation');
+      if (this.c_timings_) {
+        container.setAttribute('timing', this.c_timings_);
+      }
+      return container;
+     }
+}
+
 function controls_domToMutation( xmlElement ) {
   this.c_amp_ = (xmlElement.getAttribute('amp') == 'true') || false;
   this.c_pan_ = (xmlElement.getAttribute('pan') == 'true') || false;
@@ -168,6 +236,16 @@ function controls_domToMutation( xmlElement ) {
   this.c_decay_ = (xmlElement.getAttribute('decay') == 'true') || false;
   this.c_release_ = (xmlElement.getAttribute('release') == 'true') || false;
   this.c_pitch_ = (xmlElement.getAttribute('pitch') == 'true') || false;
+  this.updateShape_()
+}
+
+function notes_domToMutation( xmlElement ) {
+  this.c_notes_ = (xmlElement.getAttribute('note') == 'true') || false;
+  this.updateShape_()
+}
+
+function timings_domToMutation( xmlElement ) {
+  this.c_timings_ = (xmlElement.getAttribute('timing') == 'true') || false;
   this.updateShape_()
 }
 
@@ -226,6 +304,34 @@ function _controls_updateShape() {
 
 }
 
+function _notes_updateShape() {
+
+	if( this.getInput('NOTE') ){
+		this.removeInput( 'NOTE' );
+	  }
+
+  //REPOPULATE
+  if(this.c_notes_){
+    this.appendValueInput( 'NOTE' )
+    .setCheck('note')
+    .appendField( 'note' );
+  } 
+
+}
+
+function _timings_updateShape() {
+	if( this.getInput('TIMING') ){
+		this.removeInput( 'TIMING' );
+	  }
+  //REPOPULATE
+  if(this.c_timings_){
+    this.appendValueInput( 'TIMING' )
+    .setCheck('timing')
+    .appendField( 'timing' );
+  } 
+
+}
+
 function controls_decompose(control_top_block){
   return function(workspace) {
     var topBlock = Blockly.Block.obtain(workspace, control_top_block);
@@ -272,6 +378,40 @@ function controls_decompose(control_top_block){
   };
 }
 
+function notes_decompose(control_top_block){
+  return function(workspace) {
+    var topBlock = Blockly.Block.obtain(workspace, control_top_block);
+    topBlock.initSvg();
+
+    var connection = topBlock.getInput('STATEMENT').connection;
+    if(this.c_notes_){
+      var block = workspace.newBlock('controls_note');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
+    
+    return topBlock;
+  };
+}
+
+function timings_decompose(control_top_block){
+  return function(workspace) {
+    var topBlock = Blockly.Block.obtain(workspace, control_top_block);
+    topBlock.initSvg();
+
+    var connection = topBlock.getInput('STATEMENT').connection;
+    if(this.c_timings_){
+      var block = workspace.newBlock('controls_timing');
+      block.initSvg();
+      connection.connect(block.previousConnection);
+      connection = block.nextConnection;
+    }
+    
+    return topBlock;
+  };
+}
+
 function controls_compose( topBlock ){
   this.c_amp_ = false;
   this.c_pan_ = false;
@@ -314,6 +454,52 @@ function controls_compose( topBlock ){
 
 }
 
+function notes_compose( topBlock ){
+	this.c_notes_ = false;
+  
+	var children = topBlock.getChildren();
+
+	if ( children.length == 1 ) {
+		var block = children[0];
+		while( block ) {
+		  switch ( block.type ) {
+			case 'controls_note':
+			this.c_notes_ = true;
+			break;
+
+			default:
+			throw 'Unknown block type.';
+		  }
+		  block = block.nextConnection && block.nextConnection.targetBlock();
+		}
+	}
+	this.updateShape_();
+	
+}
+
+function timings_compose( topBlock ){
+	this.c_timings_ = false;
+  
+	var children = topBlock.getChildren();
+
+	if ( children.length == 1 ) {
+		var block = children[0];
+		while( block ) {
+		  switch ( block.type ) {
+			case 'controls_timing':
+			this.c_timings_ = true;
+			break;
+
+			default:
+			throw 'Unknown block type.';
+		  }
+		  block = block.nextConnection && block.nextConnection.targetBlock();
+		}
+	}
+	this.updateShape_();
+	
+}
+
 function sampleSetup(block) {
 	block.setPreviousStatement(true, null);
 	block.setNextStatement(true, null);
@@ -349,6 +535,66 @@ Blockly.Blocks['play_basic'] = {
   decompose: controls_decompose('controls_play_play'),
   compose: controls_compose
 };
+
+
+Blockly.Blocks['play_pattern_timed'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("play pattern of notes");
+    this.appendValueInput("NOTES")
+        .setCheck("notes")
+    this.appendValueInput("TIMING")
+        .setCheck("timing")
+        .appendField("with timing");
+    this.setInputsInline(true);
+	this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(90);
+	this.setMutator( new Blockly.Mutator( controls_list ) );
+	},
+	mutationToDom: controls_mutationToDom,
+	domToMutation: controls_domToMutation,
+	updateShape_: _controls_updateShape,
+	decompose: controls_decompose('controls_play_play'),
+	compose: controls_compose
+};
+
+Blockly.Blocks['notes'] = {
+  init: function() {
+    this.appendValueInput("NOTE_LIST")
+        .setCheck(["note"])
+		.appendField("notes");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(30);
+    this.setTooltip('');
+	this.setMutator( new Blockly.Mutator( notes_controls_list ) );
+	},
+	mutationToDom: notes_mutationToDom,
+	domToMutation: notes_domToMutation,
+	updateShape_: _notes_updateShape,
+	decompose: notes_decompose('controls_notes_notes'),
+	compose: notes_compose
+};
+
+Blockly.Blocks['timings'] = {
+  init: function() {
+    this.appendValueInput("TIMINGS_LIST")
+        .setCheck(["duration", "math_number"])
+		.appendField("timings");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(50);
+    this.setTooltip('');
+    this.setMutator( new Blockly.Mutator( timings_controls_list ) );
+	},
+	mutationToDom: timings_mutationToDom,
+	domToMutation: timings_domToMutation,
+	updateShape_: _timings_updateShape,
+	decompose: timings_decompose('controls_timings_timings'),
+	compose: timings_compose
+};
+
 
 Blockly.Blocks['puts'] = {
     init: function() {
