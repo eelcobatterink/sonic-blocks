@@ -182,7 +182,7 @@ function mutatorCodeGen(block) {
 
     var code = controls + "\n";
     return code;
-	
+
 }
 
 function sampleBlockCodeGen(block) {
@@ -456,4 +456,30 @@ Blockly.SonicPi['scale'] = function(block) {
     var num_octaves = block.getFieldValue('NUM_OCTAVES');
     var code = '(scale :' + tonic + ', :' + name + ', num_octaves: ' + num_octaves + ')';
     return code;
+};
+
+Blockly.SonicPi['lists_create_empty'] = function(block) {
+  // Create an empty list.
+  return ['[]', Blockly.Python.ORDER_ATOMIC];
+};
+
+Blockly.SonicPi['lists_create_with'] = function(block) {
+  // Create a list with any number of elements of any type.
+  var elements = new Array(block.itemCount_);
+  for (var i = 0; i < block.itemCount_; i++) {
+    elements[i] = Blockly.SonicPi.valueToCode(block, 'ADD' + i,
+        Blockly.SonicPi.ORDER_NONE) || 'None';
+  }
+  var code = '[' + elements.join(', ') + ']';
+  return [code, Blockly.SonicPi.ORDER_ATOMIC];
+};
+
+Blockly.SonicPi['lists_repeat'] = function(block) {
+  // Create a list with one element repeated.
+  var item = Blockly.SonicPi.valueToCode(block, 'ITEM',
+      Blockly.SonicPi.ORDER_NONE) || 'None';
+  var times = Blockly.SonicPi.valueToCode(block, 'NUM',
+      Blockly.SonicPi.ORDER_MULTIPLICATIVE) || '0';
+  var code = '[' + item + '] * ' + times;
+  return [code, Blockly.SonicPi.ORDER_MULTIPLICATIVE];
 };
