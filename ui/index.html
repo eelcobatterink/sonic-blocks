@@ -348,6 +348,26 @@
 				    </value>
 				  </block>
 				</category>
+				<category name="Sounds">
+					<block type="synth_instrument" id="hKpWRMN_e4+z/}]?aQSr" x="38" y="101">
+				    <field name="NAME">pretty_bell</field>
+				    <next>
+				      <block type="fx" id="EJkK(/X@ux[T#zNN)~Pr">
+				        <field name="FX_NAME">reverb</field>
+				        <statement name="NAME">
+				          <block type="play_basic" id="hP~!d_Y{FLBzT`PO^qjS">
+				            <value name="NOTE">
+				              <shadow type="note" id="]Z6m:}=kVrW@:rI1C/5M">
+				                <field name="NOTE">C</field>
+				                <field name="OCTAVE">4</field>
+				              </shadow>
+				            </value>
+				          </block>
+				        </statement>
+				      </block>
+				    </next>
+				  </block>
+				</category>
 			</category>
 			<category name="Pacman">
 			<category name="Bass">
@@ -1525,6 +1545,75 @@
 					</statement>
 				  </block>
 				</statement>
+			  </block>
+			</category>
+			<category name="Drum Pattern 3">
+				<block type="controls_repeat_ext" id="IjE;`K:$JC]G1jStPOC`" x="48" y="41">
+			    <value name="TIMES">
+			      <shadow type="math_number" id="u1_d3fwRYw7MN{kH:BV/">
+			        <field name="NUM">3</field>
+			      </shadow>
+			    </value>
+			    <statement name="DO">
+			      <block type="sleep" id="v::$@gw0fAYORZClifrp">
+			        <value name="SLEEP_PERIOD">
+			          <shadow type="math_number" id="n[Ib7^xH%w^R.ftKaG~-">
+			            <field name="NUM">1</field>
+			          </shadow>
+			        </value>
+			        <next>
+			          <block type="drum_sounds_sample" id="#^iFL*6tV(-c;y^KvOk]">
+			            <field name="SAMPLE">drum_snare_hard</field>
+			            <next>
+			              <block type="sleep" id="C{Xihw#Az`^kQ|KW%EV,">
+			                <value name="SLEEP_PERIOD">
+			                  <shadow type="math_number" id="1wiIN=EQdWzJhx(3gs=!">
+			                    <field name="NUM">1</field>
+			                  </shadow>
+			                </value>
+			              </block>
+			            </next>
+			          </block>
+			        </next>
+			      </block>
+			    </statement>
+			    <next>
+			      <block type="sleep" id="|Huyt=|H0YkREPL]r;,z">
+			        <value name="SLEEP_PERIOD">
+			          <shadow type="math_number" id="e}HA^oye+gL}{K!_qTPq">
+			            <field name="NUM">1</field>
+			          </shadow>
+			        </value>
+			        <next>
+			          <block type="drum_sounds_sample" id="bHD~6DyC-8p?`HBcI@p%">
+			            <field name="SAMPLE">drum_snare_hard</field>
+			            <next>
+			              <block type="sleep" id="P2k34bhwM=a2NTpuZoT#">
+			                <value name="SLEEP_PERIOD">
+			                  <shadow type="math_number" id=":XXt7ftAT6hiJ{(!H^wc">
+			                    <field name="NUM">.75</field>
+			                  </shadow>
+			                </value>
+			                <next>
+			                  <block type="drum_sounds_sample" id="1/%p3N-e?!K`*Zkz0z,_">
+			                    <field name="SAMPLE">drum_snare_hard</field>
+			                    <next>
+			                      <block type="sleep" id="l_kEf$%QAuEpmb?fB2(@">
+			                        <value name="SLEEP_PERIOD">
+			                          <shadow type="math_number" id="nI`0l23-buLlNOk^:!$o">
+			                            <field name="NUM">.25</field>
+			                          </shadow>
+			                        </value>
+			                      </block>
+			                    </next>
+			                  </block>
+			                </next>
+			              </block>
+			            </next>
+			          </block>
+			        </next>
+			      </block>
+			    </next>
 			  </block>
 			</category>
 			</category>
