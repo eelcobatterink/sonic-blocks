@@ -84,7 +84,7 @@
             <block type="math_arithmetic"></block>
         </category>
         <category name="Sound">
-			<category name="Basic">
+			<category name="Notes">
 				<block type="play_basic"></block>
 				<block type="play_pattern_timed"></block>
 				<block type="notes"></block>
@@ -93,6 +93,8 @@
 				<block type="midi_note"></block>
 				<block type="sleep"></block>
 				<block type="duration"></block>
+				<block type="scale"></block>
+			</category>
 				<category name="Samples">
 					<block type="ambient_sample"></block>
 					<block type="bass_drum_sample"></block>
@@ -108,15 +110,16 @@
 					<block type="vinyl_sample"></block>
 				</category>
 			</category>
+			<!--
 			<category name="Advanced">
 				<block type="play_advanced"></block>
 				<block type="sample_custom"></block>
 				<block type="fx_option"></block>
 				<block type="puts"></block>
-				<block type="scale"></block>
+
 			</category>
-        </category>
-        <category name="Loops">
+		-->
+        <category name="Control">
             <block type="live_loop"></block>
             <block type="in_thread"></block>
             <block type="controls_repeat_ext"></block>
@@ -130,8 +133,12 @@
 				<block type="synth_instrument"></block>
 				<block type="synth_noise"></block>
 			</category>
+				<category name="Tempo">
             <block type="bpm"></block>
+				</category>
+				<category name="Effects">
             <block type="fx"></block>
+				</category>
         </category>
         <category name="Variables" colour="100" custom="VARIABLE"></category>
         <category name="Functions" colour="60" custom="PROCEDURE"></category>
