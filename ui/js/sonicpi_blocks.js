@@ -98,7 +98,7 @@ var controls_list = [ 'controls_amp',
 
 var notes_controls_list = [ 'controls_note' ];
 var timings_controls_list = ['controls_timing'];
-					
+
 
 Blockly.Blocks['controls_play_play'] = {
   init: function() {
@@ -315,7 +315,7 @@ function _notes_updateShape() {
     this.appendValueInput( 'NOTE' )
     .setCheck('note')
     .appendField( 'note' );
-  } 
+  }
 
 }
 
@@ -328,7 +328,7 @@ function _timings_updateShape() {
     this.appendValueInput( 'TIMING' )
     .setCheck('timing')
     .appendField( 'timing' );
-  } 
+  }
 
 }
 
@@ -390,7 +390,7 @@ function notes_decompose(control_top_block){
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
-    
+
     return topBlock;
   };
 }
@@ -407,7 +407,7 @@ function timings_decompose(control_top_block){
       connection.connect(block.previousConnection);
       connection = block.nextConnection;
     }
-    
+
     return topBlock;
   };
 }
@@ -456,7 +456,7 @@ function controls_compose( topBlock ){
 
 function notes_compose( topBlock ){
 	this.c_notes_ = false;
-  
+
 	var children = topBlock.getChildren();
 
 	if ( children.length == 1 ) {
@@ -474,12 +474,12 @@ function notes_compose( topBlock ){
 		}
 	}
 	this.updateShape_();
-	
+
 }
 
 function timings_compose( topBlock ){
 	this.c_timings_ = false;
-  
+
 	var children = topBlock.getChildren();
 
 	if ( children.length == 1 ) {
@@ -497,7 +497,7 @@ function timings_compose( topBlock ){
 		}
 	}
 	this.updateShape_();
-	
+
 }
 
 function sampleSetup(block) {
@@ -542,9 +542,9 @@ Blockly.Blocks['play_pattern_timed'] = {
     this.appendDummyInput()
         .appendField("play pattern of notes");
     this.appendValueInput("NOTES")
-        .setCheck("notes")
+        .setCheck("Array")
     this.appendValueInput("TIMING")
-        .setCheck("timing")
+        .setCheck("Array")
         .appendField("with timing");
     this.setInputsInline(true);
 	this.setPreviousStatement(true, null);

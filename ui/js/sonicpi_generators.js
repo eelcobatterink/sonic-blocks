@@ -99,10 +99,10 @@ Blockly.SonicPi['play_advanced'] = function(block) {
 };
 
 Blockly.SonicPi['play_pattern_timed'] = function(block) {
-  var value_notes = Blockly.SonicPi.statementToCode(block, 'NOTES');
-  var value_times = Blockly.SonicPi.statementToCode(block, 'TIMING');
+  var value_notes = Blockly.SonicPi.valueToCode(block, 'NOTES', Blockly.SonicPi.ORDER_ATOMIC);
+  var value_times = Blockly.SonicPi.valueToCode(block, 'TIMING', Blockly.SonicPi.ORDER_ATOMIC);
 
-  var code = 'play_pattern_timed [' + value_notes + '], [' + value_times + ']' + mutatorCodeGen(block);
+  var code = 'play_pattern_timed ' + value_notes + ', ' + value_times + ' ' + mutatorCodeGen(block);
   return code;
 };
 
