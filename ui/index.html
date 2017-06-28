@@ -11,6 +11,7 @@
 	<script src="js/sonicpi.js"></script>
 	<script src="js/sonicpi_blocks.js"></script>
 	<script src="js/sonicpi_generators.js"></script>
+	<script src="js/storage.js"></script>
 	<script>
 		function loadXMLDoc(dname){
 			if (window.XMLHttpRequest){
@@ -39,18 +40,21 @@
 			font-size: 140%;
 		}
 
-		button {
+		button, input {
 			-webkit-appearance: none;
 			outline: none;
 
-			background: #1abc9c;
-			color: #fff;
-
 			padding: 10px;
 			border-radius: 3px;
-			border: none;
+
 			margin: 3px;
 			cursor: pointer;
+		}
+
+		button {
+			color: #fff;
+			background: #1abc9c;
+			border: none;
 		}
 
 		#conn-status {
@@ -64,12 +68,21 @@
 </head>
 <body>
   <h1>SonicPi Blockly</h1>
-  <h4><div id="conn-status">Disconnected</div></h4>
   <p>
+		<div id="conn-status">Disconnected</div>
     <button onclick="runCode()">▶ Run</button>
     <button onclick="stopAll()">■ Stop</button>
     <button class="dev" onclick="updateCode()">[DEBUG] Show Code</button>
     <button class="dev" onclick="displayXml()">[DEBUG] Show XML</button>
+	</p>
+	<p>
+		<button class="dev" onclick="exportXml()">Save</button>
+		<input  class="dev" id='save_file_name'></input>
+	</p>
+	<p>
+		<button class="dev" onclick="importXml()">Load</button>
+		<input class="dev" type="file" id="load_file_name" accept='.xml'>
+
   </p>
 
   <div id="blocklyDiv" style="height:550px; width: 90%; display:inline-block"></div>
@@ -1357,7 +1370,15 @@
 	  </category>
     </xml>
 
-  <xml id="startBlocks" style="display: none"></xml>
+  <xml id="startBlocks" style="display: none">
+		<block type="sleep" id="I%Z.Icc1|tPnIfSYqF}=">
+		<value name="SLEEP_PERIOD">
+			<block type="duration" id="=KRl]Jl@q]hZ=gT6EhEu">
+			<field name="DURATION">2</field>
+			<field name="NOTE_BASE">1</field>
+			<field name="IS_DOTTED">FALSE</field>
+			</block>
+	</xml>
 
   <textarea class="dev" readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
   <textarea class="dev" readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
@@ -1436,6 +1457,23 @@
       var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
       e1.value = xmlText;
     }
+
+		function exportXml() {
+			var file = document.getElementById( 'save_file_name').value
+      var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+			saveXml( file, xmlText );
+    }
+
+		function importXml() {
+			var file = document.getElementById( 'load_file_name').files[0];
+			if (file) {
+				loadXml( file, workspace );
+			}
+			else {
+				alert( 'No Filename seleted');
+			}
+		}
 
 
   </script>
