@@ -85,13 +85,27 @@
         </category>
         <category name="Sound">
 			<category name="Notes">
-				<block type="play_basic"></block>
+				<block type="play_basic">
+					<value name="NOTE">
+						<shadow type="note">
+							<field name="NOTE">C</field>
+							<field name="OCTAVE">4</field>
+						</shadow>
+					</value>
+				</block>
+				</block>
 				<block type="play_pattern_timed"></block>
 				<block type="notes"></block>
 				<block type="timings"></block>
 				<block type="note"></block>
 				<block type="midi_note"></block>
-				<block type="sleep"></block>
+				<block type="sleep">
+					<value name="SLEEP_PERIOD">
+						<shadow type="math_number">
+							<field name="NUM">1</field>
+						</shadow>
+					</value>
+				</block>
 				<block type="duration"></block>
 				<block type="scale"></block>
 			</category>
@@ -122,7 +136,13 @@
         <category name="Control">
             <block type="live_loop"></block>
             <block type="in_thread"></block>
-            <block type="controls_repeat_ext"></block>
+            <block type="controls_repeat_ext">
+							<value name="TIMES">
+								<shadow type="math_number">
+		            	<field name="NUM">8</field>
+			          </shadow>
+							</value>
+						</block>
         </category>
         <category name="Feel">
 			<category name="Synths">
@@ -1326,10 +1346,7 @@
 	  </category>
     </xml>
 
-  <xml id="startBlocks" style="display: none">
-    <block type="play_basic" x="20" y="20">
-    </block>
-  </xml>
+  <xml id="startBlocks" style="display: none"></xml>
 
   <textarea class="dev" readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
   <textarea class="dev" readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
