@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://bitbucket.org/t4sg/emea-ffg-2016-sonic-pi.git"
   },
-  "author": "Paul Blid, Biko Agozino, Daniel Adams, Lulu Jiang, Wardah Mir, Dominique Tan, Liem Phan",
+  "author": "Paul Blid, Biko Agozino, Daniel Adams, Lulu Jiang, Wardah Mir, Dominique Tan, Liem Phan, Eelco Batterink",
   "license": "MIT",
   "homepage": "https://bitbucket.org/t4sg/emea-ffg-2016-sonic-pi#readme",
   "dependencies": {
