@@ -25,7 +25,7 @@ Blockly.SonicPi['midi_note'] = function(block) {
 Blockly.SonicPi['note'] = function(block) {
   var note = block.getFieldValue('NOTE');
   var octave = block.getFieldValue('OCTAVE');
-  var code = ":" + note + octave;
+  var code = note + octave;
   return [code, Blockly.SonicPi.ORDER_ATOMIC];
 };
 
