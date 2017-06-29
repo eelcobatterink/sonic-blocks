@@ -16,19 +16,21 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>SonicPi Blockly</h1>
-  <p>
-		<div id="conn-status">Disconnected</div>
-    <button id="run">▶ Run</button>
-    <button id="stop">■ Stop</button>
-		<button id="save">Save</button>
-		<button id="load">Load</button>
-		<input  type="file" id="load_file_name" accept='.xml' style="display: none">
-	</p>
-	<div class="tab">
-		<button id="tab_blocks" class="tablinks active">Blocks</button>
-		<button id="tab_code" class="tablinks">Code</button>
-		<button id="tab_xml" class="tablinks">XML</button>
+	<div id="toolbar">
+		<div class="tab">
+			<button id="tab_blocks" class="tablinks active">Blocks</button>
+			<button id="tab_code" class="tablinks">Code</button>
+			<button id="tab_xml" class="tablinks">XML</button>
+		</div>
+	  <div class="controls">
+	    <button id="run" class="control">▶ Run</button>
+	    <button id="stop" class="control">■ Stop</button>
+			<button id="save" class="control">Save</button>
+			<button id="load" class="control">Load</button>
+			<div id="conn-status">Disconnected</div>
+			<input  type="file" id="load_file_name" accept='.xml' style="display: none">
+		</div>
+
 	</div>
 	<div id="contents_blocks" class="content"></div>
 	<div id="contents_code" class="content"><textarea id="code_area"></textarea></div>
