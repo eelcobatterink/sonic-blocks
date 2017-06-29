@@ -1665,7 +1665,7 @@
 		document.getElementById( 'save' ).addEventListener( 'click', function() {
 			var xmlDom = Blockly.Xml.workspaceToDom(workspace);
 			var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-			saveXml( xmlText );
+			saveXml( 'sonic-blocks.xml', xmlText );
 		});
 
 
