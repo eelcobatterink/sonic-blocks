@@ -108,6 +108,8 @@ SonicUI.init = function() {
   document.getElementById( 'run' ).addEventListener( 'click', SonicUI.runCode );
   document.getElementById( 'stop' ).addEventListener( 'click',SonicUI. stopAll );
 
+  document.getElementById( 'tab_blocks').click();
+
   SonicUI.setupWebsocket();
 }
 
