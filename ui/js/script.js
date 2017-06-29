@@ -33,7 +33,7 @@ SonicUI.setupWebsocket = function () {
     el.textContent = "Disconnected";
     el.style.backgroundColor = "#e74c3c";
 
-    setTimeout(setupWebsocket, 1000);
+    setTimeout(SonicUI.setupWebsocket, 1000);
   }
 }
 
