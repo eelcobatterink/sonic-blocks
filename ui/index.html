@@ -72,16 +72,19 @@
 		<div id="conn-status">Disconnected</div>
     <button onclick="runCode()">▶ Run</button>
     <button onclick="stopAll()">■ Stop</button>
+		<button id="save">Save</button>
+		<button id="load">Load</button>
+		<input  type="file" id="load_file_name" accept='.xml' style="display: none">
     <button class="dev" onclick="updateCode()">[DEBUG] Show Code</button>
     <button class="dev" onclick="displayXml()">[DEBUG] Show XML</button>
 	</p>
 	<p>
-		<button class="dev" onclick="exportXml()">Save</button>
+
 		<input  class="dev" id='save_file_name'></input>
 	</p>
 	<p>
-		<button class="dev" onclick="importXml()">Load</button>
-		<input class="dev" type="file" id="load_file_name" accept='.xml'>
+
+
 
   </p>
 
@@ -1621,30 +1624,52 @@
 	  </category>
     </xml>
 
-  <xml id="startBlocks" style="display: none">
-		<block type="sleep" id="I%Z.Icc1|tPnIfSYqF}=">
-		<value name="SLEEP_PERIOD">
-			<block type="duration" id="=KRl]Jl@q]hZ=gT6EhEu">
-			<field name="DURATION">2</field>
-			<field name="NOTE_BASE">1</field>
-			<field name="IS_DOTTED">FALSE</field>
-			</block>
-	</xml>
-
   <textarea class="dev" readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
   <textarea class="dev" readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
 
   <script>
+
+	function isElectron() {
+	  if (typeof require !== 'function') return false;
+	  if (typeof window !== 'object') return false;
+	  try {
+	    const electron = require('electron');
+	    if (typeof electron !== 'object') return false;
+	  } catch(e) {
+	    return false;
+	  }
+	  return true;
+	}
+
+
     var workspace = Blockly.inject('blocklyDiv',
         {media: 'media/',
          toolbox: document.getElementById('toolbox')});
-    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
-
 
 		window.isDev = false;
-		if(require("electron").remote.process.argv.indexOf("--dev") != -1) {
+		if ( isElectron() == false ){
 			window.isDev = true;
 		}
+		else if (require("electron").remote.process.argv.indexOf("--dev") != -1) {
+				window.isDev = true;
+		}
+		document.getElementById( 'load' ).addEventListener( 'click',  function() {
+			document.getElementById( 'load_file_name').click();
+		});
+
+		document.getElementById( 'load_file_name' ).addEventListener( 'change', function() {
+			var file = document.getElementById( 'load_file_name').files[0];
+			if (file) loadXml( file, workspace );
+		});
+
+		document.getElementById( 'save' ).addEventListener( 'click', function() {
+			var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+			var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+			saveXml( xmlText );
+		});
+
+
+
 
 		// Do some cleanup based on whether we're dev or not
 		if(!isDev) {
@@ -1681,7 +1706,7 @@
       }
     }
 
-    setupWebsocket();
+		setupWebsocket();
 
     function stopAll() {
       ws.send(JSON.stringify({type: "stop-all"}));
@@ -1708,23 +1733,6 @@
       var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
       e1.value = xmlText;
     }
-
-		function exportXml() {
-			var file = document.getElementById( 'save_file_name').value
-      var xmlDom = Blockly.Xml.workspaceToDom(workspace);
-      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-			saveXml( file, xmlText );
-    }
-
-		function importXml() {
-			var file = document.getElementById( 'load_file_name').files[0];
-			if (file) {
-				loadXml( file, workspace );
-			}
-			else {
-				alert( 'No Filename seleted');
-			}
-		}
 
 
   </script>
