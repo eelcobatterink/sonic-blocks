@@ -12,6 +12,7 @@
 	<script src="js/sonicpi_blocks.js"></script>
 	<script src="js/sonicpi_generators.js"></script>
 	<script src="js/storage.js"></script>
+	<script src="js/script.js"></script>
 	<script>
 		function loadXMLDoc(dname){
 			if (window.XMLHttpRequest){
@@ -64,6 +65,34 @@
 			padding: 10px;
 			border-radius: 3px;
 		}
+
+		.content {
+			width: 1200px;
+			height: 800px;
+		}
+
+		div.tab button {
+		    cursor: pointer;
+		    transition: 0.3s;
+				background-color: #ccc;
+		}
+
+		/* Change background color of buttons on hover */
+		div.tab button:hover {
+		    background-color: #ddd;
+		}
+
+		/* Create an active/current tablink class */
+		div.tab button.active {
+		    background-color: #e74c3c;
+		}
+
+		textarea {
+			width : 100%;
+			height : 100%;
+		}
+
+
 	</style>
 </head>
 <body>
@@ -75,25 +104,16 @@
 		<button id="save">Save</button>
 		<button id="load">Load</button>
 		<input  type="file" id="load_file_name" accept='.xml' style="display: none">
-    <button class="dev" onclick="updateCode()">[DEBUG] Show Code</button>
-    <button class="dev" onclick="displayXml()">[DEBUG] Show XML</button>
 	</p>
-	<p>
+	<div class="tab">
+		<button id="tab_blocks" class="tablinks active">Blocks</button>
+		<button id="tab_code" class="tablinks">Code</button>
+		<button id="tab_xml" class="tablinks">XML</button>
+	</div>
+	<div id="contents_blocks" class="content"></div>
+	<div id="contents_code" class="content"><textarea id="code_area"></textarea></div>
+	<div id="contents_xml" class="content"><textarea id="xml_area"></textarea></div>
 
-		<input  class="dev" id='save_file_name'></input>
-	</p>
-	<p>
-
-
-
-  </p>
-
-  <div id="blocklyDiv" style="height:550px; width: 90%; display:inline-block"></div>
-
-	<!--<script>
-		xmlDoc=loadXMLDoc("./toolbox.xml");
-		document.write(xmlDoc.getElementById("toolbox"));
-	</script>-->
     <xml id="toolbox" style="display: none">
         <category name="Math">
             <block type="math_number"></block>
@@ -1624,9 +1644,10 @@
 	  </category>
     </xml>
 
+<!--
   <textarea class="dev" readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
   <textarea class="dev" readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
-
+-->
   <script>
 
 	function isElectron() {
@@ -1642,7 +1663,7 @@
 	}
 
 
-    var workspace = Blockly.inject('blocklyDiv',
+    var workspace = Blockly.inject('contents_blocks',
         {media: 'media/',
          toolbox: document.getElementById('toolbox')});
 
