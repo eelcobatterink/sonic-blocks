@@ -13,19 +13,6 @@
 	<script src="js/sonicpi_generators.js"></script>
 	<script src="js/storage.js"></script>
 	<script src="js/script.js"></script>
-	<script>
-		function loadXMLDoc(dname){
-			if (window.XMLHttpRequest){
-				xhttp=new XMLHttpRequest();
-			} else {
-				xhttp=new ActiveXObject("Microsoft.XMLDOM");
-			}
-
-			xhttp.open("GET", dname, false);
-			xhttp.send();
-			return xhttp.responseXML;
-		}
-	</script>
 
 
 	<style>
@@ -99,8 +86,8 @@
   <h1>SonicPi Blockly</h1>
   <p>
 		<div id="conn-status">Disconnected</div>
-    <button onclick="runCode()">▶ Run</button>
-    <button onclick="stopAll()">■ Stop</button>
+    <button id="run">▶ Run</button>
+    <button id="stop">■ Stop</button>
 		<button id="save">Save</button>
 		<button id="load">Load</button>
 		<input  type="file" id="load_file_name" accept='.xml' style="display: none">
@@ -1570,7 +1557,7 @@
 				</statement>
 			  </block>
 			</category>
-			<category name="Drum Pattern 3">
+			<category name="Drum Rhythm 3">
 				<block type="controls_repeat_ext" id="IjE;`K:$JC]G1jStPOC`" x="48" y="41">
 			    <value name="TIMES">
 			      <shadow type="math_number" id="u1_d3fwRYw7MN{kH:BV/">
@@ -1643,120 +1630,5 @@
 
 	  </category>
     </xml>
-
-<!--
-  <textarea class="dev" readonly id="spi-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
-  <textarea class="dev" readonly id="xml-code" style="display: inline-block; resize: none; width: 50%; height: 500px"></textarea>
--->
-  <script>
-
-	function isElectron() {
-	  if (typeof require !== 'function') return false;
-	  if (typeof window !== 'object') return false;
-	  try {
-	    const electron = require('electron');
-	    if (typeof electron !== 'object') return false;
-	  } catch(e) {
-	    return false;
-	  }
-	  return true;
-	}
-
-
-    var workspace = Blockly.inject('contents_blocks',
-        {media: 'media/',
-         toolbox: document.getElementById('toolbox')});
-
-		window.isDev = false;
-		if ( isElectron() == false ){
-			window.isDev = true;
-		}
-		else if (require("electron").remote.process.argv.indexOf("--dev") != -1) {
-				window.isDev = true;
-		}
-		document.getElementById( 'load' ).addEventListener( 'click',  function() {
-			document.getElementById( 'load_file_name').click();
-		});
-
-		document.getElementById( 'load_file_name' ).addEventListener( 'change', function() {
-			var file = document.getElementById( 'load_file_name').files[0];
-			if (file) loadXml( file, workspace );
-		});
-
-		document.getElementById( 'save' ).addEventListener( 'click', function() {
-			var xmlDom = Blockly.Xml.workspaceToDom(workspace);
-			var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-			saveXml( 'sonic-blocks.xml', xmlText );
-		});
-
-
-
-
-		// Do some cleanup based on whether we're dev or not
-		if(!isDev) {
-			// Hide DEBUG buttons
-			const devElements = document.getElementsByClassName("dev");
-			for(let i = devElements.length; i--;) {
-				devElements[i].style.display = "none";
-			}
-		}
-
-    ws = null;
-
-    function setupWebsocket() {
-      ws = new WebSocket("ws://127.0.0.1:4001/");
-      var el = document.getElementById("conn-status");
-      el.textContent = "Connecting...";
-      el.style.backgroundColor = "#f1c40f";
-
-
-      ws.onopen = function() {
-        console.log("websocket connected");
-        var el = document.getElementById("conn-status");
-        el.textContent = "Connected";
-        el.style.backgroundColor = "#2ecc71";
-      }
-
-      ws.onclose = function() {
-        console.log("websocket disconnected");
-        var el = document.getElementById("conn-status");
-        el.textContent = "Disconnected";
-        el.style.backgroundColor = "#e74c3c";
-
-        setTimeout(setupWebsocket, 1000);
-      }
-    }
-
-		setupWebsocket();
-
-    function stopAll() {
-      ws.send(JSON.stringify({type: "stop-all"}));
-    }
-
-    function runCode() {
-      var code = Blockly.SonicPi.workspaceToCode(workspace);
-      var payload = JSON.stringify({type: "run", code: code});
-      ws.send(payload);
-      console.log(payload);
-    }
-
-    function updateCode() {
-      var el = document.getElementById("spi-code");
-      // Generate JavaScript code and display it.
-      Blockly.SonicPi.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.SonicPi.workspaceToCode(workspace);
-      el.value = code;
-    }
-
-    function displayXml() {
-      var e1 = document.getElementById("xml-code");
-      var xmlDom = Blockly.Xml.workspaceToDom(workspace);
-      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-      e1.value = xmlText;
-    }
-
-
-  </script>
-
 </body>
 </html>
